@@ -1,0 +1,78 @@
+//
+//  WDGLoginViewController.m
+//  WDGVideoDemo
+//
+//  Created by han wp on 2017/6/30.
+//  Copyright © 2017年 wilddog. All rights reserved.
+//
+
+#import "WDGLoginViewController.h"
+#import "WDGLoginManager.h"
+@interface WDGLoginViewController ()
+
+@end
+
+@implementation WDGLoginViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view from its nib.
+    CGFloat centerX = self.view.bounds.size.width*.5;
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"glyphs"]];
+    imageView.frame = CGRectMake(0, 0, 75, 75);
+    imageView.center = CGPointMake(centerX, 200+CGRectGetHeight(imageView.frame)*.5);
+    [self.view addSubview:imageView];
+    
+    UILabel *titleLabel = [self pingfangLabelWithText:@"野狗通信云" size:24];
+    titleLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
+    titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+22+CGRectGetHeight(titleLabel.frame)*.5);
+    [self.view addSubview:titleLabel];
+    
+    UILabel *detailLabel = [self pingfangLabelWithText:@"视频通话示例程序" size:15];
+    detailLabel.center = CGPointMake(centerX, CGRectGetMaxY(titleLabel.frame)+10+CGRectGetHeight(detailLabel.frame)*.5);
+    [self.view addSubview:detailLabel];
+    
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginButton setTitle:@"登录" forState:UIControlStateNormal];
+    loginButton.titleLabel.textColor = [UIColor whiteColor];
+    loginButton.frame = CGRectMake(0, 0, 241, 41);
+    loginButton.center = CGPointMake(centerX, CGRectGetMaxY(detailLabel.frame)+99+CGRectGetHeight(loginButton.frame)*.5);
+    UIColor *normalColor = [UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.];
+    UIColor *highlightColor = [UIColor colorWithRed:0xf0/255. green:0x91/255. blue:0x6e/255. alpha:1.];
+    [loginButton setBackgroundImage:[self getImageFromColor:normalColor size:loginButton.frame.size] forState:UIControlStateNormal];
+    [loginButton setBackgroundImage:[self getImageFromColor:highlightColor size:loginButton.frame.size] forState:UIControlStateHighlighted];
+    loginButton.layer.cornerRadius = CGRectGetHeight(loginButton.frame)*.5;
+    loginButton.clipsToBounds =YES;
+    [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginButton];
+}
+
+-(UILabel *)pingfangLabelWithText:(NSString *)text size:(CGFloat)size
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text =text;
+    label.textColor = [UIColor colorWithRed:0x66/255. green:0x66/255. blue:0x66/255. alpha:1];
+    label.font = [UIFont fontWithName:@"pingfang sc" size:size];
+    [label sizeToFit];
+    return label;
+}
+
+-(UIImage *)getImageFromColor:(UIColor *)color size:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(currentContext, color.CGColor);
+    CGContextFillRect(currentContext, CGRectMake(0, 0, size.width, size.height));
+    UIImage *targetImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return targetImage;
+}
+
+-(void)login
+{
+    [WDGLoginManager loginByTouristComplete:^{
+        [UIApplication sharedApplication].delegate.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+    }];
+}
+@end

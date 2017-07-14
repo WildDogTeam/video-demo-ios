@@ -1,0 +1,651 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */; };
+		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
+		C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEDA1F18AA7600548531 /* AppDelegate.m */; };
+		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
+		C87EAEE31F18AA7600548531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEE21F18AA7600548531 /* Assets.xcassets */; };
+		C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEE41F18AA7600548531 /* LaunchScreen.storyboard */; };
+		C87EAEF11F18AAAD00548531 /* libPGSkinPrettifyEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */; };
+		C87EAEF41F18AB4A00548531 /* UIView+MBProgressHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */; };
+		C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF61F18AB5700548531 /* WDGAccount.m */; };
+		C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */; };
+		C87EAF2E1F18AB5800548531 /* WDGBeautyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */; };
+		C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */; };
+		C87EAF301F18AB5800548531 /* WDGCamera360Option.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */; };
+		C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF001F18AB5700548531 /* WDGFileManager.m */; };
+		C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF021F18AB5700548531 /* WDGInfoView.m */; };
+		C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF041F18AB5700548531 /* WDGLoginManager.m */; };
+		C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF061F18AB5700548531 /* WDGLoginViewController.m */; };
+		C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF081F18AB5700548531 /* WDGNotifications.m */; };
+		C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */; };
+		C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */; };
+		C87EAF381F18AB5800548531 /* WDGReciveCallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */; };
+		C87EAF391F18AB5800548531 /* WDGRecordFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */; };
+		C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF111F18AB5800548531 /* WDGRegardViewController.m */; };
+		C87EAF3B1F18AB5800548531 /* WDGSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF131F18AB5800548531 /* WDGSelectViewController.m */; };
+		C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF151F18AB5800548531 /* WDGSettingViewController.m */; };
+		C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */; };
+		C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF191F18AB5800548531 /* WDGTabbarController.m */; };
+		C87EAF3F1F18AB5800548531 /* WDGTUSDKOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */; };
+		C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */; };
+		C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */; };
+		C87EAF421F18AB5800548531 /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
+		C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */; };
+		C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF251F18AB5800548531 /* WDGVideoTool.m */; };
+		C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF271F18AB5800548531 /* WDGVideoViewController.m */; };
+		C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF291F18AB5800548531 /* WDGVideoViews.m */; };
+		C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */; };
+		C87EAF491F18ACE200548531 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C87EAF481F18ACE200548531 /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.release.xcconfig"; sourceTree = "<group>"; };
+		C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-video-demo-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C87EAED91F18AA7600548531 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C87EAEDA1F18AA7600548531 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C87EAEE01F18AA7600548531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C87EAEE21F18AA7600548531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C87EAEE51F18AA7600548531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C87EAEE71F18AA7600548531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPGSkinPrettifyEngine.a; sourceTree = "<group>"; };
+		C87EAEEF1F18AAAD00548531 /* PGSkinPrettifyEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSkinPrettifyEngine.h; sourceTree = "<group>"; };
+		C87EAEF01F18AAAD00548531 /* PGSkinPrettifyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSkinPrettifyType.h; sourceTree = "<group>"; };
+		C87EAEF21F18AB4A00548531 /* UIView+MBProgressHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MBProgressHud.h"; sourceTree = "<group>"; };
+		C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBProgressHud.m"; sourceTree = "<group>"; };
+		C87EAEF51F18AB5700548531 /* WDGAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGAccount.h; sourceTree = "<group>"; };
+		C87EAEF61F18AB5700548531 /* WDGAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGAccount.m; sourceTree = "<group>"; };
+		C87EAEF71F18AB5700548531 /* WDGBeautyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGBeautyManager.h; sourceTree = "<group>"; };
+		C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGBeautyManager.m; sourceTree = "<group>"; };
+		C87EAEF91F18AB5700548531 /* WDGBeautyOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGBeautyOption.h; sourceTree = "<group>"; };
+		C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGBeautyOption.m; sourceTree = "<group>"; };
+		C87EAEFB1F18AB5700548531 /* WDGCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCallViewController.h; sourceTree = "<group>"; };
+		C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCallViewController.m; sourceTree = "<group>"; };
+		C87EAEFD1F18AB5700548531 /* WDGCamera360Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCamera360Option.h; sourceTree = "<group>"; };
+		C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCamera360Option.m; sourceTree = "<group>"; };
+		C87EAEFF1F18AB5700548531 /* WDGFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGFileManager.h; sourceTree = "<group>"; };
+		C87EAF001F18AB5700548531 /* WDGFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGFileManager.m; sourceTree = "<group>"; };
+		C87EAF011F18AB5700548531 /* WDGInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGInfoView.h; sourceTree = "<group>"; };
+		C87EAF021F18AB5700548531 /* WDGInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGInfoView.m; sourceTree = "<group>"; };
+		C87EAF031F18AB5700548531 /* WDGLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGLoginManager.h; sourceTree = "<group>"; };
+		C87EAF041F18AB5700548531 /* WDGLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGLoginManager.m; sourceTree = "<group>"; };
+		C87EAF051F18AB5700548531 /* WDGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGLoginViewController.h; sourceTree = "<group>"; };
+		C87EAF061F18AB5700548531 /* WDGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGLoginViewController.m; sourceTree = "<group>"; };
+		C87EAF071F18AB5700548531 /* WDGNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGNotifications.h; sourceTree = "<group>"; };
+		C87EAF081F18AB5700548531 /* WDGNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGNotifications.m; sourceTree = "<group>"; };
+		C87EAF091F18AB5700548531 /* WDGOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGOnlineViewController.h; sourceTree = "<group>"; };
+		C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGOnlineViewController.m; sourceTree = "<group>"; };
+		C87EAF0B1F18AB5700548531 /* WDGReciveCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGReciveCallViewController.h; sourceTree = "<group>"; };
+		C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGReciveCallViewController.m; sourceTree = "<group>"; };
+		C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDGReciveCallViewController.xib; sourceTree = "<group>"; };
+		C87EAF0E1F18AB5800548531 /* WDGRecordFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGRecordFilesViewController.h; sourceTree = "<group>"; };
+		C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGRecordFilesViewController.m; sourceTree = "<group>"; };
+		C87EAF101F18AB5800548531 /* WDGRegardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGRegardViewController.h; sourceTree = "<group>"; };
+		C87EAF111F18AB5800548531 /* WDGRegardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGRegardViewController.m; sourceTree = "<group>"; };
+		C87EAF121F18AB5800548531 /* WDGSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSelectViewController.h; sourceTree = "<group>"; };
+		C87EAF131F18AB5800548531 /* WDGSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSelectViewController.m; sourceTree = "<group>"; };
+		C87EAF141F18AB5800548531 /* WDGSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSettingViewController.h; sourceTree = "<group>"; };
+		C87EAF151F18AB5800548531 /* WDGSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSettingViewController.m; sourceTree = "<group>"; };
+		C87EAF161F18AB5800548531 /* WDGStaticRootTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGStaticRootTableViewCell.h; sourceTree = "<group>"; };
+		C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGStaticRootTableViewCell.m; sourceTree = "<group>"; };
+		C87EAF181F18AB5800548531 /* WDGTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTabbarController.h; sourceTree = "<group>"; };
+		C87EAF191F18AB5800548531 /* WDGTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTabbarController.m; sourceTree = "<group>"; };
+		C87EAF1A1F18AB5800548531 /* WDGTUSDKOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTUSDKOption.h; sourceTree = "<group>"; };
+		C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTUSDKOption.m; sourceTree = "<group>"; };
+		C87EAF1C1F18AB5800548531 /* WDGVideoCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoCallViewController.h; sourceTree = "<group>"; };
+		C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoCallViewController.m; sourceTree = "<group>"; };
+		C87EAF1E1F18AB5800548531 /* WDGVideoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoConfig.h; sourceTree = "<group>"; };
+		C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoConfig.m; sourceTree = "<group>"; };
+		C87EAF201F18AB5800548531 /* WDGVideoControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoControlView.h; sourceTree = "<group>"; };
+		C87EAF211F18AB5800548531 /* WDGVideoControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoControlView.m; sourceTree = "<group>"; };
+		C87EAF221F18AB5800548531 /* WDGVideoReceiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoReceiveViewController.h; sourceTree = "<group>"; };
+		C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoReceiveViewController.m; sourceTree = "<group>"; };
+		C87EAF241F18AB5800548531 /* WDGVideoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoTool.h; sourceTree = "<group>"; };
+		C87EAF251F18AB5800548531 /* WDGVideoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoTool.m; sourceTree = "<group>"; };
+		C87EAF261F18AB5800548531 /* WDGVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoViewController.h; sourceTree = "<group>"; };
+		C87EAF271F18AB5800548531 /* WDGVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoViewController.m; sourceTree = "<group>"; };
+		C87EAF281F18AB5800548531 /* WDGVideoViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoViews.h; sourceTree = "<group>"; };
+		C87EAF291F18AB5800548531 /* WDGVideoViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoViews.m; sourceTree = "<group>"; };
+		C87EAF2A1F18AB5800548531 /* WilddogSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WilddogSDKManager.h; sourceTree = "<group>"; };
+		C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilddogSDKManager.m; sourceTree = "<group>"; };
+		C87EAF481F18ACE200548531 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C87EAED01F18AA7600548531 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C87EAF491F18ACE200548531 /* libz.tbd in Frameworks */,
+				C87EAEF11F18AAAD00548531 /* libPGSkinPrettifyEngine.a in Frameworks */,
+				8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B06303B5529108B802738CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF481F18ACE200548531 /* libz.tbd */,
+				C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		74A9B2DFE31C85C8C43D129F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */,
+				6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C87EAECA1F18AA7600548531 = {
+			isa = PBXGroup;
+			children = (
+				C87EAEED1F18AAAD00548531 /* PGSkinPrettifyEngine */,
+				C87EAED51F18AA7600548531 /* video-demo-ios */,
+				C87EAED41F18AA7600548531 /* Products */,
+				74A9B2DFE31C85C8C43D129F /* Pods */,
+				4B06303B5529108B802738CD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C87EAED41F18AA7600548531 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAED31F18AA7600548531 /* video-demo-ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C87EAED51F18AA7600548531 /* video-demo-ios */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF501F18AE3D00548531 /* Config */,
+				C87EAF4A1F18AD3300548531 /* Beauty */,
+				C87EAF4E1F18ADE700548531 /* Controller */,
+				C87EAF4B1F18AD5E00548531 /* Login */,
+				C87EAF4C1F18ADB400548531 /* Video */,
+				C87EAF4F1F18AE2900548531 /* Basic */,
+				C87EAF4D1F18ADBD00548531 /* Category */,
+				C87EAED91F18AA7600548531 /* AppDelegate.h */,
+				C87EAEDA1F18AA7600548531 /* AppDelegate.m */,
+				C87EAEDF1F18AA7600548531 /* Main.storyboard */,
+				C87EAEE21F18AA7600548531 /* Assets.xcassets */,
+				C87EAEE41F18AA7600548531 /* LaunchScreen.storyboard */,
+				C87EAEE71F18AA7600548531 /* Info.plist */,
+				C87EAED61F18AA7600548531 /* Supporting Files */,
+			);
+			path = "video-demo-ios";
+			sourceTree = "<group>";
+		};
+		C87EAED61F18AA7600548531 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAED71F18AA7600548531 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C87EAEED1F18AAAD00548531 /* PGSkinPrettifyEngine */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */,
+				C87EAEEF1F18AAAD00548531 /* PGSkinPrettifyEngine.h */,
+				C87EAEF01F18AAAD00548531 /* PGSkinPrettifyType.h */,
+			);
+			path = PGSkinPrettifyEngine;
+			sourceTree = "<group>";
+		};
+		C87EAF4A1F18AD3300548531 /* Beauty */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAEF71F18AB5700548531 /* WDGBeautyManager.h */,
+				C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */,
+				C87EAEF91F18AB5700548531 /* WDGBeautyOption.h */,
+				C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */,
+				C87EAEFD1F18AB5700548531 /* WDGCamera360Option.h */,
+				C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */,
+				C87EAF1A1F18AB5800548531 /* WDGTUSDKOption.h */,
+				C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */,
+			);
+			name = Beauty;
+			sourceTree = "<group>";
+		};
+		C87EAF4B1F18AD5E00548531 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF031F18AB5700548531 /* WDGLoginManager.h */,
+				C87EAF041F18AB5700548531 /* WDGLoginManager.m */,
+				C87EAF051F18AB5700548531 /* WDGLoginViewController.h */,
+				C87EAF061F18AB5700548531 /* WDGLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		C87EAF4C1F18ADB400548531 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF011F18AB5700548531 /* WDGInfoView.h */,
+				C87EAF021F18AB5700548531 /* WDGInfoView.m */,
+				C87EAF0B1F18AB5700548531 /* WDGReciveCallViewController.h */,
+				C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */,
+				C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */,
+				C87EAF1C1F18AB5800548531 /* WDGVideoCallViewController.h */,
+				C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */,
+				C87EAF1E1F18AB5800548531 /* WDGVideoConfig.h */,
+				C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */,
+				C87EAF201F18AB5800548531 /* WDGVideoControlView.h */,
+				C87EAF211F18AB5800548531 /* WDGVideoControlView.m */,
+				C87EAF221F18AB5800548531 /* WDGVideoReceiveViewController.h */,
+				C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */,
+				C87EAF241F18AB5800548531 /* WDGVideoTool.h */,
+				C87EAF251F18AB5800548531 /* WDGVideoTool.m */,
+				C87EAF261F18AB5800548531 /* WDGVideoViewController.h */,
+				C87EAF271F18AB5800548531 /* WDGVideoViewController.m */,
+				C87EAF281F18AB5800548531 /* WDGVideoViews.h */,
+				C87EAF291F18AB5800548531 /* WDGVideoViews.m */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		C87EAF4D1F18ADBD00548531 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAEF21F18AB4A00548531 /* UIView+MBProgressHud.h */,
+				C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		C87EAF4E1F18ADE700548531 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAEFB1F18AB5700548531 /* WDGCallViewController.h */,
+				C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */,
+				C87EAF091F18AB5700548531 /* WDGOnlineViewController.h */,
+				C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */,
+				C87EAF0E1F18AB5800548531 /* WDGRecordFilesViewController.h */,
+				C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */,
+				C87EAF101F18AB5800548531 /* WDGRegardViewController.h */,
+				C87EAF111F18AB5800548531 /* WDGRegardViewController.m */,
+				C87EAF121F18AB5800548531 /* WDGSelectViewController.h */,
+				C87EAF131F18AB5800548531 /* WDGSelectViewController.m */,
+				C87EAF141F18AB5800548531 /* WDGSettingViewController.h */,
+				C87EAF151F18AB5800548531 /* WDGSettingViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C87EAF4F1F18AE2900548531 /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF161F18AB5800548531 /* WDGStaticRootTableViewCell.h */,
+				C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */,
+				C87EAF181F18AB5800548531 /* WDGTabbarController.h */,
+				C87EAF191F18AB5800548531 /* WDGTabbarController.m */,
+			);
+			name = Basic;
+			sourceTree = "<group>";
+		};
+		C87EAF501F18AE3D00548531 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAEF51F18AB5700548531 /* WDGAccount.h */,
+				C87EAEF61F18AB5700548531 /* WDGAccount.m */,
+				C87EAEFF1F18AB5700548531 /* WDGFileManager.h */,
+				C87EAF001F18AB5700548531 /* WDGFileManager.m */,
+				C87EAF071F18AB5700548531 /* WDGNotifications.h */,
+				C87EAF081F18AB5700548531 /* WDGNotifications.m */,
+				C87EAF2A1F18AB5800548531 /* WilddogSDKManager.h */,
+				C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C87EAED21F18AA7600548531 /* video-demo-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C87EAEEA1F18AA7600548531 /* Build configuration list for PBXNativeTarget "video-demo-ios" */;
+			buildPhases = (
+				E4409C485A68C6CFB872DAB9 /* [CP] Check Pods Manifest.lock */,
+				C87EAECF1F18AA7600548531 /* Sources */,
+				C87EAED01F18AA7600548531 /* Frameworks */,
+				C87EAED11F18AA7600548531 /* Resources */,
+				DD7C2A400E3ABCE180749D1E /* [CP] Embed Pods Frameworks */,
+				54B1671FB1AC486BC32EB741 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "video-demo-ios";
+			productName = "video-demo-ios";
+			productReference = C87EAED31F18AA7600548531 /* video-demo-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C87EAECB1F18AA7600548531 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = wilddog;
+				TargetAttributes = {
+					C87EAED21F18AA7600548531 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 5RERN32D73;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C87EAECE1F18AA7600548531 /* Build configuration list for PBXProject "video-demo-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C87EAECA1F18AA7600548531;
+			productRefGroup = C87EAED41F18AA7600548531 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C87EAED21F18AA7600548531 /* video-demo-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C87EAED11F18AA7600548531 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */,
+				C87EAEE31F18AA7600548531 /* Assets.xcassets in Resources */,
+				C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */,
+				C87EAF381F18AB5800548531 /* WDGReciveCallViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54B1671FB1AC486BC32EB741 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD7C2A400E3ABCE180749D1E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4409C485A68C6CFB872DAB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C87EAECF1F18AA7600548531 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */,
+				C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */,
+				C87EAF421F18AB5800548531 /* WDGVideoControlView.m in Sources */,
+				C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */,
+				C87EAF391F18AB5800548531 /* WDGRecordFilesViewController.m in Sources */,
+				C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */,
+				C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */,
+				C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */,
+				C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */,
+				C87EAF301F18AB5800548531 /* WDGCamera360Option.m in Sources */,
+				C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */,
+				C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */,
+				C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */,
+				C87EAEF41F18AB4A00548531 /* UIView+MBProgressHud.m in Sources */,
+				C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */,
+				C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */,
+				C87EAF3F1F18AB5800548531 /* WDGTUSDKOption.m in Sources */,
+				C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */,
+				C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */,
+				C87EAED81F18AA7600548531 /* main.m in Sources */,
+				C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */,
+				C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */,
+				C87EAF3B1F18AB5800548531 /* WDGSelectViewController.m in Sources */,
+				C87EAF2E1F18AB5800548531 /* WDGBeautyOption.m in Sources */,
+				C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */,
+				C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */,
+				C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */,
+				C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */,
+				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
+				C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C87EAEDF1F18AA7600548531 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C87EAEE01F18AA7600548531 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C87EAEE41F18AA7600548531 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C87EAEE51F18AA7600548531 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C87EAEE81F18AA7600548531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C87EAEE91F18AA7600548531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C87EAEEB1F18AA7600548531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5RERN32D73;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "video-demo-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wilddog.video-demo-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C87EAEEC1F18AA7600548531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5RERN32D73;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "video-demo-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wilddog.video-demo-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C87EAECE1F18AA7600548531 /* Build configuration list for PBXProject "video-demo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C87EAEE81F18AA7600548531 /* Debug */,
+				C87EAEE91F18AA7600548531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C87EAEEA1F18AA7600548531 /* Build configuration list for PBXNativeTarget "video-demo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C87EAEEB1F18AA7600548531 /* Debug */,
+				C87EAEEC1F18AA7600548531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C87EAECB1F18AA7600548531 /* Project object */;
+}
