@@ -94,6 +94,7 @@
 -(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(WDGVideoRemoteStream *)remoteStream
 {
     [_videoView rendarViewWithLocalStream:localStream remoteStream:remoteStream];
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
 }
 
 -(void)showInfoView
@@ -368,7 +369,6 @@
 - (void)participant:(WDGVideoParticipant *)participant didAddStream:(WDGVideoRemoteStream *)stream {
     NSLog(@"didAddStream attach remote video View ");
     [self rendarViewWithLocalStream:self.localStream remoteStream:stream];
-    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
 }
 
 /**
@@ -389,7 +389,7 @@
  @param error 错误信息，描述媒体流中断的原因。
  */
 - (void)participant:(WDGVideoParticipant *)participant didDisconnectWithError:(NSError *_Nullable)error {
-    [_videoView rendarViewWithLocalStream:self.localStream remoteStream:nil];
+    [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
 }
 
 #pragma mark WDGVideoConversationStatsDelegate

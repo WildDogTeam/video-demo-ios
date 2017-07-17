@@ -66,17 +66,18 @@
     [_pPGSkinPrettifyEngine RunEngine];
     //        [_pPGSkinPrettifyEngine PGOglViewPresent];
     
-    [_pPGSkinPrettifyEngine GetSkinPrettifyResult:&pixelBuffer];
-    OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
+    CVPixelBufferRef ansBuffer = NULL ;
+    [_pPGSkinPrettifyEngine GetSkinPrettifyResult:&ansBuffer];
+    OSType type = CVPixelBufferGetPixelFormatType(ansBuffer);
     if (type != kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
         NSLog(@"error pixel type");
-        return nil;
+        return pixelBuffer;
     }
     double end = [[NSDate date] timeIntervalSince1970];
     double duration = end - start;
     NSLog(@"duration %f",duration);
     
-    return pixelBuffer;
+    return ansBuffer;
 }
 
 - (void)setupCamera360 {

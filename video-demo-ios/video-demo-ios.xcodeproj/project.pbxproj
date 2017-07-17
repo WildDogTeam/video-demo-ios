@@ -34,7 +34,7 @@
 		C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF151F18AB5800548531 /* WDGSettingViewController.m */; };
 		C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */; };
 		C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF191F18AB5800548531 /* WDGTabbarController.m */; };
-		C87EAF3F1F18AB5800548531 /* WDGTUSDKOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */; };
+		C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1B1F18AB5800548531 /* WDGTuSDKOption.m */; };
 		C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */; };
 		C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */; };
 		C87EAF421F18AB5800548531 /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
@@ -44,6 +44,7 @@
 		C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF291F18AB5800548531 /* WDGVideoViews.m */; };
 		C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */; };
 		C87EAF491F18ACE200548531 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C87EAF481F18ACE200548531 /* libz.tbd */; };
+		C87EAF6A1F18C77800548531 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C87EAF691F18C77800548531 /* TuSDK.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,8 +101,8 @@
 		C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGStaticRootTableViewCell.m; sourceTree = "<group>"; };
 		C87EAF181F18AB5800548531 /* WDGTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTabbarController.h; sourceTree = "<group>"; };
 		C87EAF191F18AB5800548531 /* WDGTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTabbarController.m; sourceTree = "<group>"; };
-		C87EAF1A1F18AB5800548531 /* WDGTUSDKOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTUSDKOption.h; sourceTree = "<group>"; };
-		C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTUSDKOption.m; sourceTree = "<group>"; };
+		C87EAF1A1F18AB5800548531 /* WDGTuSDKOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTuSDKOption.h; sourceTree = "<group>"; };
+		C87EAF1B1F18AB5800548531 /* WDGTuSDKOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTuSDKOption.m; sourceTree = "<group>"; };
 		C87EAF1C1F18AB5800548531 /* WDGVideoCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoCallViewController.h; sourceTree = "<group>"; };
 		C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoCallViewController.m; sourceTree = "<group>"; };
 		C87EAF1E1F18AB5800548531 /* WDGVideoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoConfig.h; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		C87EAF2A1F18AB5800548531 /* WilddogSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WilddogSDKManager.h; sourceTree = "<group>"; };
 		C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilddogSDKManager.m; sourceTree = "<group>"; };
 		C87EAF481F18ACE200548531 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C87EAF691F18C77800548531 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TuSDK.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 		C87EAECA1F18AA7600548531 = {
 			isa = PBXGroup;
 			children = (
+				C87EAF541F18BFCE00548531 /* TuSDK */,
 				C87EAEED1F18AAAD00548531 /* PGSkinPrettifyEngine */,
 				C87EAED51F18AA7600548531 /* video-demo-ios */,
 				C87EAED41F18AA7600548531 /* Products */,
@@ -220,8 +223,8 @@
 				C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */,
 				C87EAEFD1F18AB5700548531 /* WDGCamera360Option.h */,
 				C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */,
-				C87EAF1A1F18AB5800548531 /* WDGTUSDKOption.h */,
-				C87EAF1B1F18AB5800548531 /* WDGTUSDKOption.m */,
+				C87EAF1A1F18AB5800548531 /* WDGTuSDKOption.h */,
+				C87EAF1B1F18AB5800548531 /* WDGTuSDKOption.m */,
 			);
 			name = Beauty;
 			sourceTree = "<group>";
@@ -240,25 +243,9 @@
 		C87EAF4C1F18ADB400548531 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				C87EAF011F18AB5700548531 /* WDGInfoView.h */,
-				C87EAF021F18AB5700548531 /* WDGInfoView.m */,
-				C87EAF0B1F18AB5700548531 /* WDGReciveCallViewController.h */,
-				C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */,
-				C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */,
-				C87EAF1C1F18AB5800548531 /* WDGVideoCallViewController.h */,
-				C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */,
-				C87EAF1E1F18AB5800548531 /* WDGVideoConfig.h */,
-				C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */,
-				C87EAF201F18AB5800548531 /* WDGVideoControlView.h */,
-				C87EAF211F18AB5800548531 /* WDGVideoControlView.m */,
-				C87EAF221F18AB5800548531 /* WDGVideoReceiveViewController.h */,
-				C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */,
-				C87EAF241F18AB5800548531 /* WDGVideoTool.h */,
-				C87EAF251F18AB5800548531 /* WDGVideoTool.m */,
-				C87EAF261F18AB5800548531 /* WDGVideoViewController.h */,
-				C87EAF271F18AB5800548531 /* WDGVideoViewController.m */,
-				C87EAF281F18AB5800548531 /* WDGVideoViews.h */,
-				C87EAF291F18AB5800548531 /* WDGVideoViews.m */,
+				C87EAF511F18BED400548531 /* view */,
+				C87EAF521F18BEEF00548531 /* controller */,
+				C87EAF531F18BF0100548531 /* tool */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -315,6 +302,54 @@
 				C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		C87EAF511F18BED400548531 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF011F18AB5700548531 /* WDGInfoView.h */,
+				C87EAF021F18AB5700548531 /* WDGInfoView.m */,
+				C87EAF201F18AB5800548531 /* WDGVideoControlView.h */,
+				C87EAF211F18AB5800548531 /* WDGVideoControlView.m */,
+				C87EAF281F18AB5800548531 /* WDGVideoViews.h */,
+				C87EAF291F18AB5800548531 /* WDGVideoViews.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		C87EAF521F18BEEF00548531 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF0B1F18AB5700548531 /* WDGReciveCallViewController.h */,
+				C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */,
+				C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */,
+				C87EAF1C1F18AB5800548531 /* WDGVideoCallViewController.h */,
+				C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */,
+				C87EAF221F18AB5800548531 /* WDGVideoReceiveViewController.h */,
+				C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */,
+				C87EAF261F18AB5800548531 /* WDGVideoViewController.h */,
+				C87EAF271F18AB5800548531 /* WDGVideoViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		C87EAF531F18BF0100548531 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF1E1F18AB5800548531 /* WDGVideoConfig.h */,
+				C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */,
+				C87EAF241F18AB5800548531 /* WDGVideoTool.h */,
+				C87EAF251F18AB5800548531 /* WDGVideoTool.m */,
+			);
+			name = tool;
+			sourceTree = "<group>";
+		};
+		C87EAF541F18BFCE00548531 /* TuSDK */ = {
+			isa = PBXGroup;
+			children = (
+				C87EAF691F18C77800548531 /* TuSDK.bundle */,
+			);
+			path = TuSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C87EAF6A1F18C77800548531 /* TuSDK.bundle in Resources */,
 				C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */,
 				C87EAEE31F18AA7600548531 /* Assets.xcassets in Resources */,
 				C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */,
@@ -457,7 +493,7 @@
 				C87EAEF41F18AB4A00548531 /* UIView+MBProgressHud.m in Sources */,
 				C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */,
 				C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */,
-				C87EAF3F1F18AB5800548531 /* WDGTUSDKOption.m in Sources */,
+				C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */,
 				C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */,
 				C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */,
 				C87EAED81F18AA7600548531 /* main.m in Sources */,
@@ -593,6 +629,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5RERN32D73;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TuSDK",
+				);
 				INFOPLIST_FILE = "video-demo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -600,7 +640,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wilddog.video-demo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -612,6 +652,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5RERN32D73;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TuSDK",
+				);
 				INFOPLIST_FILE = "video-demo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -619,7 +663,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wilddog.video-demo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

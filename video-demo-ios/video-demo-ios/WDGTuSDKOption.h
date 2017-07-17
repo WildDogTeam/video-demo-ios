@@ -8,6 +8,6 @@
 
 #import "WDGBeautyOption.h"
 
-@interface WDGTUSDKOption : WDGBeautyOption
+@interface WDGTuSDKOption : WDGBeautyOption
 
 @end
