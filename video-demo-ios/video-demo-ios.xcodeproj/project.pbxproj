@@ -13,7 +13,6 @@
 		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
 		C87EAEE31F18AA7600548531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEE21F18AA7600548531 /* Assets.xcassets */; };
 		C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEE41F18AA7600548531 /* LaunchScreen.storyboard */; };
-		C87EAEF11F18AAAD00548531 /* libPGSkinPrettifyEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */; };
 		C87EAEF41F18AB4A00548531 /* UIView+MBProgressHud.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */; };
 		C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF61F18AB5700548531 /* WDGAccount.m */; };
 		C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */; };
@@ -59,9 +58,6 @@
 		C87EAEE21F18AA7600548531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C87EAEE51F18AA7600548531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C87EAEE71F18AA7600548531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPGSkinPrettifyEngine.a; sourceTree = "<group>"; };
-		C87EAEEF1F18AAAD00548531 /* PGSkinPrettifyEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSkinPrettifyEngine.h; sourceTree = "<group>"; };
-		C87EAEF01F18AAAD00548531 /* PGSkinPrettifyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGSkinPrettifyType.h; sourceTree = "<group>"; };
 		C87EAEF21F18AB4A00548531 /* UIView+MBProgressHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MBProgressHud.h"; sourceTree = "<group>"; };
 		C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MBProgressHud.m"; sourceTree = "<group>"; };
 		C87EAEF51F18AB5700548531 /* WDGAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGAccount.h; sourceTree = "<group>"; };
@@ -129,7 +125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C87EAF491F18ACE200548531 /* libz.tbd in Frameworks */,
-				C87EAEF11F18AAAD00548531 /* libPGSkinPrettifyEngine.a in Frameworks */,
 				8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				C87EAF541F18BFCE00548531 /* TuSDK */,
-				C87EAEED1F18AAAD00548531 /* PGSkinPrettifyEngine */,
 				C87EAED51F18AA7600548531 /* video-demo-ios */,
 				C87EAED41F18AA7600548531 /* Products */,
 				74A9B2DFE31C85C8C43D129F /* Pods */,
@@ -202,16 +196,6 @@
 				C87EAED71F18AA7600548531 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C87EAEED1F18AAAD00548531 /* PGSkinPrettifyEngine */ = {
-			isa = PBXGroup;
-			children = (
-				C87EAEEE1F18AAAD00548531 /* libPGSkinPrettifyEngine.a */,
-				C87EAEEF1F18AAAD00548531 /* PGSkinPrettifyEngine.h */,
-				C87EAEF01F18AAAD00548531 /* PGSkinPrettifyType.h */,
-			);
-			path = PGSkinPrettifyEngine;
 			sourceTree = "<group>";
 		};
 		C87EAF4A1F18AD3300548531 /* Beauty */ = {
