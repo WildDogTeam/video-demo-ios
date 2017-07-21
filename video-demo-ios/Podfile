@@ -9,4 +9,7 @@ target 'video-demo-ios' do
   pod 'MBProgressHUD'
   #pod 'TUSDK','0.0.1'
   pod 'PGSkinPrettifyEngine','0.0.1'
+  
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

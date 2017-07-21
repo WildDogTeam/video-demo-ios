@@ -11,6 +11,8 @@
 #import "WDGLoginViewController.h"
 #import <WilddogCore/WilddogCore.h>
 #import "WilddogSDKManager.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate ()
 
 @end
@@ -21,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     sleep(1);
+    [Fabric with:@[[Crashlytics class]]];
+
     [self setupWilddogSyncAndAuth];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];

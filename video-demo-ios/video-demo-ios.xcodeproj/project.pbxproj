@@ -349,6 +349,7 @@
 				C87EAED11F18AA7600548531 /* Resources */,
 				DD7C2A400E3ABCE180749D1E /* [CP] Embed Pods Frameworks */,
 				54B1671FB1AC486BC32EB741 /* [CP] Copy Pods Resources */,
+				C8F30CCE1F21D85900DAE631 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -424,6 +425,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8F30CCE1F21D85900DAE631 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/Fabric/Fabric.framework/run 62b476b8bec312542b8993f36ee2e14400600162 f9b28fe27b2b1b518e4547907ff4a47e642aec963a0c7bcb65f18e472dfa8154";
+		};
 		DD7C2A400E3ABCE180749D1E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,7 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -611,11 +625,13 @@
 			baseConfigurationReference = 2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5RERN32D73;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TuSDK",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "video-demo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -639,6 +655,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TuSDK",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "video-demo-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
