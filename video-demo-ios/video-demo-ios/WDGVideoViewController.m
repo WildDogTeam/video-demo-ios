@@ -19,6 +19,12 @@
 #import "UIView+MBProgressHud.h"
 #import <AVFoundation/AVFoundation.h>
 #import "WDGBeautyManager.h"
+
+typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
+    WDGCaptureDevicePositionFront,
+    WDGCaptureDevicePositionBack
+};
+
 @interface WDGVideoViewController ()<UIAlertViewDelegate,WDGVideoLocalStreamDelegate,WDGVideoConversationDelegate,WDGVideoParticipantDelegate,WDGVideoConversationStatsDelegate>
 @property (nonatomic, assign) VideoType myType;
 @property (nonatomic, copy) NSString *oppositeID;
@@ -31,7 +37,7 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) NSTimer *recordTimer;
 @property (nonatomic, strong) WDGFileObject *currentRecordFileObject;
-
+@property (nonatomic, assign) WDGCaptureDevicePosition capturePosition;
 @end
 
 @implementation WDGVideoViewController
@@ -49,6 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.capturePosition = WDGCaptureDevicePositionFront;
     _recordCurrentTime = 0;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     self.view.backgroundColor = [UIColor lightGrayColor];
@@ -311,6 +318,8 @@
 
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidTurned:(BOOL)isFront
 {
+    self.capturePosition = (self.capturePosition==WDGCaptureDevicePositionFront)?WDGCaptureDevicePositionBack:WDGCaptureDevicePositionFront;
+    [_videoView showMirrorLocalView:(self.capturePosition ==WDGCaptureDevicePositionFront)];
     [self.localStream switchCamera];
 }
 

@@ -22,12 +22,14 @@
 {
     UIView *_switchView;
     BOOL _animating;
+    BOOL _showMirrorView;
 }
 
 -(instancetype)initWithViewChange:(void (^)(BOOL))viewChange
 {
     if(self = [self init]){
         self.viewChange = viewChange;
+        _showMirrorView =NO;
     }
     return self;
 }
@@ -84,6 +86,7 @@
         self.localStream = localStream;
         if(self.localStream){
             [self.localStream attach:self.localView];
+            [self showMirrorLocalView:YES];
         }
     }
     if(self.remoteStream != remoteStream){
@@ -125,4 +128,16 @@
     [self.localStream detach:self.localView];
     [self.remoteStream detach:self.remoteView];
 }
+
+-(void)showMirrorLocalView:(BOOL)showMirror
+{
+    if(_showMirrorView != showMirror){
+        _showMirrorView = showMirror;
+        if(_showMirrorView)
+        self.localView.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+        else
+        self.localView.layer.transform = CATransform3DIdentity;
+    }
+}
+
 @end

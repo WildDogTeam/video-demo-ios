@@ -13,4 +13,5 @@
 -(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(WDGVideoRemoteStream *)remoteStream;
 -(BOOL)isPresentViewLocalView;
 -(instancetype)initWithViewChange:(void(^)(BOOL isLocalViewPresent))viewChange;
+-(void)showMirrorLocalView:(BOOL)showMirror;
 @end
