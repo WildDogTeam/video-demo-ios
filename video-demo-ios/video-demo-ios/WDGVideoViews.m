@@ -125,8 +125,7 @@
 
 -(void)dealloc
 {
-    [self.localStream detach:self.localView];
-    [self.remoteStream detach:self.remoteView];
+    NSLog(@"videoviews dealloc");
 }
 
 -(void)showMirrorLocalView:(BOOL)showMirror

@@ -290,9 +290,9 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     }
 
     [self.conversation disconnect];
-    self.conversation = nil;
+    _conversation = nil;
     [self.localStream close];
-    self.localStream = nil;
+    _localStream = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
