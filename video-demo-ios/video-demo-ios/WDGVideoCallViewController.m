@@ -40,6 +40,8 @@
         if (error) {
             if(error.code == 40203){
                 [self.view showHUDWithMessage:@"对方拒绝了你的邀请" hideAfter:1 animate:YES];
+            }else if(error.code == 40204){
+                [self.view showHUDWithMessage:@"你所拨打的用户正在通话中，请稍后再试" hideAfter:1 animate:YES];
             }else{
                 [self.view showHUDWithMessage:[NSString stringWithFormat:@"ERR:code=%ld",error.code] hideAfter:1 animate:YES];
             }
