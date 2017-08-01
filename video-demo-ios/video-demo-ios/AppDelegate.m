@@ -39,7 +39,7 @@
 }
 
 - (void)setupWilddogSyncAndAuth {
-    [[WilddogSDKManager sharedManager] registerSDKAppWithName:@"wang"];
+    [[WilddogSDKManager sharedManager] registerSDKAppWithName:@"wd6029736988xhigqo"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

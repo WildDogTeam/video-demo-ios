@@ -75,7 +75,7 @@
     }
     double end = [[NSDate date] timeIntervalSince1970];
     double duration = end - start;
-    NSLog(@"duration %f",duration);
+//    NSLog(@"duration %f",duration);
     
     return ansBuffer;
 }
