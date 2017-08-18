@@ -9,7 +9,7 @@
 
 #import "WDGVideoConfig.h"
 
-#define WDGSDKVideoConstraints @[WDGVideoConstraints360P,WDGVideoConstraints480P,WDGVideoConstraints720P,WDGVideoConstraints1080P]
+#define WDGVideoDimension @[WDGVideoDimensions360p,WDGVideoDimensions480p,WDGVideoDimensions720p,WDGVideoDimensions1080p]
 #define WDGVideoConstraintsKey @"com.wilddog.video.constraints"
 #define WDGVideoBeautyPlanKey @"com.wilddog.video.beautyPlan"
 
@@ -24,12 +24,12 @@ static NSString *_videoConstraints;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+(WDGVideoConstraints)videoConstraintsNum
++(WDGVideoDimensions)videoConstraintsNum
 {
-    return [WDGSDKVideoConstraints indexOfObject:[self videoConstraints]];
+    return [WDGVideoDimension indexOfObject:[self videoDimensions]];
 }
 
-+(NSString *)videoConstraints
++(NSString *)videoDimensions
 {
     if(!_videoConstraints){
         _videoConstraints = [[NSUserDefaults standardUserDefaults] objectForKey:WDGVideoConstraintsKey];

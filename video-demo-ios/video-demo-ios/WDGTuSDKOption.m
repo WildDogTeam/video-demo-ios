@@ -24,6 +24,8 @@
 #if __has_include(<TuSDKVideoLite/TuSDKFilterProcessor.h>)
 {
     TuSDKFilterProcessor *_processor;
+    dispatch_queue_t _myQueue;
+    CVPixelBufferRef _ref;
 }
 #endif
 - (instancetype)init
@@ -31,6 +33,8 @@
     self = [super init];
     if (self) {
         [self initTUSDK];
+        _myQueue = dispatch_queue_create("han", DISPATCH_QUEUE_SERIAL);
+
     }
     return self;
 }
@@ -59,8 +63,23 @@
 -(CVPixelBufferRef)proccessPixelBuffer:(CVPixelBufferRef)buffer
 {
 #if __has_include(<TuSDKVideoLite/TuSDKFilterProcessor.h>)
-    CVPixelBufferRef ref = _processor?[_processor syncProcessPixelBuffer:buffer]:buffer;
+    __block CVPixelBufferRef ref = NULL;
+    dispatch_sync(_myQueue, ^{
+        if(_processor){
+            if(_ref)
+                CVPixelBufferRelease(_ref);
+            ref = [_processor syncProcessPixelBuffer:buffer];
+            _ref =ref;
+            
+            [_processor destroyFrameData];
+        }else{
+            ref = buffer;
+        }
+        
+    });
     return ref;
+    //    CVPixelBufferRetain(buffer);
+    //    return buffer;
 #else
     return buffer;
 #endif

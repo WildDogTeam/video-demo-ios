@@ -73,8 +73,8 @@
         NSLog(@"error pixel type");
         return pixelBuffer;
     }
-    double end = [[NSDate date] timeIntervalSince1970];
-    double duration = end - start;
+//    double end = [[NSDate date] timeIntervalSince1970];
+//    double duration = end - start;
 //    NSLog(@"duration %f",duration);
     
     return ansBuffer;

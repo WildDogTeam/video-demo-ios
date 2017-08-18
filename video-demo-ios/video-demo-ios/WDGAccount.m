@@ -13,6 +13,7 @@
 {
     if(self = [super init]){
         self.userID = [aDecoder decodeObjectForKey:@"userID"];
+        self.token = [aDecoder decodeObjectForKey:@"token"];
     }
     return self;
 }
@@ -20,6 +21,12 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.userID forKey:@"userID"];
+    [aCoder encodeObject:self.token forKey:@"token"];
+}
+
+-(NSString *)token
+{
+    return _token?:@"";
 }
 @end
 

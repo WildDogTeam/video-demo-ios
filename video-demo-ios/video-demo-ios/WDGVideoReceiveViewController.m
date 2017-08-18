@@ -7,19 +7,18 @@
 //
 
 #import "WDGVideoReceiveViewController.h"
-#import <WilddogVideo/WDGVideoIncomingInvite.h>
 #import "WDGReciveCallViewController.h"
 #import <WilddogVideo/WilddogVideo.h>
+#import "WilddogSDKManager.h"
 @interface WDGVideoReceiveViewController ()
-@property (nonatomic, strong) WDGVideoIncomingInvite *invite;
 @property (nonatomic, strong) WDGReciveCallViewController *receiveController;
 @end
 
 @implementation WDGVideoReceiveViewController
-+(instancetype)receiveCallWithIncomingInvite:(WDGVideoIncomingInvite *)invite
-{
++(instancetype)receiveCallWithConversation:(WDGConversation *)conversation{
     WDGVideoReceiveViewController *rc = [WDGVideoReceiveViewController controllerWithType:VideoTypeReciver];
-    rc.invite = invite;
+    rc.conversation = conversation;
+    rc.oppositeID = conversation.remoteUid;
     return rc;
 }
 
@@ -28,14 +27,16 @@
     // Do any additional setup after loading the view.
     [self addChildViewController:self.receiveController];
     [self.view addSubview:self.receiveController.view];
+    [WDGSoundPlayer playSound:SoundTypeCallee];
 }
 
 -(WDGReciveCallViewController *)receiveController
 {
     if(!_receiveController){
         __weak typeof(self) WS = self;
-        _receiveController =[WDGReciveCallViewController controllerWithCallerID:self.invite.fromParticipantID userAccept:^(BOOL accept) {
+        _receiveController =[WDGReciveCallViewController controllerWithCallerID:self.conversation.remoteUid userAccept:^(BOOL accept) {
             __strong typeof(WS)self =WS;
+            [WDGSoundPlayer stop];
             if(!accept){
                 [self reject];
                 [self closeRoom];
@@ -49,18 +50,13 @@
 
 -(void)reject
 {
-    [_invite reject];
+    [self.conversation reject];
 }
 
 -(void)connect
 {
-    __weak typeof(self) WS = self;
-    [_invite acceptWithLocalStream:self.localStream completion:^(WDGVideoConversation * _Nullable conversation, NSError * _Nullable error) {
-        __strong typeof(WS) self = WS;
-//        self.localStream = conversation.localParticipant.stream;
-        self.conversation =conversation;
-        [self dismissReceiveController];
-    }];
+    [self.conversation acceptWithLocalStream:self.localStream];
+    [self dismissReceiveController];
 }
 
 - (void)dismissReceiveController
@@ -69,16 +65,4 @@
     [_receiveController removeFromParentViewController];
     _receiveController = nil;
 }
-
--(void)callCancelled
-{
-    [self closeRoom];
-}
-
--(void)closeRoom
-{
-    [super closeRoom];
-    _invite = nil;
-}
-
 @end

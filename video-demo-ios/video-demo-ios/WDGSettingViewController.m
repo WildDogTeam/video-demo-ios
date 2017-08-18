@@ -9,7 +9,8 @@
 #import "WDGSettingViewController.h"
 #import "WDGSelectViewController.h"
 #import "WDGVideoConfig.h"
-@interface WDGSettingViewController ()
+#import "WDGLoginManager.h"
+@interface WDGSettingViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -81,12 +82,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.section==0) return 80;
     return 55;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section == 2){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否退出登录" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1){
+        [WDGLoginManager logOut];
+    }
 }
 
 @end

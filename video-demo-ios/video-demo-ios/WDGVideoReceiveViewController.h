@@ -7,8 +7,7 @@
 //
 
 #import "WDGVideoViewController.h"
-@class WDGVideoIncomingInvite;
+@class WDGConversation;
 @interface WDGVideoReceiveViewController : WDGVideoViewController
-+(instancetype)receiveCallWithIncomingInvite:(WDGVideoIncomingInvite *)invite;
--(void)callCancelled;
++(instancetype)receiveCallWithConversation:(WDGConversation *)conversation;
 @end

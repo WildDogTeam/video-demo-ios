@@ -7,14 +7,11 @@
 //
 
 #import "WDGVideoCallViewController.h"
-#import <WilddogVideo/WDGVideoOutgoingInvite.h>
-#import <WilddogVideo/WDGVideoConnectOptions.h>
 #import "WilddogSDKManager.h"
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoControlView.h"
+#import <WilddogVideo/WDGConversation.h>
 @interface WDGVideoCallViewController ()
-@property (nonatomic,copy) NSString *oppoUid;
-@property (nonatomic, strong) WDGVideoOutgoingInvite *outgoingInvite;
 @property (nonatomic, strong) UILabel *callingLabel;
 @property (nonatomic, strong) UILabel *oppoUidLabel;
 @end
@@ -24,35 +21,29 @@
 +(instancetype)makeCallToUserId:(nonnull NSString *)userId
 {
     WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeReciver];
-    cc.oppoUid = userId;
+    cc.oppositeID = userId;
     return cc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self createNoticeView];
+//    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
-    WDGVideoConnectOptions *connectOptions = [[WDGVideoConnectOptions alloc] initWithLocalStream:self.localStream];
-    __weak typeof(self) WS =self;
-    self.outgoingInvite = [[WilddogSDKManager sharedManager].wilddogVideoClient inviteToConversationWithID:_oppoUid options:connectOptions completion:^(WDGVideoConversation * _Nullable conversation, NSError * _Nullable error) {
-        __strong typeof(WS) self =WS;
-        if (error) {
-            if(error.code == 40203){
-                [self.view showHUDWithMessage:@"对方拒绝了你的邀请" hideAfter:1 animate:YES];
-            }else if(error.code == 40204){
-                [self.view showHUDWithMessage:@"你所拨打的用户正在通话中，请稍后再试" hideAfter:1 animate:YES];
-            }else{
-                [self.view showHUDWithMessage:[NSString stringWithFormat:@"ERR:code=%ld",error.code] hideAfter:1 animate:YES];
-            }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self closeRoom];
-            });
-            return ;
-        }
-        [self dismissNoticeView];
-        self.conversation =conversation;
-    }];
+    self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeID localStream:self.localStream data:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WDGSoundPlayer playSound:SoundTypeCaller];
+    });
+}
+
+-(void)conversation:(WDGConversation *)conversation didReceiveResponse:(WDGCallStatus)callStatus
+{
+    [WDGSoundPlayer stop];
+    if(callStatus == WDGCallStatusAccepted){
+//        [self dismissNoticeView];
+    }else{
+        [super conversation:conversation didReceiveResponse:callStatus];
+    }
 }
 
 -(void)createNoticeView
@@ -66,7 +57,7 @@
     self.callingLabel =callingLabel;
     
     UILabel *oppoUidLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.callingLabel.frame)+10, self.view.frame.size.width, 22)];
-    oppoUidLabel.text = self.oppoUid;
+    oppoUidLabel.text = self.oppositeID;
     oppoUidLabel.textAlignment = NSTextAlignmentCenter;
     oppoUidLabel.textColor = [UIColor whiteColor];
     oppoUidLabel.font = [UIFont fontWithName:@"pingfang SC" size:20];
@@ -87,17 +78,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)closeRoom
-{
-    [super closeRoom];
-    [self.outgoingInvite cancel];
-}
-
--(void)videoControlViewDidHangup:(WDGVideoControlView *)controlView
-{
-    [super videoControlViewDidHangup:controlView];
-    [_outgoingInvite cancel];
-}
 /*
 #pragma mark - Navigation
 

@@ -7,6 +7,7 @@
 //
 
 #import "WDGVideoViewController.h"
+#import "WDGVideoControlView.h"
 #import "WDGVideoViews.h"
 #import "WDGInfoView.h"
 #import <WilddogSync/WilddogSync.h>
@@ -19,15 +20,16 @@
 #import "UIView+MBProgressHud.h"
 #import <AVFoundation/AVFoundation.h>
 #import "WDGBeautyManager.h"
-
+#import "WilddogSDKManager.h"
+#import "WDGConversationsHistory.h"
+#import "WDGUserInfoView.h"
 typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     WDGCaptureDevicePositionFront,
     WDGCaptureDevicePositionBack
 };
 
-@interface WDGVideoViewController ()<UIAlertViewDelegate,WDGVideoLocalStreamDelegate,WDGVideoConversationDelegate,WDGVideoParticipantDelegate,WDGVideoConversationStatsDelegate>
+@interface WDGVideoViewController ()<UIAlertViewDelegate,WDGLocalStreamDelegate,WDGConversationDelegate,WDGVideoDelegate,WDGConversationStatsDelegate,WDGVideoControl>
 @property (nonatomic, assign) VideoType myType;
-@property (nonatomic, copy) NSString *oppositeID;
 
 @property (nonatomic, strong) WDGVideoControlView *controlView;
 @property (nonatomic, strong) WDGVideoViews *videoView;
@@ -36,6 +38,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 @property (nonatomic, strong) UIButton *recordButton;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) NSTimer *recordTimer;
+@property (nonatomic, strong) WDGUserInfoView *userInfoView;
 @property (nonatomic, strong) WDGFileObject *currentRecordFileObject;
 @property (nonatomic, assign) WDGCaptureDevicePosition capturePosition;
 @end
@@ -78,7 +81,8 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     }];
     _videoView =videoView;
     [self.view addSubview:videoView];
-    
+    [self.controlView showInView:self.view animate:YES];
+
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     infoButton.frame =CGRectMake(self.view.frame.size.width -33-15, 33, 33, 33);
     [infoButton setImage:[UIImage imageNamed:@"说明"] forState:UIControlStateNormal];
@@ -95,13 +99,15 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     [self.view addSubview:recordButton];
     _recordButton =recordButton;
     recordButton.hidden =YES;
-    [self.controlView showInView:self.view animate:YES];
+
+    self.userInfoView = [WDGUserInfoView viewWithName:self.oppositeID imageUrl:nil userType:self.myType==VideoTypeCaller?WDGUserTypeCaller:WDGUserTypeCallee];
+    [self.view addSubview:self.userInfoView];
+    self.userInfoView.center = CGPointMake(self.view.frame.size.width*.5, self.userInfoView.frame.size.height*.5+50);
 }
 
 -(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(WDGVideoRemoteStream *)remoteStream
 {
     [_videoView rendarViewWithLocalStream:localStream remoteStream:remoteStream];
-    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
 }
 
 -(void)showInfoView
@@ -144,7 +150,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     fileObj.fileName = [WDGVideoTool recordCurrentTime];
     fileObj.filePath = [NSString stringWithFormat:@"Library/%@.mp4",fileObj.fileName];
     _currentRecordFileObject =fileObj;
-    BOOL success =[self.conversation startVideoRecording:[NSHomeDirectory() stringByAppendingPathComponent:fileObj.filePath]];
+    BOOL success =[self.conversation startLocalRecording:[NSHomeDirectory() stringByAppendingPathComponent:fileObj.filePath]];
     if(!success){
         [self.view showHUDWithMessage:@"录屏初始化失败，请稍后再试" hideAfter:1 animate:YES];
         _recordButton.selected =NO;
@@ -172,7 +178,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 -(void)recordEnd
 {
     //停止录制
-    [self.conversation stopVideoRecording];
+    [self.conversation stopLocalRecording];
     _currentRecordFileObject.recordTime = _recordCurrentTime;
     [self timerClose];
     [_timeLabel removeFromSuperview];
@@ -230,6 +236,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         _controlView = [[WDGVideoControlView alloc] init];
         _controlView.controlDelegate =self;
         _controlView.hidden =YES;
+        _controlView.oppoSiteName =self.oppositeID;
     }
     return _controlView;
 }
@@ -257,43 +264,46 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     return _timeLabel;
 }
 
--(WDGVideoLocalStream *)localStream
+-(WDGLocalStream *)localStream
 {
     if(!_localStream){
-        WDGVideoLocalStreamOptions *localStreamOptions = [[WDGVideoLocalStreamOptions alloc] init];
+        WDGLocalStreamOptions *localStreamOptions = [[WDGLocalStreamOptions alloc] init];
 //        localStreamOptions.audioOn = YES;
-        localStreamOptions.videoOption = [WDGVideoConfig videoConstraintsNum];
+        localStreamOptions.dimension = [WDGVideoConfig videoConstraintsNum];
         // 创建本地媒体流
-        _localStream = [[WDGVideoLocalStream alloc] initWithOptions:localStreamOptions];
+        _localStream = [[WilddogSDKManager sharedManager].wilddogVideo localStreamWithOptions:localStreamOptions];
         _localStream.delegate =self;
     }
     return _localStream;
 }
 
--(void)setConversation:(WDGVideoConversation *)conversation
+-(void)setConversation:(WDGConversation *)conversation
 {
     _conversation = conversation;
     _conversation.delegate =self;
     _conversation.statsDelegate =self;
-    self.localStream = _conversation.localParticipant.stream;
-    [_controlView startTimer];
-    _infoButton.hidden =NO;
-    _recordButton.hidden =NO;
 }
 
 - (void)closeRoom
 {
+    [WDGSoundPlayer stop];
     if(_recordCurrentTime>0){
         _shouldClose =YES;
         [self recordEnd];
         return;
     }
 
-    [self.conversation disconnect];
+    [self.conversation close];
     _conversation = nil;
     [self.localStream close];
     _localStream = nil;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    WDGConversationItem *item =[[WDGConversationItem alloc] init];
+    item.uid = self.oppositeID;
+    [WDGConversationsHistory addHistoryItem:item];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -309,6 +319,16 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 -(void)videoControlView:(WDGVideoControlView *)controlView microphoneDidClick:(BOOL)isOpened
 {
     self.localStream.audioEnabled = isOpened;
+}
+
+-(void)videoControlView:(WDGVideoControlView *)controlView speakerDidOpen:(BOOL)micphoneOpened
+{
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:micphoneOpened?AVAudioSessionPortOverrideNone:AVAudioSessionPortOverrideSpeaker error:nil];
+}
+
+-(void)videoControlView:(WDGVideoControlView *)controlView cameraDidOpen:(BOOL)cameraOpen
+{
+//    self.localStream = isOpened;
 }
 
 -(void)videoControlViewDidHangup:(WDGVideoControlView *)controlView
@@ -340,74 +360,65 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     [self checkClose];
 }
 
-#pragma mark WDGVideoConversationDelegate
-/**
- `WDGVideoConversation` 通过调用该方法通知代理当前视频通话有新的参与者加入。
- 
- @param conversation 调用该方法的 `WDGVideoConversation` 实例。
- @param participant  代表新的参与者的 `WDGVideoParticipant` 实例。
- */
-- (void)conversation:(WDGVideoConversation *)conversation didConnectParticipant:(WDGVideoParticipant *)participant {
-    NSLog(@"did connect participant");
-    NSLog(@"invoke didConnectParticipant: %@",[NSDate date]);
-    participant.delegate = self;
-}
+#pragma mark WDGConversationDelegate
 
-- (void)conversation:(WDGVideoConversation *)conversation didDisconnectWithError:(NSError *_Nullable)error {
-    NSLog(@"conversation disconnect");
-}
 
 /**
- `WDGVideoConversation` 通过调用该方法通知代理当前视频通话某个参与者断开了连接。
- 
- @param conversation 调用该方法的 `WDGVideoConversation` 实例。
- @param participant  代表已断开连接的参与者的 `WDGVideoParticipant` 实例。
+ * `WDGConversation` 通过调用该方法通知代理视频通话状态发生变化。
+ * @param conversation 调用该方法的 `WDGConversation` 实例。
+ * @param callStatus 表示视频通话的状态，有`Accepted`、`Rejected`、`Busy`、`Timeout` 四种。
  */
-- (void)conversation:(WDGVideoConversation *)conversation didDisconnectParticipant:(WDGVideoParticipant *)participant {
+- (void)conversation:(WDGConversation *)conversation didReceiveResponse:(WDGCallStatus)callStatus{
+    if(callStatus == WDGCallStatusAccepted){
+        
+        return;
+    }
+    if(callStatus == WDGCallStatusRejected){
+        [self.view showHUDWithMessage:@"对方拒绝了你的邀请" hideAfter:1 animate:YES];
+    }else if(callStatus == WDGCallStatusBusy){
+        [self.view showHUDWithMessage:@"你所拨打的用户正在通话中，请稍后再拨" hideAfter:1 animate:YES];
+    }else if(callStatus == WDGCallStatusTimeout){
+        [self.view showHUDWithMessage:@"你所拨打的用户暂时无法接通，请稍后再拨" hideAfter:1 animate:YES];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self closeRoom];
+    });
+}
+
+/**
+ * `WDGConversation` 通过调用该方法通知代理收到对方传来的媒体流。
+ * @param conversation 调用该方法的 `WDGConversation` 实例。
+ * @param remoteStream `WDGRemoteStream` 实例，表示对方传来的媒体流。
+ */
+- (void)conversation:(WDGConversation *)conversation didReceiveStream:(WDGRemoteStream *)remoteStream{
+    _controlView.mode = WDGVideoControlViewMode2;
+    [self.userInfoView removeFromSuperview];
+    self.userInfoView = nil;
+    [self rendarViewWithLocalStream:self.localStream remoteStream:remoteStream];
+}
+
+/**
+ * `WDGConversation` 通过调用该方法通知代理当前视频通话发生错误而未能建立连接。
+ * @param conversation 调用该方法的 `WDGConversation` 实例。
+ * @param error 错误信息，描述未能建立连接的原因。
+ */
+- (void)conversation:(WDGConversation *)conversation didFailedWithError:(NSError *)error{
+    NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
     [self closeRoom];
 }
 
-#pragma mark - WDGVideoParticipantDelegate
-
-/**
- `WDGVideoParticipant` 通过该方法通知代理收到参与者发布的媒体流。
- 
- @param participant `WDGVideoParticipant` 对象，代表当前参与者。
- @param stream `WDGVideoRemoteStream` 对象，代表收到的媒体流。
- */
-- (void)participant:(WDGVideoParticipant *)participant didAddStream:(WDGVideoRemoteStream *)stream {
-    NSLog(@"didAddStream attach remote video View ");
-    [self rendarViewWithLocalStream:self.localStream remoteStream:stream];
+- (void)conversationDidClosed:(WDGConversation *)conversation{
+    [self closeRoom];
 }
 
-/**
- `WDGVideoParticipant` 通过该方法通知代理未能收到参与者发布的媒体流。
- 
- @param participant `WDGVideoParticipant` 对象，代表当前参与者。
- @param error 错误信息，描述连接失败的原因。
- */
-- (void)participant:(WDGVideoParticipant *)participant didFailedToConnectWithError:(NSError *)error {
-    
-}
-
-
-/**
- `WDGVideoParticipant` 通过该方法通知代理参与者的媒体流中断。
- 
- @param participant `WDGVideoParticipant` 对象，代表当前参与者。
- @param error 错误信息，描述媒体流中断的原因。
- */
-- (void)participant:(WDGVideoParticipant *)participant didDisconnectWithError:(NSError *_Nullable)error {
-    [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
-}
 
 #pragma mark WDGVideoConversationStatsDelegate
-- (void)conversation:(WDGVideoConversation *)conversation didUpdateLocalStreamStatsReport:(WDGVideoLocalStreamStatsReport *)report {
+- (void)conversation:(WDGConversation *)conversation didUpdateLocalStreamStatsReport:(WDGLocalStreamStatsReport *)report {
     if([_videoView isPresentViewLocalView])
         [_infoView updateInfoWithSize:[NSString stringWithFormat:@"%lu*%lupx",(unsigned long)report.width,(unsigned long)report.height] fps:[NSString stringWithFormat:@"%lufps",(unsigned long)report.FPS] rate:[NSString stringWithFormat:@"%.2fkbps ",report.bitsSentRate/8.f] memory:[NSString stringWithFormat:@"%.2fMB ",report.bytesSent/1024/1024.f] style:PresentViewStyleSend];
 }
 
-- (void)conversation:(WDGVideoConversation *)conversation didUpdateRemoteStreamStatsReport:(WDGVideoRemoteStreamStatsReport *)report {
+- (void)conversation:(WDGConversation *)conversation didUpdateRemoteStreamStatsReport:(WDGRemoteStreamStatsReport *)report {
     if(![_videoView isPresentViewLocalView])
         [_infoView updateInfoWithSize:[NSString stringWithFormat:@"%lu*%lupx",(unsigned long)report.width,(unsigned long)report.height] fps:[NSString stringWithFormat:@"%lufps",(unsigned long)report.FPS] rate:[NSString stringWithFormat:@"%.2fkbps ",report.bitsReceivedRate/8.f] memory:[NSString stringWithFormat:@"%.2fMB ",report.bytesReceived/1024/1024.f] style:PresentViewStyleReceive];
 }
@@ -424,6 +435,12 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         _shouldClose =NO;
         [self closeRoom];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view bringSubviewToFront:self.userInfoView];
 }
 
 -(void)dealloc

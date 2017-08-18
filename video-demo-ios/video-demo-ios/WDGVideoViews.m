@@ -8,13 +8,13 @@
 
 #import "WDGVideoViews.h"
 #import <WilddogVideo/WDGBeautyVideoView.h>
-#import <WilddogVideo/WDGVideoLocalStream.h>
-#import <WilddogVideo/WDGVideoRemoteStream.h>
+#import <WilddogVideo/WDGLocalStream.h>
+#import <WilddogVideo/WDGRemoteStream.h>
 @interface WDGVideoViews()
 @property (nonatomic,strong) WDGBeautyVideoView *localView;
 @property (nonatomic,strong) WDGBeautyVideoView *remoteView;
-@property (nonatomic,strong) WDGVideoLocalStream *localStream;
-@property (nonatomic,strong) WDGVideoRemoteStream *remoteStream;
+@property (nonatomic,strong) WDGLocalStream *localStream;
+@property (nonatomic,strong) WDGRemoteStream *remoteStream;
 @property (nonatomic,copy) void(^viewChange)(BOOL isLocalViewPresent);
 @end
 

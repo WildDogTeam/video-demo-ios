@@ -16,4 +16,15 @@
     hud.label.text = message;
     [hud hideAnimated:animated afterDelay:time];
 }
+
+-(void)showHUDAnimate:(BOOL)animated
+{
+    [self hideHUDAnimate:animated];
+    [MBProgressHUD showHUDAddedTo:self animated:animated];
+}
+
+-(void)hideHUDAnimate:(BOOL)animated
+{
+    [MBProgressHUD hideHUDForView:self animated:animated];
+}
 @end

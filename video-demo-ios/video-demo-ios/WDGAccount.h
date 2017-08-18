@@ -10,6 +10,7 @@
 
 @interface WDGAccount : NSObject<NSCoding>
 @property (nonatomic, copy) NSString *userID;
+@property (nonatomic, copy) NSString *token;
 @end
 
 @interface WDGAccountManager : NSObject

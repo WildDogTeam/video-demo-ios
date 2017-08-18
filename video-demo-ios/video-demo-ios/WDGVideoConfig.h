@@ -7,19 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WilddogVideo/WDGVideoLocalStreamOptions.h>
+#import <WilddogVideo/WDGLocalStreamOptions.h>
 
-#define WDGVideoConstraints360P @"360p"
-#define WDGVideoConstraints480P @"480p"
-#define WDGVideoConstraints720P @"720p"
-#define WDGVideoConstraints1080P @"1080p"
+#define WDGVideoDimensions360p @"360p"
+#define WDGVideoDimensions480p @"480p"
+#define WDGVideoDimensions720p @"720p"
+#define WDGVideoDimensions1080p @"1080p"
 
 
 
 @interface WDGVideoConfig : NSObject
 
 +(void)setVideoConstraints:(NSString *)constraints;
-+(WDGVideoConstraints)videoConstraintsNum;
++(WDGVideoDimensions)videoConstraintsNum;
 +(NSString *)videoConstraints;
 
 +(void)setBeautyPlan:(NSString *)plan;

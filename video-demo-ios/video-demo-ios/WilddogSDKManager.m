@@ -7,10 +7,15 @@
 //
 
 #import "WilddogSDKManager.h"
+#import "WDGAccount.h"
+//#define WilddogAppForVideo @"com.wilddog.app.video"
+//#define WilddogAppForSync @"com.wilddog.app.sync"
 
 @interface WilddogSDKManager()
 @property (nonatomic, strong, readwrite) WDGSyncReference *wilddogSyncRootReference;
-@property (nonatomic, strong, readwrite) WDGVideoClient *wilddogVideoClient;
+@property (nonatomic, strong, readwrite) WDGVideo *wilddogVideo;
+@property (nonatomic, strong, readwrite) WDGAuth *wilddogVideoAuth;
+@property (nonatomic, strong) WDGSync *wilddogSync;
 @end
 
 @implementation WilddogSDKManager
@@ -24,23 +29,41 @@
     return _sdkManager;
 }
 
--(void)registerSDKAppWithName:(NSString *)name
+-(void)registerSDKAppWithSyncId:(NSString *)syncId videoId:(NSString *)videoId
 {
-    [WDGApp configureWithOptions:[[WDGOptions alloc] initWithSyncURL:[NSString stringWithFormat:@"https://%@.wilddogio.com",name]]];
+    [WDGApp configureWithName:@"1232123" options:[[WDGOptions alloc] initWithSyncURL:[NSString stringWithFormat:@"https://%@.wilddogio.com",syncId]]];
+    NSString *token =[WDGAccountManager currentAccount].token;
+    [[self wilddogVideo] configureWithVideoAppId:videoId token:token?:@""];
 }
 
--(WDGVideoClient *)wilddogVideoClient
+-(WDGVideo *)wilddogVideo
 {
-    if(!_wilddogVideoClient){
-        _wilddogVideoClient = [[WDGVideoClient alloc] initWithApp:[WDGApp defaultApp]];
+    if(!_wilddogVideo){
+        _wilddogVideo = [WDGVideo sharedVideo];
     }
-    return _wilddogVideoClient;
+    return _wilddogVideo;
+}
+
+-(WDGAuth *)wilddogVideoAuth
+{
+    if(!_wilddogVideoAuth){
+        _wilddogVideoAuth = [WDGAuth authWithApp:[WDGApp appNamed:@"1232123"]];
+    }
+    return _wilddogVideoAuth;
+}
+
+-(WDGSyncReference *)wilddogSync
+{
+    if(!_wilddogSync){
+        _wilddogSync = [WDGSync syncForApp:[WDGApp appNamed:@"1232123"]];
+    }
+    return _wilddogSync;
 }
 
 -(WDGSyncReference *)wilddogSyncRootReference
 {
     if(!_wilddogSyncRootReference){
-        _wilddogSyncRootReference = [[[WDGSync sync] reference] child:@"wilddogVideo"].root;
+        _wilddogSyncRootReference = [self.wilddogSync reference];
     }
     return _wilddogSyncRootReference;
 }
@@ -48,5 +71,18 @@
 -(BOOL)reference:(WDGSyncReference *)ref hasChildNode:(NSString *)child
 {
     return [[[WDGDataSnapshot new] childSnapshotForPath:ref.description] hasChild:child];
+}
+
+-(void)goOffLine
+{
+    [self.wilddogVideo stop];
+    [self.wilddogVideoAuth signOut:nil];
+    [self.wilddogSync goOffline];
+}
+
+-(void)goOnLine
+{
+    [self.wilddogVideo start];
+    [self.wilddogSync goOnline];
 }
 @end

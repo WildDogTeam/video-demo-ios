@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */; };
+		C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B280B1F41505600DE970C /* WDGConversationCell.m */; };
+		C83B28111F41946800DE970C /* WDGSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B28101F41946800DE970C /* WDGSoundPlayer.m */; };
+		C83B28151F41998E00DE970C /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = C83B28131F41950600DE970C /* ring.caf */; };
+		C83B28161F41998E00DE970C /* videoRing.caf in Resources */ = {isa = PBXBuildFile; fileRef = C83B28141F41950600DE970C /* videoRing.caf */; };
+		C856D7861F468C2E00E6636C /* WDGSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7851F468C2E00E6636C /* WDGSortedArray.m */; };
+		C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7881F468DAA00E6636C /* WDGOnlineCell.m */; };
 		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
 		C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEDA1F18AA7600548531 /* AppDelegate.m */; };
 		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
@@ -36,7 +42,6 @@
 		C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1B1F18AB5800548531 /* WDGTuSDKOption.m */; };
 		C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1D1F18AB5800548531 /* WDGVideoCallViewController.m */; };
 		C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */; };
-		C87EAF421F18AB5800548531 /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
 		C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF231F18AB5800548531 /* WDGVideoReceiveViewController.m */; };
 		C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF251F18AB5800548531 /* WDGVideoTool.m */; };
 		C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF271F18AB5800548531 /* WDGVideoViewController.m */; };
@@ -44,12 +49,27 @@
 		C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */; };
 		C87EAF491F18ACE200548531 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C87EAF481F18ACE200548531 /* libz.tbd */; };
 		C87EAF6A1F18C77800548531 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C87EAF691F18C77800548531 /* TuSDK.bundle */; };
+		C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441CB1F3C2B6D00FA4E4A /* WDGTableViewController.m */; };
+		C89441CF1F3C349B00FA4E4A /* WDGConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */; };
+		C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */; };
+		C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */; };
+		C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-video-demo-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83B280A1F41505600DE970C /* WDGConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGConversationCell.h; sourceTree = "<group>"; };
+		C83B280B1F41505600DE970C /* WDGConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGConversationCell.m; sourceTree = "<group>"; };
+		C83B280F1F41946800DE970C /* WDGSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSoundPlayer.h; sourceTree = "<group>"; };
+		C83B28101F41946800DE970C /* WDGSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSoundPlayer.m; sourceTree = "<group>"; };
+		C83B28131F41950600DE970C /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
+		C83B28141F41950600DE970C /* videoRing.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoRing.caf; sourceTree = "<group>"; };
+		C856D7841F468C2E00E6636C /* WDGSortedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSortedArray.h; sourceTree = "<group>"; };
+		C856D7851F468C2E00E6636C /* WDGSortedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSortedArray.m; sourceTree = "<group>"; };
+		C856D7871F468DAA00E6636C /* WDGOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGOnlineCell.h; sourceTree = "<group>"; };
+		C856D7881F468DAA00E6636C /* WDGOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGOnlineCell.m; sourceTree = "<group>"; };
 		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C87EAED91F18AA7600548531 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +137,14 @@
 		C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WilddogSDKManager.m; sourceTree = "<group>"; };
 		C87EAF481F18ACE200548531 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C87EAF691F18C77800548531 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TuSDK.bundle; sourceTree = "<group>"; };
+		C89441CA1F3C2B6D00FA4E4A /* WDGTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTableViewController.h; sourceTree = "<group>"; };
+		C89441CB1F3C2B6D00FA4E4A /* WDGTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTableViewController.m; sourceTree = "<group>"; };
+		C89441CD1F3C349B00FA4E4A /* WDGConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGConversationViewController.h; sourceTree = "<group>"; };
+		C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGConversationViewController.m; sourceTree = "<group>"; };
+		C89441D01F3C5FDD00FA4E4A /* WDGConversationsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGConversationsHistory.h; sourceTree = "<group>"; };
+		C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGConversationsHistory.m; sourceTree = "<group>"; };
+		C8F18FEC1F3D9C3B00114D4A /* WDGUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserInfoView.h; sourceTree = "<group>"; };
+		C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +178,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C83B28121F41947100DE970C /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				C83B28131F41950600DE970C /* ring.caf */,
+				C83B28141F41950600DE970C /* videoRing.caf */,
+				C856D7841F468C2E00E6636C /* WDGSortedArray.h */,
+				C856D7851F468C2E00E6636C /* WDGSortedArray.m */,
+				C83B280F1F41946800DE970C /* WDGSoundPlayer.h */,
+				C83B28101F41946800DE970C /* WDGSoundPlayer.m */,
+			);
+			name = Tool;
+			sourceTree = "<group>";
+		};
 		C87EAECA1F18AA7600548531 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +213,7 @@
 		C87EAED51F18AA7600548531 /* video-demo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C83B28121F41947100DE970C /* Tool */,
 				C87EAF501F18AE3D00548531 /* Config */,
 				C87EAF4A1F18AD3300548531 /* Beauty */,
 				C87EAF4E1F18ADE700548531 /* Controller */,
@@ -248,6 +290,8 @@
 			children = (
 				C87EAEFB1F18AB5700548531 /* WDGCallViewController.h */,
 				C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */,
+				C89441CD1F3C349B00FA4E4A /* WDGConversationViewController.h */,
+				C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */,
 				C87EAF091F18AB5700548531 /* WDGOnlineViewController.h */,
 				C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */,
 				C87EAF0E1F18AB5800548531 /* WDGRecordFilesViewController.h */,
@@ -269,6 +313,12 @@
 				C87EAF171F18AB5800548531 /* WDGStaticRootTableViewCell.m */,
 				C87EAF181F18AB5800548531 /* WDGTabbarController.h */,
 				C87EAF191F18AB5800548531 /* WDGTabbarController.m */,
+				C89441CA1F3C2B6D00FA4E4A /* WDGTableViewController.h */,
+				C89441CB1F3C2B6D00FA4E4A /* WDGTableViewController.m */,
+				C83B280A1F41505600DE970C /* WDGConversationCell.h */,
+				C83B280B1F41505600DE970C /* WDGConversationCell.m */,
+				C856D7871F468DAA00E6636C /* WDGOnlineCell.h */,
+				C856D7881F468DAA00E6636C /* WDGOnlineCell.m */,
 			);
 			name = Basic;
 			sourceTree = "<group>";
@@ -284,6 +334,8 @@
 				C87EAF081F18AB5700548531 /* WDGNotifications.m */,
 				C87EAF2A1F18AB5800548531 /* WilddogSDKManager.h */,
 				C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */,
+				C89441D01F3C5FDD00FA4E4A /* WDGConversationsHistory.h */,
+				C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -295,6 +347,8 @@
 				C87EAF021F18AB5700548531 /* WDGInfoView.m */,
 				C87EAF201F18AB5800548531 /* WDGVideoControlView.h */,
 				C87EAF211F18AB5800548531 /* WDGVideoControlView.m */,
+				C8F18FEC1F3D9C3B00114D4A /* WDGUserInfoView.h */,
+				C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */,
 				C87EAF281F18AB5800548531 /* WDGVideoViews.h */,
 				C87EAF291F18AB5800548531 /* WDGVideoViews.m */,
 			);
@@ -399,6 +453,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83B28161F41998E00DE970C /* videoRing.caf in Resources */,
+				C83B28151F41998E00DE970C /* ring.caf in Resources */,
 				C87EAF6A1F18C77800548531 /* TuSDK.bundle in Resources */,
 				C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */,
 				C87EAEE31F18AA7600548531 /* Assets.xcassets in Resources */,
@@ -487,7 +543,7 @@
 			files = (
 				C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */,
 				C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */,
-				C87EAF421F18AB5800548531 /* WDGVideoControlView.m in Sources */,
+				C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */,
 				C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */,
 				C87EAF391F18AB5800548531 /* WDGRecordFilesViewController.m in Sources */,
 				C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */,
@@ -505,16 +561,24 @@
 				C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */,
 				C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */,
 				C87EAED81F18AA7600548531 /* main.m in Sources */,
+				C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */,
 				C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */,
+				C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */,
 				C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */,
+				C89441CF1F3C349B00FA4E4A /* WDGConversationViewController.m in Sources */,
+				C856D7861F468C2E00E6636C /* WDGSortedArray.m in Sources */,
 				C87EAF3B1F18AB5800548531 /* WDGSelectViewController.m in Sources */,
 				C87EAF2E1F18AB5800548531 /* WDGBeautyOption.m in Sources */,
+				C83B28111F41946800DE970C /* WDGSoundPlayer.m in Sources */,
 				C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */,
 				C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */,
 				C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */,
 				C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */,
+				C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */,
 				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
 				C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */,
+				C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */,
+				C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +716,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -676,6 +741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

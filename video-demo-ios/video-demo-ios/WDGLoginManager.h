@@ -6,9 +6,11 @@
 //  Copyright © 2017年 wilddog. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface WDGLoginManager : NSObject
 +(BOOL)hasLogin;
 +(void)loginByTouristComplete:(void (^)())complete;
++(void)logOut;
++(UIViewController *)switchRootViewController;
 @end

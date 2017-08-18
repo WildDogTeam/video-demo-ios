@@ -29,6 +29,14 @@
     self.navigationController.interactivePopGestureRecognizer.delegate =self;
     _recordFiles = [NSMutableArray arrayWithArray:[[WDGFileManager sharedManager] saveFileNames]];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    if(!_recordFiles.count){
+        [self showEmptyView];
+    }
+}
+
+-(void)showEmptyView
+{
+    [self showEmptyViewNamed:@"no-call" size:CGSizeMake(150, 150) title:@"暂无录制文件"];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -67,6 +75,9 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[WDGFileManager sharedManager] deleteFileWithName:_recordFiles[indexPath.row]];
         _recordFiles = [NSMutableArray arrayWithArray:[[WDGFileManager sharedManager] saveFileNames]];
+        if(!_recordFiles.count){
+            [self showEmptyView];
+        }
         [tableView reloadData];
     }
 }

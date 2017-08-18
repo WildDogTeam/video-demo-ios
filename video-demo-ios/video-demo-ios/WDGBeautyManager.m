@@ -15,13 +15,13 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _manager = [WDGBeautyManager new];
-        _manager.option = [[NSClassFromString(@"WDGCamera360Option") alloc] init];
     });
     return _manager;
 }
 
 -(CVPixelBufferRef)proccessPixelBuffer:(CVPixelBufferRef)buffer
 {
+//    _option?:(_option=[[NSClassFromString(@"WDGCamera360Option") alloc] init]);
     return [_option proccessPixelBuffer:buffer];
 }
 @end

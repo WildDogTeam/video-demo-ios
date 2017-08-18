@@ -6,8 +6,8 @@
 //  Copyright © 2017年 wilddog. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WDGTableViewController.h"
 
-@interface WDGOnlineViewController : UITableViewController
+@interface WDGOnlineViewController : WDGTableViewController
 
 @end

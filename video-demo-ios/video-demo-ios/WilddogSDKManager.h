@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <WilddogSync/WilddogSync.h>
-#import <WilddogVideo/WDGVideoClient.h>
 #import <WilddogCore/WilddogCore.h>
+#import <WilddogVideo/WDGVideo.h>
+#import <WilddogAuth/WDGAuth.h>
 @interface WilddogSDKManager : NSObject
 +(instancetype)sharedManager;
--(void)registerSDKAppWithName:(NSString *)name;
--(BOOL)reference:(WDGSyncReference *)ref hasChildNode:(NSString *)child;
+-(void)registerSDKAppWithSyncId:(NSString *)syncId videoId:(NSString *)videoId;
 @property (nonatomic, strong, readonly) WDGSyncReference *wilddogSyncRootReference;
-@property (nonatomic, strong, readonly) WDGVideoClient *wilddogVideoClient;
+@property (nonatomic, strong, readonly) WDGVideo *wilddogVideo;
+@property (nonatomic, strong, readonly) WDGAuth *wilddogVideoAuth;
+-(void)goOffLine;
+-(void)goOnLine;
 @end

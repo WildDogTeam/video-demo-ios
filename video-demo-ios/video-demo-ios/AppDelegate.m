@@ -24,22 +24,15 @@
     // Override point for customization after application launch.
     sleep(1);
     [Fabric with:@[[Crashlytics class]]];
-
     [self setupWilddogSyncAndAuth];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    if([WDGLoginManager hasLogin]){
-        UIViewController *mainViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
-        self.window.rootViewController = mainViewController;
-        return YES;
-    }
-    self.window.rootViewController = [WDGLoginViewController new];
-    
+    self.window.rootViewController = [WDGLoginManager switchRootViewController];
     return YES;
 }
 
 - (void)setupWilddogSyncAndAuth {
-    [[WilddogSDKManager sharedManager] registerSDKAppWithName:@"wd6029736988xhigqo"];
+    [[WilddogSDKManager sharedManager] registerSDKAppWithSyncId:@"wd0231007108blsomo" videoId:@"wd6029736988xhigqo"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -10,4 +10,7 @@
 
 @interface UIView (MBProgressHud)
 -(void)showHUDWithMessage:(NSString *)message hideAfter:(int)time animate:(BOOL)animated;
+-(void)showHUDAnimate:(BOOL)animated;
+-(void)hideHUDAnimate:(BOOL)animated;
+
 @end

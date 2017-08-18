@@ -7,19 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WDGVideoControlView.h"
-@class WDGVideoLocalStream;
-@class WDGVideoConversation;
-@class WDGVideoClient;
-@class WDGVideoRemoteStream;
+#import "WDGSoundPlayer.h"
+@class WDGLocalStream;
+@class WDGConversation;
+@class WDGRemoteStream;
+@protocol WDGConversationDelegate;
 typedef NS_ENUM(NSUInteger,VideoType){
     VideoTypeCaller,
     VideoTypeReciver
 };
-@interface WDGVideoViewController : UIViewController<WDGVideoControl>
+@interface WDGVideoViewController : UIViewController<WDGConversationDelegate>
+@property (nonatomic, copy) NSString *oppositeID;
 +(instancetype)controllerWithType:(VideoType)type;
 -(void)closeRoom;
-@property (nonatomic, strong) WDGVideoLocalStream *localStream;
-@property (nonatomic, strong) WDGVideoConversation *conversation;
--(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(WDGVideoRemoteStream *)remoteStream;
+@property (nonatomic, strong) WDGLocalStream *localStream;
+@property (nonatomic, strong) WDGConversation *conversation;
+-(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream;
 @end

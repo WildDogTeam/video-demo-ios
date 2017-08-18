@@ -38,10 +38,10 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    self.detailTextLabel.text =[WDGAccountManager currentAccount].userID;
+    self.detailTextLabel.text =[NSString stringWithFormat:@"ID:%@",[WDGAccountManager currentAccount].userID];
     UIButton *copyButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [copyButton setTitle:@"复制" forState:UIControlStateNormal];
-    copyButton.titleLabel.font = [UIFont fontWithName:@"pingfang SC" size:14];
+    copyButton.titleLabel.font = [UIFont fontWithName:@"pingfang SC" size:18];
     [copyButton setTitleColor:[UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.] forState:UIControlStateNormal];
     [copyButton setTitleColor:[UIColor colorWithRed:0xf0/255. green:0x91/255. blue:0x6e/255. alpha:1.] forState:UIControlStateHighlighted];
     [copyButton addTarget:self action:@selector(copyID) forControlEvents:UIControlEventTouchUpInside];
@@ -49,19 +49,27 @@
     _copyButton = copyButton;
     _copyButton.frame = CGRectMake(0, 0, 40, 14);
     self.detailTextLabel.font = [UIFont fontWithName:@"pingfang SC" size:12];
+    CGSize itemSize = CGSizeMake(60 , 60);
+    UIGraphicsBeginImageContextWithOptions(itemSize,NO,0.0);
+    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+    [[UIImage imageNamed:@"Calling"] drawInRect:imageRect];
+    self.imageView.image= UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.imageView.layer.cornerRadius = 30;
+    self.imageView.clipsToBounds =YES;
 }
 
 -(void)copyID
 {
-    [UIPasteboard generalPasteboard].string = self.detailTextLabel.text;
+    [UIPasteboard generalPasteboard].string = [WDGAccountManager currentAccount].userID;
     [[UIApplication sharedApplication].keyWindow showHUDWithMessage:@"已复制" hideAfter:1 animate:YES];
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _copyButton.center = CGPointMake(self.frame.size.width-15-CGRectGetWidth(_copyButton.frame)*.5, CGRectGetHeight(self.contentView.frame)*.5);
-    self.detailTextLabel.frame = CGRectMake(CGRectGetMinX(_copyButton.frame)-205, CGRectGetMinY(self.detailTextLabel.frame), 200, CGRectGetHeight(self.detailTextLabel.frame));
+    _copyButton.center = CGPointMake(self.frame.size.width-32-CGRectGetWidth(_copyButton.frame)*.5, CGRectGetHeight(self.contentView.frame)*.5);
+//    self.detailTextLabel.frame = CGRectMake(CGRectGetMinX(_copyButton.frame)-205, CGRectGetMinY(self.detailTextLabel.frame), 200, CGRectGetHeight(self.detailTextLabel.frame));
 }
 
 @end
