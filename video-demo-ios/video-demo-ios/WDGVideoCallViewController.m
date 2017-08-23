@@ -18,10 +18,10 @@
 
 @implementation WDGVideoCallViewController
 
-+(instancetype)makeCallToUserId:(nonnull NSString *)userId
++(instancetype)makeCallToUserItem:(WDGVideoItem *)userItem
 {
     WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeReciver];
-    cc.oppositeID = userId;
+    cc.oppositeItem =userItem;
     return cc;
 }
 
@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view.
 //    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
-    self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeID localStream:self.localStream data:nil];
+    self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeItem.uid localStream:self.localStream data:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [WDGSoundPlayer playSound:SoundTypeCaller];
     });
@@ -57,7 +57,7 @@
     self.callingLabel =callingLabel;
     
     UILabel *oppoUidLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.callingLabel.frame)+10, self.view.frame.size.width, 22)];
-    oppoUidLabel.text = self.oppositeID;
+    oppoUidLabel.text = self.oppositeItem.description;
     oppoUidLabel.textAlignment = NSTextAlignmentCenter;
     oppoUidLabel.textColor = [UIColor whiteColor];
     oppoUidLabel.font = [UIFont fontWithName:@"pingfang SC" size:20];

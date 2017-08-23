@@ -23,15 +23,7 @@
 
 @end
 
-@implementation WDGSortObject
--(NSString *)description
-{
-    return self.nickname;
-}
-@end
-
-
-static NSMutableArray<NSMutableArray<WDGSortObject *> *> *_sortedArray;
+static NSMutableArray<NSMutableArray<WDGVideoItem *> *> *_sortedArray;
 static NSMutableDictionary *_indexes;
 static NSMutableArray<NSMutableArray *> *_nameSortedArray;
 static dispatch_queue_t _sortqueue;
@@ -50,7 +42,7 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return indexpath;
 }
 @implementation WDGSortedArray
-+(NSIndexPath *)addObject:(WDGSortObject *)nickName
++(NSIndexPath *)addObject:(WDGVideoItem *)nickName
 {
     [self initSortArray];
     return runSyncSortedArrayInSortQueue(^{
@@ -58,12 +50,12 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     });
 }
 
-+(NSIndexPath *)_addObject:(WDGSortObject *)obj
++(NSIndexPath *)_addObject:(WDGVideoItem *)obj
 {
     return [self sortAddObject:obj];
 }
 
-+(NSIndexPath *)removeObject:(WDGSortObject *)obj
++(NSIndexPath *)removeObject:(WDGVideoItem *)obj
 {
     [self initSortArray];
     return runSyncSortedArrayInSortQueue(^{
@@ -71,12 +63,12 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     });
 }
 
-+(NSIndexPath *)_removeObject:(WDGSortObject *)obj
++(NSIndexPath *)_removeObject:(WDGVideoItem *)obj
 {
     return [self sortRemoveObject:obj];
 }
 
-+(NSArray<NSArray<WDGSortObject *> *> *)sortedArray
++(NSArray<NSArray<WDGVideoItem *> *> *)sortedArray
 {
     return _sortedArray;
 }
@@ -107,11 +99,11 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return  [self maopaoSortedArray:[_indexes allKeys]];
 }
 
-+(NSIndexPath *)sortAddObject:(WDGSortObject *)obj
++(NSIndexPath *)sortAddObject:(WDGVideoItem *)obj
 {
     NSInteger section;
     NSInteger row;
-    NSString *pinyin =[self test:obj.nickname];
+    NSString *pinyin =[self test:obj.description];
     char firstChar = [pinyin characterAtIndex:0];
     NSString *firstString =[pinyin substringToIndex:1];
     if(firstChar <'A' || firstChar >'Z'){
@@ -148,7 +140,7 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return [NSIndexPath indexPathForRow:row inSection:section];
 }
 
-+(NSIndexPath *)sortRemoveObject:(WDGSortObject *)obj
++(NSIndexPath *)sortRemoveObject:(WDGVideoItem *)obj
 {
     NSInteger section;
     NSInteger row;

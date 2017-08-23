@@ -15,10 +15,12 @@
 @end
 
 @implementation WDGVideoReceiveViewController
-+(instancetype)receiveCallWithConversation:(WDGConversation *)conversation{
++(instancetype)receiveCallWithConversation:(WDGConversation *)conversation userItem:(WDGVideoItem *)userItem
+{
+    
     WDGVideoReceiveViewController *rc = [WDGVideoReceiveViewController controllerWithType:VideoTypeReciver];
     rc.conversation = conversation;
-    rc.oppositeID = conversation.remoteUid;
+    rc.oppositeItem = userItem;
     return rc;
 }
 

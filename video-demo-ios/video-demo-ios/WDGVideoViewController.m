@@ -51,7 +51,6 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 +(instancetype)controllerWithType:(VideoType)type
 {
     WDGVideoViewController *videoController = [self new];
-//    videoController.oppositeID = OppositeID;
     videoController.myType = type;
     return videoController;
 }
@@ -100,7 +99,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     _recordButton =recordButton;
     recordButton.hidden =YES;
 
-    self.userInfoView = [WDGUserInfoView viewWithName:self.oppositeID imageUrl:nil userType:self.myType==VideoTypeCaller?WDGUserTypeCaller:WDGUserTypeCallee];
+    self.userInfoView = [WDGUserInfoView viewWithName:self.oppositeItem.description imageUrl:self.oppositeItem.faceUrl userType:self.myType==VideoTypeCaller?WDGUserTypeCaller:WDGUserTypeCallee];
     [self.view addSubview:self.userInfoView];
     self.userInfoView.center = CGPointMake(self.view.frame.size.width*.5, self.userInfoView.frame.size.height*.5+50);
 }
@@ -236,7 +235,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         _controlView = [[WDGVideoControlView alloc] init];
         _controlView.controlDelegate =self;
         _controlView.hidden =YES;
-        _controlView.oppoSiteName =self.oppositeID;
+        _controlView.oppoSiteName =self.oppositeItem.description;
     }
     return _controlView;
 }
@@ -299,7 +298,12 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     _localStream = nil;
     
     WDGConversationItem *item =[[WDGConversationItem alloc] init];
-    item.uid = self.oppositeID;
+    item.uid = self.oppositeItem.uid;
+    item.nickname =self.oppositeItem.nickname;
+    item.faceUrl = self.oppositeItem.faceUrl;
+    item.conversationTime = [_controlView showTime];
+    item.finishTime = [[NSDate date] timeIntervalSince1970];
+    
     [WDGConversationsHistory addHistoryItem:item];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -328,7 +332,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidOpen:(BOOL)cameraOpen
 {
-//    self.localStream = isOpened;
+    self.localStream.videoEnabled = cameraOpen;
 }
 
 -(void)videoControlViewDidHangup:(WDGVideoControlView *)controlView

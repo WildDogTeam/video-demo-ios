@@ -27,6 +27,7 @@
         //默认开启麦克风 相机镜头前置
         _microPhoneOpen = YES;
         _cameraFront = YES;
+        _calculateNum =0;
         [self createMyView];
     }
     return self;
@@ -170,7 +171,7 @@
 -(void)cameraEnableButtonClick:(UIButton *)btn
 {
     btn.selected = !btn.selected;
-    [self.controlDelegate videoControlView:self cameraDidOpen:btn.selected];
+    [self.controlDelegate videoControlView:self cameraDidOpen:!btn.selected];
 }
 
 -(void)hangupButtonClick
@@ -213,5 +214,10 @@
         [self stopTimer];
         _nameLabel.hidden = YES;
     }
+}
+
+-(NSUInteger)showTime
+{
+    return _calculateNum;
 }
 @end

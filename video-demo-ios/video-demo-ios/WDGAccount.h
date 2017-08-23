@@ -11,6 +11,8 @@
 @interface WDGAccount : NSObject<NSCoding>
 @property (nonatomic, copy) NSString *userID;
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *nickName;
+@property (nonatomic, copy) NSString *iconUrl;
 @end
 
 @interface WDGAccountManager : NSObject

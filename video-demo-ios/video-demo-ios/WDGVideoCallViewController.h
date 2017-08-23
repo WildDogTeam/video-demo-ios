@@ -7,7 +7,6 @@
 //
 
 #import "WDGVideoViewController.h"
-
 @interface WDGVideoCallViewController : WDGVideoViewController
-+(instancetype _Nonnull)makeCallToUserId:(nonnull NSString *)userId;
++(instancetype _Nonnull)makeCallToUserItem:(WDGVideoItem *)userItem;
 @end

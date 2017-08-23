@@ -8,6 +8,7 @@
 
 #import "WDGBeautyManager.h"
 #import "WDGBeautyOption.h"
+#import "WDGUserDefine.h"
 @implementation WDGBeautyManager
 +(instancetype)sharedManager
 {
@@ -22,6 +23,16 @@
 -(CVPixelBufferRef)proccessPixelBuffer:(CVPixelBufferRef)buffer
 {
 //    _option?:(_option=[[NSClassFromString(@"WDGCamera360Option") alloc] init]);
+    if([_option isKindOfClass:NSClassFromString(@"WDGCamera360Option")]){
+        if(!WDGAppUseCamera360){
+            _option = [WDGBeautyOption new];
+        }
+    }
+    if([_option isKindOfClass:NSClassFromString(@"WDGTuSDKOption")]){
+        if(!WDGAppUseTUSDK){
+            _option = [WDGBeautyOption new];
+        }
+    }
     return [_option proccessPixelBuffer:buffer];
 }
 @end

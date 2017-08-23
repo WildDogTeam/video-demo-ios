@@ -9,5 +9,5 @@
 #import "WDGVideoViewController.h"
 @class WDGConversation;
 @interface WDGVideoReceiveViewController : WDGVideoViewController
-+(instancetype)receiveCallWithConversation:(WDGConversation *)conversation;
++(instancetype)receiveCallWithConversation:(WDGConversation *)conversation userItem:(WDGVideoItem *)userItem;
 @end

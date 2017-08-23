@@ -14,6 +14,10 @@
 		C83B28161F41998E00DE970C /* videoRing.caf in Resources */ = {isa = PBXBuildFile; fileRef = C83B28141F41950600DE970C /* videoRing.caf */; };
 		C856D7861F468C2E00E6636C /* WDGSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7851F468C2E00E6636C /* WDGSortedArray.m */; };
 		C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7881F468DAA00E6636C /* WDGOnlineCell.m */; };
+		C856D7991F4C180700E6636C /* WDGSimpleConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7981F4C180700E6636C /* WDGSimpleConnection.m */; };
+		C856D79C1F4C1BA300E6636C /* WDGUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */; };
+		C856D79F1F4C380300E6636C /* WDGVideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79E1F4C380300E6636C /* WDGVideoItem.m */; };
+		C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */; };
 		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
 		C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEDA1F18AA7600548531 /* AppDelegate.m */; };
 		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
@@ -70,6 +74,14 @@
 		C856D7851F468C2E00E6636C /* WDGSortedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSortedArray.m; sourceTree = "<group>"; };
 		C856D7871F468DAA00E6636C /* WDGOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGOnlineCell.h; sourceTree = "<group>"; };
 		C856D7881F468DAA00E6636C /* WDGOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGOnlineCell.m; sourceTree = "<group>"; };
+		C856D78A1F46D71700E6636C /* WDGUserDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGUserDefine.h; sourceTree = "<group>"; };
+		C856D7971F4C180700E6636C /* WDGSimpleConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSimpleConnection.h; sourceTree = "<group>"; };
+		C856D7981F4C180700E6636C /* WDGSimpleConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSimpleConnection.m; sourceTree = "<group>"; };
+		C856D79A1F4C1BA300E6636C /* WDGUserInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserInfoRequest.h; sourceTree = "<group>"; };
+		C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserInfoRequest.m; sourceTree = "<group>"; };
+		C856D79D1F4C380300E6636C /* WDGVideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoItem.h; sourceTree = "<group>"; };
+		C856D79E1F4C380300E6636C /* WDGVideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoItem.m; sourceTree = "<group>"; };
+		C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserDefine.m; sourceTree = "<group>"; };
 		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C87EAED91F18AA7600548531 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +199,10 @@
 				C856D7851F468C2E00E6636C /* WDGSortedArray.m */,
 				C83B280F1F41946800DE970C /* WDGSoundPlayer.h */,
 				C83B28101F41946800DE970C /* WDGSoundPlayer.m */,
+				C856D7971F4C180700E6636C /* WDGSimpleConnection.h */,
+				C856D7981F4C180700E6636C /* WDGSimpleConnection.m */,
+				C856D79A1F4C1BA300E6636C /* WDGUserInfoRequest.h */,
+				C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -223,6 +239,8 @@
 				C87EAF4D1F18ADBD00548531 /* Category */,
 				C87EAED91F18AA7600548531 /* AppDelegate.h */,
 				C87EAEDA1F18AA7600548531 /* AppDelegate.m */,
+				C856D78A1F46D71700E6636C /* WDGUserDefine.h */,
+				C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */,
 				C87EAEDF1F18AA7600548531 /* Main.storyboard */,
 				C87EAEE21F18AA7600548531 /* Assets.xcassets */,
 				C87EAEE41F18AA7600548531 /* LaunchScreen.storyboard */,
@@ -319,6 +337,8 @@
 				C83B280B1F41505600DE970C /* WDGConversationCell.m */,
 				C856D7871F468DAA00E6636C /* WDGOnlineCell.h */,
 				C856D7881F468DAA00E6636C /* WDGOnlineCell.m */,
+				C856D79D1F4C380300E6636C /* WDGVideoItem.h */,
+				C856D79E1F4C380300E6636C /* WDGVideoItem.m */,
 			);
 			name = Basic;
 			sourceTree = "<group>";
@@ -541,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C856D79F1F4C380300E6636C /* WDGVideoItem.m in Sources */,
 				C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */,
 				C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */,
 				C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */,
@@ -560,7 +581,9 @@
 				C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */,
 				C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */,
 				C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */,
+				C856D7991F4C180700E6636C /* WDGSimpleConnection.m in Sources */,
 				C87EAED81F18AA7600548531 /* main.m in Sources */,
+				C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */,
 				C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */,
 				C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */,
 				C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */,
@@ -577,6 +600,7 @@
 				C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */,
 				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
 				C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */,
+				C856D79C1F4C1BA300E6636C /* WDGUserInfoRequest.m in Sources */,
 				C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */,
 				C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */,
 			);

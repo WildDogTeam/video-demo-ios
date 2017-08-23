@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger,WDGVideoControlViewMode){
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidTurned:(BOOL)isFront;
 -(void)videoControlView:(WDGVideoControlView *)controlView speakerDidOpen:(BOOL)micphoneOpened;
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidOpen:(BOOL)cameraOpen;
+
 @end
 @interface WDGVideoControlView : UIView
 @property (nonatomic,weak) id<WDGVideoControl> controlDelegate;
@@ -27,4 +28,5 @@ typedef NS_ENUM(NSUInteger,WDGVideoControlViewMode){
 @property (nonatomic,assign) WDGVideoControlViewMode mode;
 -(void)showInView:(UIView *)view animate:(BOOL)animate;
 -(void)dismiss;
+-(NSUInteger)showTime;
 @end

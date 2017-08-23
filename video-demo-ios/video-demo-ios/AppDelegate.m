@@ -13,7 +13,10 @@
 #import "WilddogSDKManager.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-@interface AppDelegate ()
+#import "WDGUserDefine.h"
+#import <WXApi.h>
+#import "WDGNotifications.h"
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -22,7 +25,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    sleep(1);
+    if(WDGAppUseWechatLogin)
+        [WXApi registerApp:WDGWechatAppID];
     [Fabric with:@[[Crashlytics class]]];
     [self setupWilddogSyncAndAuth];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -32,7 +36,37 @@
 }
 
 - (void)setupWilddogSyncAndAuth {
+    //在野狗后台注册一个Video项目你会得到两个appId 一个是sync的 一个是video的
+    // 如果项目中有用到sync的话 可以直接使用syncId 同时你会在后台Sync栏下看到Sync下的数据
     [[WilddogSDKManager sharedManager] registerSDKAppWithSyncId:@"wd0231007108blsomo" videoId:@"wd6029736988xhigqo"];
+}
+
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+-(void)onResp:(BaseResp *)resp
+{
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *authResp = (SendAuthResp *)resp;
+        __weak typeof(self) WS= self;
+        
+        if(resp.errCode == -2){
+            [[NSNotificationCenter defaultCenter] postNotificationName:WDGAppSigninWechatDidcancelledByUser object:nil];
+            return;
+        }
+        
+        [WDGLoginManager loginByWechatWithCode:authResp.code complete:^{
+            WS.window.rootViewController =[WDGLoginManager switchRootViewController];
+        }];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

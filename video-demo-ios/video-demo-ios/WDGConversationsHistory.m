@@ -11,10 +11,7 @@
 @implementation WDGConversationItem
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    if(self = [super init]){
-        self.uid = [aDecoder decodeObjectForKey:@"uid"];
-        self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.faceUrl = [aDecoder decodeObjectForKey:@"faceUrl"];
+    if(self = [super initWithCoder:(NSCoder *)aDecoder]){
         self.conversationTime = [[aDecoder decodeObjectForKey:@"conversationTime"] longValue];
         self.finishTime =[[aDecoder decodeObjectForKey:@"finishTime"] longValue];
     }
@@ -23,9 +20,7 @@
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.uid forKey:@"uid"];
-    [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.faceUrl forKey:@"faceUrl"];
+    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:@(self.conversationTime) forKey:@"conversationTime"];
     [aCoder encodeObject:@(self.finishTime) forKey:@"finishTime"];
 }

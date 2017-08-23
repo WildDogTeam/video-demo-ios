@@ -16,6 +16,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WDGSortedArray.h"
 #import "WDGOnlineCell.h"
+#import "WDGVideoItem.h"
+#import <WilddogVideo/WDGConversation.h>
 @interface WDGOnlineViewController ()<WDGVideoDelegate>
 @end
 
@@ -52,11 +54,16 @@
 - (void)initWilddog
 {
     NSString *uid = [WDGAccountManager currentAccount].userID;
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    NSString *faceUrl = [WDGAccountManager currentAccount].iconUrl;
+    if(faceUrl) [userInfo setObject:faceUrl forKey:WDGVideoItemFaceUrlKey];
+    NSString *nickName = [WDGAccountManager currentAccount].nickName;
+    if(nickName) [userInfo setObject:nickName forKey:WDGVideoItemNickNameKey];
     [[[WilddogSDKManager sharedManager].wilddogSyncRootReference.root child:@".info/connected"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         if ([snapshot.value boolValue]) {
             if(uid){
                 WDGSyncReference *ref = [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid];
-                [ref setValue:@YES withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+                [ref setValue:userInfo withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
                     assert(error==nil);
                     [ref onDisconnectRemoveValueWithCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
                         assert(error == nil);
@@ -65,7 +72,7 @@
             }
         }
     }];
-    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid] setValue:@YES withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid] setValue:userInfo withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
         [ref onDisconnectRemoveValue];
         [WilddogSDKManager sharedManager].wilddogVideo.delegate = self;
         [self observeringOnlineUser];
@@ -89,9 +96,14 @@
         NSLog(@"users-----%@",users);
         [WDGSortedArray removeAllObject];
         for (NSString *user in users) {
-            WDGSortObject *obj =[WDGSortObject new];
-            obj.nickname = user;
-            [WDGSortedArray addObject:obj];
+            WDGVideoItem *item =[WDGVideoItem new];
+            item.uid = user;
+            id userInfo = [dic objectForKey:user];
+            if([userInfo isKindOfClass:[NSDictionary class]]){
+                item.nickname = [userInfo objectForKey:WDGVideoItemNickNameKey];
+                item.faceUrl = [userInfo objectForKey:WDGVideoItemFaceUrlKey];
+            }
+            [WDGSortedArray addObject:item];
         }
         [self.view hideHUDAnimate:YES];
         if ([WDGSortedArray sortedArray].count > 0) {
@@ -128,15 +140,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WDGOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"onLineCell"];
-    [cell showWithNickName:[WDGSortedArray sortedArray][indexPath.section][indexPath.row].nickname iconUrl:@""];
+    WDGVideoItem *item =[WDGSortedArray sortedArray][indexPath.section][indexPath.row];
+    [cell showWithNickName:item.description iconUrl:item.faceUrl];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *uid = [WDGSortedArray sortedArray][indexPath.section][indexPath.row].nickname;
-    if(uid.length){
-        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserId:uid];
+    WDGVideoItem *item = [WDGSortedArray sortedArray][indexPath.section][indexPath.row];
+    if(item){
+        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
         [self presentViewController:vc animated:YES completion:nil];
     }
 }
@@ -164,9 +177,12 @@
  * @param data 随通话邀请传递的 `NSString` 类型的数据。
  */
 - (void)wilddogVideo:(WDGVideo *)video didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString * _Nullable)data{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[self getTopController] presentViewController:[WDGVideoReceiveViewController receiveCallWithConversation:conversation] animated:YES completion:nil];
-    });
+    [WDGVideoItem requestForUid:conversation.remoteUid complete:^(WDGVideoItem *item) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self getTopController] presentViewController:[WDGVideoReceiveViewController receiveCallWithConversation:conversation userItem:item] animated:YES completion:nil];
+        });
+    }];
+    
     
     
 //    [[self getTopController].view showHUDWithMessage:@"对方已取消呼叫" hideAfter:1 animate:YES];

@@ -8,8 +8,14 @@
 
 #import "WDGLoginViewController.h"
 #import "WDGLoginManager.h"
+#import <WXApi.h>
+#import "WDGUserDefine.h"
+#import "WDGNotifications.h"
+#import "UIView+MBProgressHud.h"
 @interface WDGLoginViewController ()
-
+@property (nonatomic,assign) BOOL loginByWechat;
+@property (nonatomic,assign) BOOL loginByWechatCancelled;
+@property (nonatomic,strong) NSTimer *timeOutTimer;
 @end
 
 @implementation WDGLoginViewController
@@ -34,7 +40,7 @@
     [self.view addSubview:detailLabel];
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginButton setTitle:@"登录" forState:UIControlStateNormal];
+    [loginButton setTitle:([WXApi isWXAppInstalled]&&WDGAppUseWechatLogin)?@"微信登录":@"登录" forState:UIControlStateNormal];
     loginButton.titleLabel.textColor = [UIColor whiteColor];
     loginButton.frame = CGRectMake(0, 0, 241, 41);
     loginButton.center = CGPointMake(centerX, CGRectGetMaxY(detailLabel.frame)+99+CGRectGetHeight(loginButton.frame)*.5);
@@ -46,6 +52,8 @@
     loginButton.clipsToBounds =YES;
     [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginByWechatDidCancelled) name:WDGAppSigninWechatDidcancelledByUser object:nil];
 }
 
 -(UILabel *)pingfangLabelWithText:(NSString *)text size:(CGFloat)size
@@ -69,10 +77,31 @@
     return targetImage;
 }
 
+-(void)loginByWechatDidCancelled
+{
+    [self.view hideHUDAnimate:NO];
+    [self.view showHUDWithMessage:@"登录取消" hideAfter:.5 animate:YES];
+}
+
 -(void)login
 {
+    if([WXApi isWXAppInstalled] && WDGAppUseWechatLogin){
+        self.loginByWechat =YES;
+        [self.view showHUDAnimate:YES];
+        SendAuthReq *req = [SendAuthReq new];
+        req.scope = @"snsapi_userinfo" ;
+        req.state = @"osc_wechat_login" ;
+        // 第三方向微信终端发送一个 SendAuthReq 消息结构
+        [WXApi sendReq:req];
+    }else
     [WDGLoginManager loginByTouristComplete:^{
         [UIApplication sharedApplication].delegate.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
     }];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"loginViewController dealloc");
 }
 @end

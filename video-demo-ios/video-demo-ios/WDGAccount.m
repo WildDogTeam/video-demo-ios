@@ -14,6 +14,8 @@
     if(self = [super init]){
         self.userID = [aDecoder decodeObjectForKey:@"userID"];
         self.token = [aDecoder decodeObjectForKey:@"token"];
+        self.nickName = [aDecoder decodeObjectForKey:@"nickName"];
+        self.iconUrl = [aDecoder decodeObjectForKey:@"iconUrl"];
     }
     return self;
 }
@@ -22,6 +24,8 @@
 {
     [aCoder encodeObject:self.userID forKey:@"userID"];
     [aCoder encodeObject:self.token forKey:@"token"];
+    [aCoder encodeObject:self.nickName forKey:@"nickName"];
+    [aCoder encodeObject:self.iconUrl forKey:@"iconUrl"];
 }
 
 -(NSString *)token
@@ -41,10 +45,10 @@ static WDGAccount *_currentAccount = nil;
 
 +(WDGAccount *)currentAccount
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _currentAccount =  [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WDGAccountInfo]];
-    });
+    _currentAccount =  [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:WDGAccountInfo]];
+    if(!_currentAccount){
+        _currentAccount = [WDGAccount new];
+    }
     return _currentAccount;
 }
 

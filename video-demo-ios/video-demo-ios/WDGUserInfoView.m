@@ -7,7 +7,7 @@
 //
 
 #import "WDGUserInfoView.h"
-
+#import <UIImageView+WebCache.h>
 @implementation WDGUserInfoView
 
 +(instancetype)viewWithName:(NSString *)name imageUrl:(NSString *)imageUrl userType:(WDGUserType)type
@@ -20,8 +20,10 @@
 -(void)createViewsWithName:(NSString *)name imageUrl:(NSString *)imageUrl userType:(WDGUserType)type
 {
     UIImageView *headView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    headView.image =[UIImage imageNamed:@"被叫用户"];
+    [headView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"被叫用户"]];
     headView.center = CGPointMake(self.frame.size.width*.5, headView.frame.size.height*.5+5);
+    headView.layer.cornerRadius = 30;
+    headView.clipsToBounds =YES;
     [self addSubview:headView];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame)+10, self.frame.size.width, 26)];

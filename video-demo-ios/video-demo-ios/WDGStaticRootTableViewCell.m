@@ -9,6 +9,7 @@
 #import "WDGStaticRootTableViewCell.h"
 #import "WDGAccount.h"
 #import "UIView+MBProgressHud.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @implementation WDGStaticRootTableViewCell
 
 -(void)awakeFromNib
@@ -38,6 +39,8 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[WDGAccountManager currentAccount].iconUrl]];
+    self.textLabel.text =[WDGAccountManager currentAccount].nickName;
     self.detailTextLabel.text =[NSString stringWithFormat:@"ID:%@",[WDGAccountManager currentAccount].userID];
     UIButton *copyButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [copyButton setTitle:@"复制" forState:UIControlStateNormal];
@@ -47,7 +50,7 @@
     [copyButton addTarget:self action:@selector(copyID) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:copyButton];
     _copyButton = copyButton;
-    _copyButton.frame = CGRectMake(0, 0, 40, 14);
+    _copyButton.frame = CGRectMake(0, 0, 60, 40);
     self.detailTextLabel.font = [UIFont fontWithName:@"pingfang SC" size:12];
     CGSize itemSize = CGSizeMake(60 , 60);
     UIGraphicsBeginImageContextWithOptions(itemSize,NO,0.0);
@@ -68,7 +71,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _copyButton.center = CGPointMake(self.frame.size.width-32-CGRectGetWidth(_copyButton.frame)*.5, CGRectGetHeight(self.contentView.frame)*.5);
+    _copyButton.center = CGPointMake(self.frame.size.width-22-CGRectGetWidth(_copyButton.frame)*.5, CGRectGetHeight(self.contentView.frame)*.5);
 //    self.detailTextLabel.frame = CGRectMake(CGRectGetMinX(_copyButton.frame)-205, CGRectGetMinY(self.detailTextLabel.frame), 200, CGRectGetHeight(self.detailTextLabel.frame));
 }
 

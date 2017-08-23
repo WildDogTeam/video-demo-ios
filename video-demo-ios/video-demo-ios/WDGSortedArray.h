@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WDGSortObject : NSObject
-@property (nonatomic,copy) NSString *iconUrl;
-@property (nonatomic,copy) NSString *nickname;
-@end
+#import "WDGVideoItem.h"
 
 @interface WDGSortedArray : NSObject
-+(nullable NSIndexPath *)addObject:(WDGSortObject *_Nonnull)nickName;
-+(nullable NSIndexPath *)removeObject:(WDGSortObject *_Nonnull)nickName;
-+(nullable NSArray <NSArray<WDGSortObject *> *> *)sortedArray;
++(nullable NSIndexPath *)addObject:(WDGVideoItem *_Nonnull)nickName;
++(nullable NSIndexPath *)removeObject:(WDGVideoItem *_Nonnull)nickName;
++(nullable NSArray <NSArray<WDGVideoItem *> *> *)sortedArray;
 +(nullable NSArray *)indexes;
 +(void)removeAllObject;
 @end

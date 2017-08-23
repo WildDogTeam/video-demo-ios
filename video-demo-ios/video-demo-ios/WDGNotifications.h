@@ -10,3 +10,6 @@
 
 FOUNDATION_EXTERN NSString * const WDGAppDidSignInCompleteNotification;
 FOUNDATION_EXTERN NSString * const WDGAppDidSignOutCompleteNotification;
+
+
+FOUNDATION_EXTERN NSString * const WDGAppSigninWechatDidcancelledByUser;

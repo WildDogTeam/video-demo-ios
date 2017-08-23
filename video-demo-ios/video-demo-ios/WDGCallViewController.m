@@ -58,8 +58,10 @@
 
 -(void)callOppoUid
 {
-    WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserId:_oppoIdField.text];
-    [self presentViewController:vc animated:YES completion:nil];
+    [WDGVideoItem requestForUid:_oppoIdField.text complete:^(WDGVideoItem *item) {
+        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
+        [self presentViewController:vc animated:YES completion:nil];
+    }];
 }
 
 -(UIImage *)getImageFromColor:(UIColor *)color size:(CGSize)size

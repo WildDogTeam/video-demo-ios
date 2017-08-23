@@ -12,11 +12,33 @@
 #import "WDGNotifications.h"
 #import "WilddogSDKManager.h"
 #import "WDGLoginViewController.h"
+#import "WDGUserInfoRequest.h"
 @implementation WDGLoginManager
 
 +(BOOL)hasLogin
 {
     return [WDGAccountManager currentAccount].userID.length>0;
+}
+
++(void)loginByWechatWithCode:(NSString *)code complete:(void (^)())complete
+{
+    [self _loginByWechatWithCode:code complete:complete];
+}
+
++(void)_loginByWechatWithCode:(NSString *)code complete:(void (^)())complete
+{
+    WDGAuthCredential *credential =
+    [WDGWeiXinAuthProvider credentialWithCode:code];
+    __weak typeof(self) WS =self;
+    [[WilddogSDKManager sharedManager].wilddogVideoAuth signInWithCredential:credential
+                                                                  completion:^(WDGUser *user, NSError *error) {
+                                                                      // ...
+                                                                      __strong typeof(WS) self =WS;
+                                                                      [self saveUserInfo:user complete:^{
+                                                                          if(complete)
+                                                                              complete();
+                                                                      }];
+    }];
 }
 
 +(void)loginByTouristComplete:(void (^)())complete
@@ -27,22 +49,7 @@
             NSLog(@"请在控制台为您的AppID开启匿名登录功能，错误信息: %@", error);
             return;
         }
-        
-
-        [user getTokenWithCompletion:^(NSString * _Nullable idToken, NSError * _Nullable error) {
-            if(error){
-                NSLog(@"[WilddogVideo][Error] WDGVideoErrorInvalidAuthArgument : failed to get token of user %@ with error: %@", user, error);
-                NSAssert(error == nil, @"[WilddogVideo][Error] WDGVideoErrorInvalidAuthArgument : failed to get token of user %@ with error: %@", user, error);
-                return ;
-            }
-            [[WilddogSDKManager sharedManager].wilddogVideo setToken:idToken];
-            WDGAccount *account = [[WDGAccount alloc] init];
-            account.userID = user.uid;
-            account.token =idToken;
-            [WDGAccountManager setCurrentAccount:account];
-            [[NSNotificationCenter defaultCenter] postNotificationName:WDGAppDidSignInCompleteNotification object:nil];
-            complete();
-        }];
+        [self saveUserInfo:user complete:complete];
     }];
 }
 
@@ -63,5 +70,30 @@
     return [WDGLoginViewController new];
 }
 
++(void)saveUserInfo:(WDGUser *)user complete:(void (^)())complete;
+{
+    [user getTokenWithCompletion:^(NSString * _Nullable idToken, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"[WilddogVideo][Error] WDGVideoErrorInvalidAuthArgument : failed to get token of user %@ with error: %@", user, error);
+            NSAssert(error == nil, @"[WilddogVideo][Error] WDGVideoErrorInvalidAuthArgument : failed to get token of user %@ with error: %@", user, error);
+            return ;
+        }
+        [[WilddogSDKManager sharedManager].wilddogVideo setToken:idToken];
+        WDGAccount *account = [WDGAccountManager currentAccount];
+        account.userID = user.uid;
+        account.token =idToken;
+        NSArray *userInfoArr = user.providerData;
+        if(userInfoArr.count){
+            id<WDGUserInfo> data = userInfoArr[0];
+            if(data){
+                account.nickName = [data displayName];
+                account.iconUrl =(NSString *)[data photoURL];
+            }
+        }
+        [WDGAccountManager setCurrentAccount:account];
+        [[NSNotificationCenter defaultCenter] postNotificationName:WDGAppDidSignInCompleteNotification object:nil];
+        complete();
+    }];
 
+}
 @end

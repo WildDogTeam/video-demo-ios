@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface WDGConversationItem:NSObject<NSCoding>
-@property (nonatomic,copy) NSString *uid;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,copy) NSString *faceUrl;
+#import "WDGVideoItem.h"
+@interface WDGConversationItem:WDGVideoItem
+
 @property (nonatomic,assign) long conversationTime;
 @property (nonatomic,assign) long long finishTime;
 @end

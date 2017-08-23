@@ -42,7 +42,7 @@
 #if __has_include(<TuSDK/TuSDK.h>)
 -(void)initTUSDK
 {
-    [TuSDK initSdkWithAppKey:@"39bb84d47358c1ba-00-6em6r1"];
+    [TuSDK initSdkWithAppKey:WDGTUSDKAppKey];
     [TuSDK checkManagerWithDelegate:self];
     
 }

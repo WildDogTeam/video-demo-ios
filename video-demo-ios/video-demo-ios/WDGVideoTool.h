@@ -12,4 +12,5 @@
 +(NSString *)currentRecordFilePath;
 +(NSString *)currentRecordFileDirectory;
 +(NSString *)recordCurrentTime;
++(NSString *)conversationDetailTimeForTimeInterval:(NSTimeInterval)time;
 @end

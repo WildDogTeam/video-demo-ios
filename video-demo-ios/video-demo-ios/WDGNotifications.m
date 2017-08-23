@@ -8,3 +8,4 @@
 #import "WDGNotifications.h"
 NSString * const WDGAppDidSignInCompleteNotification =@"com.wilddog.account.didCompleteSignInNotification";
 NSString * const WDGAppDidSignOutCompleteNotification =@"com.wilddog.account.didCompleteSignOutNotification";
+NSString * const WDGAppSigninWechatDidcancelledByUser =@"com.wilddog.account.appSigninWechatDidcancelledByUser";

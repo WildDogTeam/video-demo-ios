@@ -10,6 +10,7 @@
 
 @interface WDGLoginManager : NSObject
 +(BOOL)hasLogin;
++(void)loginByWechatWithCode:(NSString *)code complete:(void (^)())complete;
 +(void)loginByTouristComplete:(void (^)())complete;
 +(void)logOut;
 +(UIViewController *)switchRootViewController;

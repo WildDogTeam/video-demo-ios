@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreVideo/CoreVideo.h>
-
+#import "WDGUserDefine.h"
 @interface WDGBeautyOption : NSObject
 - (CVPixelBufferRef)proccessPixelBuffer:(CVPixelBufferRef)buffer;
 @end
