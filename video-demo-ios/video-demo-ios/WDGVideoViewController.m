@@ -291,22 +291,23 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self recordEnd];
         return;
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 
-    [self.conversation close];
-    _conversation = nil;
-    [self.localStream close];
-    _localStream = nil;
     
-    WDGConversationItem *item =[[WDGConversationItem alloc] init];
-    item.uid = self.oppositeItem.uid;
-    item.nickname =self.oppositeItem.nickname;
-    item.faceUrl = self.oppositeItem.faceUrl;
-    item.conversationTime = [_controlView showTime];
-    item.finishTime = [[NSDate date] timeIntervalSince1970];
-    
-    [WDGConversationsHistory addHistoryItem:item];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:nil];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self.conversation close];
+        _conversation = nil;
+        [self.localStream close];
+        _localStream = nil;
+        
+        WDGConversationItem *item =[[WDGConversationItem alloc] init];
+        item.uid = self.oppositeItem.uid;
+        item.nickname =self.oppositeItem.nickname;
+        item.faceUrl = self.oppositeItem.faceUrl;
+        item.conversationTime = [_controlView showTime];
+        item.finishTime = [[NSDate date] timeIntervalSince1970];
+        
+        [WDGConversationsHistory addHistoryItem:item];
     });
 }
 
