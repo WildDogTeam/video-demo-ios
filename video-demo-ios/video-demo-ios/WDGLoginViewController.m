@@ -35,7 +35,7 @@
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+22+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];
     
-    UILabel *detailLabel = [self pingfangLabelWithText:@"视频通话示例程序" size:15];
+    UILabel *detailLabel = [self pingfangLabelWithText:@"" size:15];
     detailLabel.center = CGPointMake(centerX, CGRectGetMaxY(titleLabel.frame)+10+CGRectGetHeight(detailLabel.frame)*.5);
     [self.view addSubview:detailLabel];
     

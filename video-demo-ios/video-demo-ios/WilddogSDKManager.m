@@ -40,6 +40,7 @@
 {
     if(!_wilddogVideo){
         _wilddogVideo = [WDGVideo sharedVideo];
+        
     }
     return _wilddogVideo;
 }
@@ -52,7 +53,7 @@
     return _wilddogVideoAuth;
 }
 
--(WDGSyncReference *)wilddogSync
+-(WDGSync *)wilddogSync
 {
     if(!_wilddogSync){
         _wilddogSync = [WDGSync syncForApp:[WDGApp appNamed:@"1232123"]];
@@ -84,5 +85,12 @@
 {
     [self.wilddogVideo start];
     [self.wilddogSync goOnline];
+}
+
+-(void)registerPushToken:(NSString *)pushtoken;
+{
+    if(pushtoken.length && [WDGAccountManager currentAccount].userID.length){
+        self.wilddogSyncRootReference ;
+    }
 }
 @end

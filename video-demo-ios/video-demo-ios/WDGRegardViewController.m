@@ -7,8 +7,8 @@
 //
 
 #import "WDGRegardViewController.h"
-#define WDGVideoSDKVersion @"1.2.1"
-#define WDGSyncSDKVersion @"2.3.6"
+#define WDGVideoSDKVersion @"2.0.1"
+#define WDGSyncSDKVersion @"2.3.11"
 #define WDGAuthSDKVersion @"2.0.7"
 #define Camera360SDKVersion @"1.6"
 #define TUSDKVersion @"2.2"
@@ -35,15 +35,21 @@
     imageView.center = CGPointMake(centerX, 25+90);
     [self.view addSubview:imageView];
     
-    UILabel *titleLabel = [self pingfangLabelWithText:@"Demo V1.0"];
+    UILabel *titleLabel = [self pingfangLabelWithText:@"野狗视频通话"];
     titleLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
     titleLabel.font = [UIFont fontWithName:@"pingfang sc" size:15];
     [titleLabel sizeToFit];
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+9+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];
+    UILabel *versionLabel = [self pingfangLabelWithText:@"V2.1.0"];
+    versionLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
+    versionLabel.font = [UIFont fontWithName:@"pingfang sc" size:15];
+    [versionLabel sizeToFit];
+    versionLabel.center = CGPointMake(CGRectGetMidX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame)+CGRectGetHeight(versionLabel.frame)*.5);
+    [self.view addSubview:versionLabel];
     
-    UILabel *detailLabel = [self pingfangLabelWithText:@"该示例程序基于"];
-    detailLabel.center = CGPointMake(centerX, CGRectGetMaxY(titleLabel.frame)+54+CGRectGetHeight(detailLabel.frame)*.5);
+    UILabel *detailLabel = [self pingfangLabelWithText:@"该应用程序基于"];
+    detailLabel.center = CGPointMake(centerX, CGRectGetMaxY(versionLabel.frame)+37+CGRectGetHeight(detailLabel.frame)*.5);
     [self.view addSubview:detailLabel];
     
     CGFloat gap = 10;

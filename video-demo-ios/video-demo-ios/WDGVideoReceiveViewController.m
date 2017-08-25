@@ -29,7 +29,18 @@
     // Do any additional setup after loading the view.
     [self addChildViewController:self.receiveController];
     [self.view addSubview:self.receiveController.view];
-    [WDGSoundPlayer playSound:SoundTypeCallee];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [WDGSoundPlayer playSound:SoundTypeCaller];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [WDGSoundPlayer stop];
 }
 
 -(WDGReciveCallViewController *)receiveController

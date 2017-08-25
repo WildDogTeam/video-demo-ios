@@ -20,7 +20,7 @@
 
 +(instancetype)makeCallToUserItem:(WDGVideoItem *)userItem
 {
-    WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeReciver];
+    WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeCaller];
     cc.oppositeItem =userItem;
     return cc;
 }
@@ -31,9 +31,18 @@
 //    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
     self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeItem.uid localStream:self.localStream data:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [WDGSoundPlayer playSound:SoundTypeCaller];
-    });
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [WDGSoundPlayer playSound:SoundTypeCaller];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [WDGSoundPlayer stop];
 }
 
 -(void)conversation:(WDGConversation *)conversation didReceiveResponse:(WDGCallStatus)callStatus

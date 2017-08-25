@@ -13,3 +13,5 @@ FOUNDATION_EXTERN NSString * const WDGAppDidSignOutCompleteNotification;
 
 
 FOUNDATION_EXTERN NSString * const WDGAppSigninWechatDidcancelledByUser;
+
+FOUNDATION_EXTERN NSString * const WDGAppDidReceivePushToken;

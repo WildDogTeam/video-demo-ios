@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Vq-jn-yle" id="fF4-YF-3TX">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y6d-PU-c2w">
@@ -184,7 +184,7 @@
             </objects>
             <point key="canvasLocation" x="-1060" y="-180"/>
         </scene>
-        <!--个人设置-->
+        <!--我-->
         <scene sceneID="olm-SI-syb">
             <objects>
                 <tableViewController id="Lp8-D8-Opd" customClass="WDGSettingViewController" sceneMemberID="viewController">
@@ -396,7 +396,7 @@
                             <outlet property="delegate" destination="Lp8-D8-Opd" id="xCj-0Y-TJN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="个人设置" id="wJW-ea-aUM"/>
+                    <navigationItem key="navigationItem" title="我" id="wJW-ea-aUM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEc-dj-CkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

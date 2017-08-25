@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     // Do any additional setup after loading the view.
     [self setupBeauty];
     [self createMyView];
+    
 }
 
 -(void)setupBeauty
@@ -292,12 +293,16 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         return;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    NSLog(@"xiaoshixiaoshi");
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"hanhan conversation close before");
         [self.conversation close];
+        NSLog(@"hanhan conversation close later");
         _conversation = nil;
+        NSLog(@"hanhan localStream close before");
         [self.localStream close];
+        NSLog(@"hanhan localStream close later");
         _localStream = nil;
         
         WDGConversationItem *item =[[WDGConversationItem alloc] init];
@@ -308,7 +313,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         item.finishTime = [[NSDate date] timeIntervalSince1970];
         
         [WDGConversationsHistory addHistoryItem:item];
-    });
+//    });
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -396,6 +401,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
  * @param remoteStream `WDGRemoteStream` 实例，表示对方传来的媒体流。
  */
 - (void)conversation:(WDGConversation *)conversation didReceiveStream:(WDGRemoteStream *)remoteStream{
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
     _controlView.mode = WDGVideoControlViewMode2;
     [self.userInfoView removeFromSuperview];
     self.userInfoView = nil;

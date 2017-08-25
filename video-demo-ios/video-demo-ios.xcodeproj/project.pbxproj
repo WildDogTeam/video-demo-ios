@@ -18,6 +18,7 @@
 		C856D79C1F4C1BA300E6636C /* WDGUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */; };
 		C856D79F1F4C380300E6636C /* WDGVideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79E1F4C380300E6636C /* WDGVideoItem.m */; };
 		C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */; };
+		C856D7A41F4FC41100E6636C /* WDGSignalPush.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A31F4FC41100E6636C /* WDGSignalPush.m */; };
 		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
 		C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEDA1F18AA7600548531 /* AppDelegate.m */; };
 		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
@@ -82,6 +83,9 @@
 		C856D79D1F4C380300E6636C /* WDGVideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoItem.h; sourceTree = "<group>"; };
 		C856D79E1F4C380300E6636C /* WDGVideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoItem.m; sourceTree = "<group>"; };
 		C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserDefine.m; sourceTree = "<group>"; };
+		C856D7A21F4FC41100E6636C /* WDGSignalPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSignalPush.h; sourceTree = "<group>"; };
+		C856D7A31F4FC41100E6636C /* WDGSignalPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSignalPush.m; sourceTree = "<group>"; };
+		C856D7A61F5009E800E6636C /* WDGInternalUserDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGInternalUserDefine.h; sourceTree = "<group>"; };
 		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C87EAED91F18AA7600548531 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				C83B28101F41946800DE970C /* WDGSoundPlayer.m */,
 				C856D7971F4C180700E6636C /* WDGSimpleConnection.h */,
 				C856D7981F4C180700E6636C /* WDGSimpleConnection.m */,
+				C856D7A21F4FC41100E6636C /* WDGSignalPush.h */,
+				C856D7A31F4FC41100E6636C /* WDGSignalPush.m */,
 				C856D79A1F4C1BA300E6636C /* WDGUserInfoRequest.h */,
 				C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */,
 			);
@@ -240,6 +246,7 @@
 				C87EAED91F18AA7600548531 /* AppDelegate.h */,
 				C87EAEDA1F18AA7600548531 /* AppDelegate.m */,
 				C856D78A1F46D71700E6636C /* WDGUserDefine.h */,
+				C856D7A61F5009E800E6636C /* WDGInternalUserDefine.h */,
 				C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */,
 				C87EAEDF1F18AA7600548531 /* Main.storyboard */,
 				C87EAEE21F18AA7600548531 /* Assets.xcassets */,
@@ -586,6 +593,7 @@
 				C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */,
 				C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */,
 				C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */,
+				C856D7A41F4FC41100E6636C /* WDGSignalPush.m in Sources */,
 				C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */,
 				C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */,
 				C89441CF1F3C349B00FA4E4A /* WDGConversationViewController.m in Sources */,
@@ -738,7 +746,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -763,7 +771,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PGSkinPrettifyEngine",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.videodemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -27,6 +27,7 @@
 
 +(void)_loginByWechatWithCode:(NSString *)code complete:(void (^)())complete
 {
+    [[WilddogSDKManager sharedManager] goOnLine];
     WDGAuthCredential *credential =
     [WDGWeiXinAuthProvider credentialWithCode:code];
     __weak typeof(self) WS =self;

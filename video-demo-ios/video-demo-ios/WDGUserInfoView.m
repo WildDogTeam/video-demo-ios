@@ -20,7 +20,7 @@
 -(void)createViewsWithName:(NSString *)name imageUrl:(NSString *)imageUrl userType:(WDGUserType)type
 {
     UIImageView *headView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [headView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"被叫用户"]];
+    [headView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"Calling"]];
     headView.center = CGPointMake(self.frame.size.width*.5, headView.frame.size.height*.5+5);
     headView.layer.cornerRadius = 30;
     headView.clipsToBounds =YES;
