@@ -41,8 +41,8 @@ NSString *const WDGVideoItemFaceUrlKey =@"faceurl";
         WDGVideoItem *item = [WDGVideoItem new];
         item.uid =uid;
         if([(NSDictionary *)snapshot.value objectForKey:uid]){
-            NSDictionary *userinfo =[(NSDictionary *)snapshot.value objectForKey:uid];
-            if(userinfo){
+            id userinfo =[(NSDictionary *)snapshot.value objectForKey:uid];
+            if([userinfo isKindOfClass:[NSDictionary class]]){
                 item.nickname = [userinfo objectForKey:WDGVideoItemNickNameKey];
                 item.faceUrl = [userinfo objectForKey:WDGVideoItemFaceUrlKey];
             }
