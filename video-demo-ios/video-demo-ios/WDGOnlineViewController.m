@@ -63,7 +63,7 @@
         if ([snapshot.value boolValue]) {
             if(uid){
                 WDGSyncReference *ref = [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid];
-                [ref setValue:userInfo?:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+                [ref setValue:userInfo.allKeys.count?userInfo:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
                     assert(error==nil);
                     [ref onDisconnectRemoveValueWithCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
                         assert(error == nil);
@@ -72,7 +72,7 @@
             }
         }
     }];
-    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid] setValue:userInfo?:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid] setValue:userInfo.allKeys.count?userInfo:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
         [ref onDisconnectRemoveValue];
         [WilddogSDKManager sharedManager].wilddogVideo.delegate = self;
         [self observeringOnlineUser];
