@@ -30,6 +30,7 @@
     simCon.complete=completion;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:nil];
+    request.HTTPMethod =@"POST";
     NSURLConnection *con = [NSURLConnection connectionWithRequest:request delegate:simCon];
     [con start];
 }

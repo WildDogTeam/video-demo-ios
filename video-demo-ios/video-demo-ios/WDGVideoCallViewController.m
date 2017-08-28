@@ -11,6 +11,7 @@
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoControlView.h"
 #import <WilddogVideo/WDGConversation.h>
+#import "WDGSignalPush.h"
 @interface WDGVideoCallViewController ()
 @property (nonatomic, strong) UILabel *callingLabel;
 @property (nonatomic, strong) UILabel *oppoUidLabel;
@@ -31,6 +32,7 @@
 //    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
     self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeItem.uid localStream:self.localStream data:nil];
+    [WDGSignalPush pushVideoCallWithUid:self.oppositeItem.uid];
 }
 
 -(void)viewWillAppear:(BOOL)animated

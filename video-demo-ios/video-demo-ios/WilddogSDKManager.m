@@ -90,7 +90,7 @@
 -(void)registerPushToken:(NSString *)pushtoken;
 {
     if(pushtoken.length && [WDGAccountManager currentAccount].userID.length){
-        self.wilddogSyncRootReference ;
+        [[[self.wilddogSyncRootReference child:WDGWholeUsers] child:[WDGAccountManager currentAccount].userID] setValue:pushtoken];
     }
 }
 @end

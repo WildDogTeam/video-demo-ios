@@ -11,6 +11,10 @@
 #import <WilddogCore/WilddogCore.h>
 #import <WilddogVideo/WDGVideo.h>
 #import <WilddogAuth/WDGAuth.h>
+
+#define WDGWholeUsers @"wholeUsers"
+#define WDGOnlineUsers @"users"
+
 @interface WilddogSDKManager : NSObject
 +(instancetype)sharedManager;
 -(void)registerSDKAppWithSyncId:(NSString *)syncId videoId:(NSString *)videoId;
