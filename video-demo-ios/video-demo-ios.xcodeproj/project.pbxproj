@@ -71,6 +71,7 @@
 		C83B28101F41946800DE970C /* WDGSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSoundPlayer.m; sourceTree = "<group>"; };
 		C83B28131F41950600DE970C /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
 		C83B28141F41950600DE970C /* videoRing.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoRing.caf; sourceTree = "<group>"; };
+		C8515E351F53F49C002973F4 /* WDGInternalUserDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGInternalUserDefine.h; sourceTree = "<group>"; };
 		C856D7841F468C2E00E6636C /* WDGSortedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSortedArray.h; sourceTree = "<group>"; };
 		C856D7851F468C2E00E6636C /* WDGSortedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSortedArray.m; sourceTree = "<group>"; };
 		C856D7871F468DAA00E6636C /* WDGOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGOnlineCell.h; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserDefine.m; sourceTree = "<group>"; };
 		C856D7A21F4FC41100E6636C /* WDGSignalPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSignalPush.h; sourceTree = "<group>"; };
 		C856D7A31F4FC41100E6636C /* WDGSignalPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSignalPush.m; sourceTree = "<group>"; };
-		C856D7A61F5009E800E6636C /* WDGInternalUserDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGInternalUserDefine.h; sourceTree = "<group>"; };
 		C856D7A71F53C7C500E6636C /* video-demo-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "video-demo-ios.entitlements"; sourceTree = "<group>"; };
 		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				C87EAED91F18AA7600548531 /* AppDelegate.h */,
 				C87EAEDA1F18AA7600548531 /* AppDelegate.m */,
 				C856D78A1F46D71700E6636C /* WDGUserDefine.h */,
-				C856D7A61F5009E800E6636C /* WDGInternalUserDefine.h */,
+				C8515E351F53F49C002973F4 /* WDGInternalUserDefine.h */,
 				C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */,
 				C87EAEDF1F18AA7600548531 /* Main.storyboard */,
 				C87EAEE21F18AA7600548531 /* Assets.xcassets */,
