@@ -3,7 +3,7 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 #personal ignore
-video-demo-ios/video-demo-ios/WDGInternalUserDefine.h
+#video-demo-ios/video-demo-ios/WDGInternalUserDefine.h
 
 ## Build generated
 build/

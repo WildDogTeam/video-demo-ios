@@ -29,7 +29,6 @@
 		C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */; };
 		C87EAF2E1F18AB5800548531 /* WDGBeautyOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */; };
 		C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */; };
-		C87EAF301F18AB5800548531 /* WDGCamera360Option.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */; };
 		C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF001F18AB5700548531 /* WDGFileManager.m */; };
 		C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF021F18AB5700548531 /* WDGInfoView.m */; };
 		C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF041F18AB5700548531 /* WDGLoginManager.m */; };
@@ -105,8 +104,6 @@
 		C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGBeautyOption.m; sourceTree = "<group>"; };
 		C87EAEFB1F18AB5700548531 /* WDGCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCallViewController.h; sourceTree = "<group>"; };
 		C87EAEFC1F18AB5700548531 /* WDGCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCallViewController.m; sourceTree = "<group>"; };
-		C87EAEFD1F18AB5700548531 /* WDGCamera360Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCamera360Option.h; sourceTree = "<group>"; };
-		C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCamera360Option.m; sourceTree = "<group>"; };
 		C87EAEFF1F18AB5700548531 /* WDGFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGFileManager.h; sourceTree = "<group>"; };
 		C87EAF001F18AB5700548531 /* WDGFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGFileManager.m; sourceTree = "<group>"; };
 		C87EAF011F18AB5700548531 /* WDGInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGInfoView.h; sourceTree = "<group>"; };
@@ -274,8 +271,6 @@
 				C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */,
 				C87EAEF91F18AB5700548531 /* WDGBeautyOption.h */,
 				C87EAEFA1F18AB5700548531 /* WDGBeautyOption.m */,
-				C87EAEFD1F18AB5700548531 /* WDGCamera360Option.h */,
-				C87EAEFE1F18AB5700548531 /* WDGCamera360Option.m */,
 				C87EAF1A1F18AB5800548531 /* WDGTuSDKOption.h */,
 				C87EAF1B1F18AB5800548531 /* WDGTuSDKOption.m */,
 			);
@@ -585,7 +580,6 @@
 				C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */,
 				C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */,
 				C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */,
-				C87EAF301F18AB5800548531 /* WDGCamera360Option.m in Sources */,
 				C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */,
 				C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */,
 				C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */,

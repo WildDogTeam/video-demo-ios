@@ -12,7 +12,7 @@ target 'video-demo-ios' do
   pod 'WilddogSync'
   pod 'MBProgressHUD'
   pod 'TUSDK','0.0.1'
-  pod 'PGSkinPrettifyEngine','0.0.1'
+#  pod 'PGSkinPrettifyEngine','0.0.1'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'GPUImage',:git=>'git@github.com:BradLarson/GPUImage.git'
