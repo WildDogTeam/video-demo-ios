@@ -10,3 +10,5 @@ WilddogVideo 2.0.0版本和以前的版本有了很大的区别 内部没有集�
 
 demo新增了微信登录功能 
 用户在使用demo之前请及时填写WDGUserDefine.m里的信息 如果未填写则丢失涂图、camera360美颜功能以及微信登录功能 只提供匿名登录功能 但不影响其他功能体验
+
+17/9/4 : 用户在使用demo之前需填写WDGUserDefine.m里的信息 其中required为必填项 optional为选填项 optional如果不正确填写会丢失相应功能 但不影响video体验
