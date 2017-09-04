@@ -10,6 +10,7 @@
 #import "WilddogSDKManager.h"
 NSString *const WDGVideoItemNickNameKey =@"nickname";
 NSString *const WDGVideoItemFaceUrlKey =@"faceurl";
+NSString *const WDGVideoItemDeviceIdKey =@"deviceid";
 
 @implementation WDGVideoItem
 - (instancetype)initWithCoder:(NSCoder *)coder

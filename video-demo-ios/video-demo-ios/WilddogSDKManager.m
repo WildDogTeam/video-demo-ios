@@ -87,10 +87,10 @@
     [self.wilddogSync goOnline];
 }
 
--(void)registerPushToken:(NSString *)pushtoken;
+-(void)registerClientId:(NSString *)clientId;
 {
-    if(pushtoken.length && [WDGAccountManager currentAccount].userID.length){
-        [[[self.wilddogSyncRootReference child:WDGWholeUsers] child:[WDGAccountManager currentAccount].userID] setValue:pushtoken];
+    if(clientId.length && [WDGAccountManager currentAccount].userID.length){
+        [[[self.wilddogSyncRootReference child:WDGWholeUsers] child:[WDGAccountManager currentAccount].userID] setValue:clientId];
     }
 }
 @end

@@ -293,16 +293,11 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         return;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"xiaoshixiaoshi");
     
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"hanhan conversation close before");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self.conversation close];
-        NSLog(@"hanhan conversation close later");
         _conversation = nil;
-        NSLog(@"hanhan localStream close before");
         [self.localStream close];
-        NSLog(@"hanhan localStream close later");
         _localStream = nil;
         
         WDGConversationItem *item =[[WDGConversationItem alloc] init];
@@ -313,7 +308,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         item.finishTime = [[NSDate date] timeIntervalSince1970];
         
         [WDGConversationsHistory addHistoryItem:item];
-//    });
+    });
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

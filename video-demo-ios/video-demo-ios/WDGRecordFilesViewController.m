@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
     self.navigationController.interactivePopGestureRecognizer.delegate =self;
     _recordFiles = [NSMutableArray arrayWithArray:[[WDGFileManager sharedManager] saveFileNames]];
     self.tableView.tableFooterView = [[UIView alloc] init];

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 FOUNDATION_EXTERN NSString * const WDGVideoItemNickNameKey;
 FOUNDATION_EXTERN NSString * const WDGVideoItemFaceUrlKey;
+FOUNDATION_EXTERN NSString * const WDGVideoItemDeviceIdKey;
+
 @interface WDGVideoItem : NSObject<NSCoding>
 @property (nonatomic,copy) NSString *uid;
 @property (nonatomic,copy) NSString *nickname;

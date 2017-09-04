@@ -42,6 +42,10 @@ NSString const *WDGWechatAppSecret = @"";
 NSString const *WDGGTSDKAppID = @"";
 NSString const *WDGGTSDKAppKey = @"";
 NSString const *WDGGTSDKAppSecret = @"";
+NSString const *WDGGTSDKMasterSecret =@"";
+//野狗开发平台注册
+NSString const *WDGSyncId = @"";
+NSString const *WDGVideoId =@"";
 
 #endif
 

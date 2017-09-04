@@ -18,7 +18,7 @@
 @interface WilddogSDKManager : NSObject
 +(instancetype)sharedManager;
 -(void)registerSDKAppWithSyncId:(NSString *)syncId videoId:(NSString *)videoId;
--(void)registerPushToken:(NSString *)pushtoken;
+-(void)registerClientId:(NSString *)clientId;
 @property (nonatomic, strong, readonly) WDGSyncReference *wilddogSyncRootReference;
 @property (nonatomic, strong, readonly) WDGVideo *wilddogVideo;
 @property (nonatomic, strong, readonly) WDGAuth *wilddogVideoAuth;

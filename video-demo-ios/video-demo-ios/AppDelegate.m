@@ -20,9 +20,9 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 #import <GTSDK/GeTuiSdk.h> 
-
+#import "WDGSignalPush.h"
 @interface AppDelegate ()<WXApiDelegate,GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
-@property (nonatomic,copy) NSString *pushToken;
+@property (nonatomic,copy) NSString *clientId;
 @end
 
 @implementation AppDelegate
@@ -35,6 +35,7 @@
     [Fabric with:@[[Crashlytics class]]];
     [self setupWilddogSyncAndAuth];
     [GeTuiSdk startSdkWithAppId:WDGGTSDKAppID appKey:WDGGTSDKAppKey appSecret:WDGGTSDKAppSecret delegate:self];
+    [WDGSignalPush prepare];
     // 注册 APNs
     [self registerRemoteNotification];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -47,7 +48,7 @@
 - (void)setupWilddogSyncAndAuth {
     //在野狗后台注册一个Video项目你会得到两个appId 一个是sync的 一个是video的
     // 如果项目中有用到sync的话 可以直接使用syncId 同时你会在后台Sync栏下看到Sync下的数据
-    [[WilddogSDKManager sharedManager] registerSDKAppWithSyncId:@"wd0231007108blsomo" videoId:@"wd6029736988xhigqo"];
+    [[WilddogSDKManager sharedManager] registerSDKAppWithSyncId:WDGSyncId videoId:WDGVideoId];
 }
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -111,9 +112,7 @@
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
     // 向个推服务器注册deviceToken
-    _pushToken =token;
     [GeTuiSdk registerDeviceToken:token];
-    [[WilddogSDKManager sharedManager] registerPushToken:token];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -149,10 +148,19 @@
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
     //个推SDK已注册，返回clientId
     NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+    _clientId =clientId;
+    [[WilddogSDKManager sharedManager] registerClientId:clientId];
+
 }
 
 -(void)appLoginComplete
 {
-    [[WilddogSDKManager sharedManager] registerPushToken:_pushToken];
+    [[WilddogSDKManager sharedManager] registerClientId:_clientId];
+}
+
+- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId
+{
+    NSLog(@"--------%@--%@--%d--%@",taskId,msgId,offLine,appId);
+//    [[[UIAlertView alloc] initWithTitle:@"1231" message:@"1234" delegate:nil cancelButtonTitle:@"hehe" otherButtonTitles: nil] show];
 }
 @end

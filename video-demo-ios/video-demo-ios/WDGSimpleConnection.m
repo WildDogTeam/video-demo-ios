@@ -23,16 +23,17 @@
     [con start];
 }
 
-+(void)connectionWithPostUrlString:(NSString *)urlString body:(NSDictionary *)body completion:(void (^)(NSDictionary *))completion
++(NSURLConnection *)connectionWithPostUrlString:(NSString *)urlString requestHeader:(NSDictionary *)header body:(NSDictionary *)body completion:(void (^)(NSDictionary *))completion
 {
     NSURL *url =[NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     WDGSimpleConnection *simCon = [WDGSimpleConnection new];
     simCon.complete=completion;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setAllHTTPHeaderFields:header];
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:nil];
     request.HTTPMethod =@"POST";
     NSURLConnection *con = [NSURLConnection connectionWithRequest:request delegate:simCon];
-    [con start];
+    return con;
 }
 
 -(instancetype)init

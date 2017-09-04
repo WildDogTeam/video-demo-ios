@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface WDGSignalPush : NSObject
++(void)prepare;
 +(void)pushVideoCallWithUid:(NSString *)uid;
 @end

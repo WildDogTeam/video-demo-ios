@@ -18,17 +18,21 @@
 #import "WDGOnlineCell.h"
 #import "WDGVideoItem.h"
 #import <WilddogVideo/WDGConversation.h>
+#import "WDGLoginManager.h"
+#import <AdSupport/AdSupport.h>
 @interface WDGOnlineViewController ()<WDGVideoDelegate>
 @end
 
 @implementation WDGOnlineViewController
-
+{
+    NSString *_deviceId;
+}
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
     //    self.automaticallyAdjustsScrollViewInsets = NO;
-    
+
 }
 
 -(void)showEmptyView
@@ -39,6 +43,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    _deviceId = [@((long)([[NSDate date] timeIntervalSince1970]*1000)) stringValue];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [self.view showHUDAnimate:YES];
     [self initWilddog];
@@ -49,6 +54,7 @@
     self.tableView.sectionHeaderHeight =22;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor colorWithRed:242.0/255 green:242.0/255 blue:242.0/255 alpha:1.];
+
 }
 
 - (void)initWilddog
@@ -59,6 +65,7 @@
     if(faceUrl) [userInfo setObject:faceUrl forKey:WDGVideoItemFaceUrlKey];
     NSString *nickName = [WDGAccountManager currentAccount].nickName;
     if(nickName) [userInfo setObject:nickName forKey:WDGVideoItemNickNameKey];
+    if(_deviceId) [userInfo setObject:_deviceId forKey:WDGVideoItemDeviceIdKey];
     [[[WilddogSDKManager sharedManager].wilddogSyncRootReference.root child:@".info/connected"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         if ([snapshot.value boolValue]) {
             if(uid){
@@ -90,6 +97,13 @@
         for (NSString *uid in users) {
             if ([uid isEqualToString:[WDGAccountManager currentAccount].userID]) {
                 [users removeObject:uid];
+                if([dic[uid] isKindOfClass:[NSDictionary class]]){
+                    NSString *deviceId = dic[uid][WDGVideoItemDeviceIdKey];
+                    if(![deviceId isEqualToString:self->_deviceId]&&self->_deviceId.length){
+                        [WDGLoginManager logOut];
+                        return;
+                    }
+                }
                 break;
             }
         }
@@ -198,7 +212,8 @@
  * @param error 代表错误信息。
  */
 - (void)wilddogVideo:(WDGVideo *)video didFailWithTokenError:(NSError * _Nullable)error{
-    NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
+    [WDGLoginManager logOut];
+//    NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
 }
 
 -(UIViewController *)getTopController

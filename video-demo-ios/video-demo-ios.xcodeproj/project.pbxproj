@@ -56,6 +56,8 @@
 		C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441CB1F3C2B6D00FA4E4A /* WDGTableViewController.m */; };
 		C89441CF1F3C349B00FA4E4A /* WDGConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */; };
 		C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */; };
+		C89AC1011F580793001731F3 /* NSString+Sha256.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AC1001F580793001731F3 /* NSString+Sha256.m */; };
+		C89AC1041F591BFD001731F3 /* WDGCamera360Option.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */; };
 		C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */; };
 		C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
 /* End PBXBuildFile section */
@@ -157,6 +159,10 @@
 		C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGConversationViewController.m; sourceTree = "<group>"; };
 		C89441D01F3C5FDD00FA4E4A /* WDGConversationsHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGConversationsHistory.h; sourceTree = "<group>"; };
 		C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGConversationsHistory.m; sourceTree = "<group>"; };
+		C89AC0FF1F580793001731F3 /* NSString+Sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sha256.h"; sourceTree = "<group>"; };
+		C89AC1001F580793001731F3 /* NSString+Sha256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sha256.m"; sourceTree = "<group>"; };
+		C89AC1021F591BFD001731F3 /* WDGCamera360Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCamera360Option.h; sourceTree = "<group>"; };
+		C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCamera360Option.m; sourceTree = "<group>"; };
 		C8F18FEC1F3D9C3B00114D4A /* WDGUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserInfoView.h; sourceTree = "<group>"; };
 		C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -267,6 +273,8 @@
 		C87EAF4A1F18AD3300548531 /* Beauty */ = {
 			isa = PBXGroup;
 			children = (
+				C89AC1021F591BFD001731F3 /* WDGCamera360Option.h */,
+				C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */,
 				C87EAEF71F18AB5700548531 /* WDGBeautyManager.h */,
 				C87EAEF81F18AB5700548531 /* WDGBeautyManager.m */,
 				C87EAEF91F18AB5700548531 /* WDGBeautyOption.h */,
@@ -303,6 +311,8 @@
 			children = (
 				C87EAEF21F18AB4A00548531 /* UIView+MBProgressHud.h */,
 				C87EAEF31F18AB4A00548531 /* UIView+MBProgressHud.m */,
+				C89AC0FF1F580793001731F3 /* NSString+Sha256.h */,
+				C89AC1001F580793001731F3 /* NSString+Sha256.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -450,7 +460,7 @@
 					C87EAED21F18AA7600548531 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5RERN32D73;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -579,6 +589,7 @@
 				C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */,
 				C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */,
 				C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */,
+				C89AC1011F580793001731F3 /* NSString+Sha256.m in Sources */,
 				C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */,
 				C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */,
 				C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */,
@@ -605,6 +616,7 @@
 				C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */,
 				C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */,
 				C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */,
+				C89AC1041F591BFD001731F3 /* WDGCamera360Option.m in Sources */,
 				C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */,
 				C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */,
 				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
@@ -659,6 +671,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -707,6 +720,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -733,6 +747,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "video-demo-ios/video-demo-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5RERN32D73;
 				ENABLE_BITCODE = NO;
@@ -750,6 +766,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "27894df1-4bda-4425-b01a-ce89a8549c7f";
+				PROVISIONING_PROFILE_SPECIFIER = WDGVideoConversation;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -760,6 +778,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "video-demo-ios/video-demo-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 5RERN32D73;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -776,6 +796,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "27894df1-4bda-4425-b01a-ce89a8549c7f";
+				PROVISIONING_PROFILE_SPECIFIER = WDGVideoConversation;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

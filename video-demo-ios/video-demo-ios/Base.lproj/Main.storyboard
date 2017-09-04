@@ -406,13 +406,13 @@
         <scene sceneID="IFB-DR-H2d">
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="J12-Cf-aJW" customClass="WDGRecordFilesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uR7-Yg-VBZ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="uR7-Yg-VBZ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="c1E-QS-CkB" detailTextLabel="fgI-MF-EFD" rowHeight="55" style="IBUITableViewCellStyleValue1" id="fpb-ns-QMg">
-                                <rect key="frame" x="0.0" y="28" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fpb-ns-QMg" id="vbd-xe-GkI">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
