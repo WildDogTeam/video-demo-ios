@@ -50,7 +50,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.textLabel.text = _recordFiles[indexPath.row];
     NSUInteger time =[[WDGFileManager sharedManager] fileObjectForName:_recordFiles[indexPath.row]].recordTime;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",time/60/60,time/60,time%60];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",time/60,time%60];
     cell.textLabel.font = [UIFont fontWithName:@"pingfang SC" size:15];
     return cell;
 }
