@@ -16,7 +16,7 @@
 		C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7881F468DAA00E6636C /* WDGOnlineCell.m */; };
 		C856D7991F4C180700E6636C /* WDGSimpleConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7981F4C180700E6636C /* WDGSimpleConnection.m */; };
 		C856D79C1F4C1BA300E6636C /* WDGUserInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */; };
-		C856D79F1F4C380300E6636C /* WDGVideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79E1F4C380300E6636C /* WDGVideoItem.m */; };
+		C856D79F1F4C380300E6636C /* WDGVideoUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79E1F4C380300E6636C /* WDGVideoUserItem.m */; };
 		C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */; };
 		C856D7A41F4FC41100E6636C /* WDGSignalPush.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A31F4FC41100E6636C /* WDGSignalPush.m */; };
 		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
@@ -82,8 +82,8 @@
 		C856D7981F4C180700E6636C /* WDGSimpleConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSimpleConnection.m; sourceTree = "<group>"; };
 		C856D79A1F4C1BA300E6636C /* WDGUserInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserInfoRequest.h; sourceTree = "<group>"; };
 		C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserInfoRequest.m; sourceTree = "<group>"; };
-		C856D79D1F4C380300E6636C /* WDGVideoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoItem.h; sourceTree = "<group>"; };
-		C856D79E1F4C380300E6636C /* WDGVideoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoItem.m; sourceTree = "<group>"; };
+		C856D79D1F4C380300E6636C /* WDGVideoUserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoUserItem.h; sourceTree = "<group>"; };
+		C856D79E1F4C380300E6636C /* WDGVideoUserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoUserItem.m; sourceTree = "<group>"; };
 		C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserDefine.m; sourceTree = "<group>"; };
 		C856D7A21F4FC41100E6636C /* WDGSignalPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSignalPush.h; sourceTree = "<group>"; };
 		C856D7A31F4FC41100E6636C /* WDGSignalPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSignalPush.m; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 				C83B280B1F41505600DE970C /* WDGConversationCell.m */,
 				C856D7871F468DAA00E6636C /* WDGOnlineCell.h */,
 				C856D7881F468DAA00E6636C /* WDGOnlineCell.m */,
-				C856D79D1F4C380300E6636C /* WDGVideoItem.h */,
-				C856D79E1F4C380300E6636C /* WDGVideoItem.m */,
+				C856D79D1F4C380300E6636C /* WDGVideoUserItem.h */,
+				C856D79E1F4C380300E6636C /* WDGVideoUserItem.m */,
 			);
 			name = Basic;
 			sourceTree = "<group>";
@@ -538,7 +538,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Pods/Fabric/Fabric.framework/run 62b476b8bec312542b8993f36ee2e14400600162 f9b28fe27b2b1b518e4547907ff4a47e642aec963a0c7bcb65f18e472dfa8154";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 62b476b8bec312542b8993f36ee2e14400600162 f9b28fe27b2b1b518e4547907ff4a47e642aec963a0c7bcb65f18e472dfa8154";
 		};
 		DD7C2A400E3ABCE180749D1E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -580,7 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C856D79F1F4C380300E6636C /* WDGVideoItem.m in Sources */,
+				C856D79F1F4C380300E6636C /* WDGVideoUserItem.m in Sources */,
 				C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */,
 				C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */,
 				C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */,

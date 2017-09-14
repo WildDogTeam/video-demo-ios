@@ -16,7 +16,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WDGSortedArray.h"
 #import "WDGOnlineCell.h"
-#import "WDGVideoItem.h"
+#import "WDGVideoUserItem.h"
 #import <WilddogVideo/WDGConversation.h>
 #import "WDGLoginManager.h"
 #import <AdSupport/AdSupport.h>
@@ -62,10 +62,10 @@
     NSString *uid = [WDGAccountManager currentAccount].userID;
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
     NSString *faceUrl = [WDGAccountManager currentAccount].iconUrl;
-    if(faceUrl) [userInfo setObject:faceUrl forKey:WDGVideoItemFaceUrlKey];
+    if(faceUrl) [userInfo setObject:faceUrl forKey:WDGVideoUserItemFaceUrlKey];
     NSString *nickName = [WDGAccountManager currentAccount].nickName;
-    if(nickName) [userInfo setObject:nickName forKey:WDGVideoItemNickNameKey];
-    if(_deviceId) [userInfo setObject:_deviceId forKey:WDGVideoItemDeviceIdKey];
+    if(nickName) [userInfo setObject:nickName forKey:WDGVideoUserItemNickNameKey];
+    if(_deviceId) [userInfo setObject:_deviceId forKey:WDGVideoUserItemDeviceIdKey];
     [[[WilddogSDKManager sharedManager].wilddogSyncRootReference.root child:@".info/connected"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         if ([snapshot.value boolValue]) {
             if(uid){
@@ -98,7 +98,7 @@
             if ([uid isEqualToString:[WDGAccountManager currentAccount].userID]) {
                 [users removeObject:uid];
                 if([dic[uid] isKindOfClass:[NSDictionary class]]){
-                    NSString *deviceId = dic[uid][WDGVideoItemDeviceIdKey];
+                    NSString *deviceId = dic[uid][WDGVideoUserItemDeviceIdKey];
                     if(![deviceId isEqualToString:self->_deviceId]&&self->_deviceId.length){
                         [WDGLoginManager logOut];
                         return;
@@ -110,12 +110,12 @@
         NSLog(@"users-----%@",users);
         [WDGSortedArray removeAllObject];
         for (NSString *user in users) {
-            WDGVideoItem *item =[WDGVideoItem new];
+            WDGVideoUserItem *item =[WDGVideoUserItem new];
             item.uid = user;
             id userInfo = [dic objectForKey:user];
             if([userInfo isKindOfClass:[NSDictionary class]]){
-                item.nickname = [userInfo objectForKey:WDGVideoItemNickNameKey];
-                item.faceUrl = [userInfo objectForKey:WDGVideoItemFaceUrlKey];
+                item.nickname = [userInfo objectForKey:WDGVideoUserItemNickNameKey];
+                item.faceUrl = [userInfo objectForKey:WDGVideoUserItemFaceUrlKey];
             }
             [WDGSortedArray addObject:item];
         }
@@ -154,14 +154,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WDGOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"onLineCell"];
-    WDGVideoItem *item =[WDGSortedArray sortedArray][indexPath.section][indexPath.row];
+    WDGVideoUserItem *item =[WDGSortedArray sortedArray][indexPath.section][indexPath.row];
     [cell showWithNickName:item.description iconUrl:item.faceUrl];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WDGVideoItem *item = [WDGSortedArray sortedArray][indexPath.section][indexPath.row];
+    WDGVideoUserItem *item = [WDGSortedArray sortedArray][indexPath.section][indexPath.row];
     if(item){
         WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
         [self presentViewController:vc animated:YES completion:nil];
@@ -191,7 +191,7 @@
  * @param data 随通话邀请传递的 `NSString` 类型的数据。
  */
 - (void)wilddogVideo:(WDGVideo *)video didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString * _Nullable)data{
-    [WDGVideoItem requestForUid:conversation.remoteUid complete:^(WDGVideoItem *item) {
+    [WDGVideoUserItem requestForUid:conversation.remoteUid complete:^(WDGVideoUserItem *item) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self getTopController] presentViewController:[WDGVideoReceiveViewController receiveCallWithConversation:conversation userItem:item] animated:YES completion:nil];
         });

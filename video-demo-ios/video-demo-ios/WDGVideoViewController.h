@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WDGSoundPlayer.h"
-#import "WDGVideoItem.h"
+#import "WDGVideoUserItem.h"
 @class WDGLocalStream;
 @class WDGConversation;
 @class WDGRemoteStream;
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger,VideoType){
     VideoTypeReciver
 };
 @interface WDGVideoViewController : UIViewController<WDGConversationDelegate>
-@property (nonatomic, strong) WDGVideoItem *oppositeItem;
+@property (nonatomic, strong) WDGVideoUserItem *oppositeItem;
 +(instancetype)controllerWithType:(VideoType)type;
 -(void)closeRoom;
 @property (nonatomic, strong) WDGLocalStream *localStream;

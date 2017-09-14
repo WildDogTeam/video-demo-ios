@@ -58,7 +58,7 @@
 
 -(void)callOppoUid
 {
-    [WDGVideoItem requestForUid:_oppoIdField.text complete:^(WDGVideoItem *item) {
+    [WDGVideoUserItem requestForUid:_oppoIdField.text complete:^(WDGVideoUserItem *item) {
         WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
         [self presentViewController:vc animated:YES completion:nil];
     }];

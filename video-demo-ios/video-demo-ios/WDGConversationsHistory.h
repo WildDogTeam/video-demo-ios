@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDGVideoItem.h"
-@interface WDGConversationItem:WDGVideoItem
+#import "WDGVideoUserItem.h"
+@interface WDGConversationItem:WDGVideoUserItem
 
 @property (nonatomic,assign) long conversationTime;
 @property (nonatomic,assign) long long finishTime;

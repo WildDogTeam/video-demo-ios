@@ -31,7 +31,7 @@
 
 -(void)registerSDKAppWithSyncId:(NSString *)syncId videoId:(NSString *)videoId
 {
-    [WDGApp configureWithName:@"1232123" options:[[WDGOptions alloc] initWithSyncURL:[NSString stringWithFormat:@"https://%@.wilddogio.com",syncId]]];
+    [WDGApp configureWithOptions:[[WDGOptions alloc] initWithSyncURL:[NSString stringWithFormat:@"https://%@.wilddogio.com",syncId]]];
     NSString *token =[WDGAccountManager currentAccount].token;
     [[self wilddogVideo] configureWithVideoAppId:videoId token:token?:@""];
 }
@@ -48,7 +48,7 @@
 -(WDGAuth *)wilddogVideoAuth
 {
     if(!_wilddogVideoAuth){
-        _wilddogVideoAuth = [WDGAuth authWithApp:[WDGApp appNamed:@"1232123"]];
+        _wilddogVideoAuth = [WDGAuth auth];
     }
     return _wilddogVideoAuth;
 }
@@ -56,7 +56,7 @@
 -(WDGSync *)wilddogSync
 {
     if(!_wilddogSync){
-        _wilddogSync = [WDGSync syncForApp:[WDGApp appNamed:@"1232123"]];
+        _wilddogSync = [WDGSync sync];
     }
     return _wilddogSync;
 }

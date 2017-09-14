@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 {
     NSUInteger _recordCurrentTime;
     BOOL _shouldClose;
+    BOOL _audioSessionShouldSpeaker;
 }
 +(instancetype)controllerWithType:(VideoType)type
 {
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _audioSessionShouldSpeaker =YES;
     self.capturePosition = WDGCaptureDevicePositionFront;
     _recordCurrentTime = 0;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -64,7 +66,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     // Do any additional setup after loading the view.
     [self setupBeauty];
     [self createMyView];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSessionRouteChange:) name:AVAudioSessionRouteChangeNotification object:nil];
 }
 
 -(void)setupBeauty
@@ -115,7 +117,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     [self.view addSubview:self.infoView];
     self.infoButton.hidden = YES;
     self.recordButton.hidden = YES;
-    if(_recordCurrentTime){
+    if(_timeLabel){
         self.timeLabel.hidden =YES;
     }
 }
@@ -126,14 +128,14 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     self.infoView =nil;
     self.infoButton.hidden = NO;
     self.recordButton.hidden = NO;
-    if(_recordCurrentTime){
+    if(_timeLabel){
         self.timeLabel.hidden =NO;
     }
 }
 
 -(void)startRecord
 {
-    _recordButton.selected =!_recordButton.selected;
+    _recordButton.selected = !_recordButton.selected;
     if(_recordButton.selected){
         [self changeRecordBtnSelectAppearance];
         [self recordStart];
@@ -157,7 +159,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self returnRecordBtnAppearance];
         return;
     }
-    self.timeLabel.text =@"00:00:00";
+    self.timeLabel.text =@"00:00";
     [self timerBegin];
 }
 
@@ -190,7 +192,6 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRecordLabel) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:self.recordTimer forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] run];
     });
 }
@@ -226,7 +227,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         _recordCurrentTime++;
-        self.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu:%02lu",_recordCurrentTime/60/60,_recordCurrentTime/60%60,_recordCurrentTime%60];
+        self.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu",_recordCurrentTime/60,_recordCurrentTime%60];
     });
 }
 
@@ -284,6 +285,24 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     _conversation.statsDelegate =self;
 }
 
+- (void)didSessionRouteChange:(NSNotification *)notification
+{
+    NSDictionary *interuptionDict = notification.userInfo;
+    NSInteger routeChangeReason = [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+    
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonCategoryChange: {
+            // Set speaker as default route
+            NSError* error;
+            [[AVAudioSession sharedInstance] overrideOutputAudioPort:    _audioSessionShouldSpeaker?AVAudioSessionPortOverrideSpeaker:AVAudioSessionPortOverrideNone error:&error];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)closeRoom
 {
     [WDGSoundPlayer stop];
@@ -292,6 +311,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self recordEnd];
         return;
     }
+    [self addHistoryItem];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -299,16 +319,18 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         _conversation = nil;
         [self.localStream close];
         _localStream = nil;
-        
-        WDGConversationItem *item =[[WDGConversationItem alloc] init];
-        item.uid = self.oppositeItem.uid;
-        item.nickname =self.oppositeItem.nickname;
-        item.faceUrl = self.oppositeItem.faceUrl;
-        item.conversationTime = [_controlView showTime];
-        item.finishTime = [[NSDate date] timeIntervalSince1970];
-        
-        [WDGConversationsHistory addHistoryItem:item];
     });
+}
+
+-(void)addHistoryItem
+{
+    WDGConversationItem *item =[[WDGConversationItem alloc] init];
+    item.uid = self.oppositeItem.uid;
+    item.nickname =self.oppositeItem.nickname;
+    item.faceUrl = self.oppositeItem.faceUrl;
+    item.conversationTime = [_controlView showTime];
+    item.finishTime = [[NSDate date] timeIntervalSince1970];
+    [WDGConversationsHistory addHistoryItem:item];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -328,6 +350,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 -(void)videoControlView:(WDGVideoControlView *)controlView speakerDidOpen:(BOOL)micphoneOpened
 {
+    _audioSessionShouldSpeaker = !micphoneOpened;
     [[AVAudioSession sharedInstance] overrideOutputAudioPort:micphoneOpened?AVAudioSessionPortOverrideNone:AVAudioSessionPortOverrideSpeaker error:nil];
 }
 
@@ -385,9 +408,9 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     }else if(callStatus == WDGCallStatusTimeout){
         [self.view showHUDWithMessage:@"你所拨打的用户暂时无法接通，请稍后再拨" hideAfter:1 animate:YES];
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self closeRoom];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self closeRoom];
+//    });
 }
 
 /**
@@ -396,7 +419,6 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
  * @param remoteStream `WDGRemoteStream` 实例，表示对方传来的媒体流。
  */
 - (void)conversation:(WDGConversation *)conversation didReceiveStream:(WDGRemoteStream *)remoteStream{
-    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
     _controlView.mode = WDGVideoControlViewMode2;
     [self.userInfoView removeFromSuperview];
     self.userInfoView = nil;

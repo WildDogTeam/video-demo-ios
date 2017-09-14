@@ -29,6 +29,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     // Override point for customization after application launch.WDGAppUseWechatLogin
     if(WDGAppUseWechatLogin)
         [WXApi registerApp:WDGWechatAppID];

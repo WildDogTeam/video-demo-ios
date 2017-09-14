@@ -26,10 +26,10 @@ static NSString *_videoConstraints;
 
 +(WDGVideoDimensions)videoConstraintsNum
 {
-    return [WDGVideoDimension indexOfObject:[self videoDimensions]];
+    return [WDGVideoDimension indexOfObject:[self videoConstraints]];
 }
 
-+(NSString *)videoDimensions
++(NSString *)videoConstraints
 {
     if(!_videoConstraints){
         _videoConstraints = [[NSUserDefaults standardUserDefaults] objectForKey:WDGVideoConstraintsKey];

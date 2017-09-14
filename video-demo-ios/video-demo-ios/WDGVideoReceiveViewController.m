@@ -15,7 +15,7 @@
 @end
 
 @implementation WDGVideoReceiveViewController
-+(instancetype)receiveCallWithConversation:(WDGConversation *)conversation userItem:(WDGVideoItem *)userItem
++(instancetype)receiveCallWithConversation:(WDGConversation *)conversation userItem:(WDGVideoUserItem *)userItem
 {
     
     WDGVideoReceiveViewController *rc = [WDGVideoReceiveViewController controllerWithType:VideoTypeReciver];

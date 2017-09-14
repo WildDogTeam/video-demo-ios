@@ -6,13 +6,13 @@
 //  Copyright © 2017年 wilddog. All rights reserved.
 //
 
-#import "WDGVideoItem.h"
+#import "WDGVideoUserItem.h"
 #import "WilddogSDKManager.h"
-NSString *const WDGVideoItemNickNameKey =@"nickname";
-NSString *const WDGVideoItemFaceUrlKey =@"faceurl";
-NSString *const WDGVideoItemDeviceIdKey =@"deviceid";
+NSString *const WDGVideoUserItemNickNameKey =@"nickname";
+NSString *const WDGVideoUserItemFaceUrlKey =@"faceurl";
+NSString *const WDGVideoUserItemDeviceIdKey =@"deviceid";
 
-@implementation WDGVideoItem
+@implementation WDGVideoUserItem
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -36,16 +36,16 @@ NSString *const WDGVideoItemDeviceIdKey =@"deviceid";
     return self.nickname?:self.uid;
 }
 
-+(void)requestForUid:(NSString *)uid complete:(void (^)(WDGVideoItem *))complete
++(void)requestForUid:(NSString *)uid complete:(void (^)(WDGVideoUserItem *))complete
 {
     [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
-        WDGVideoItem *item = [WDGVideoItem new];
+        WDGVideoUserItem *item = [WDGVideoUserItem new];
         item.uid =uid;
         if([(NSDictionary *)snapshot.value objectForKey:uid]){
             id userinfo =[(NSDictionary *)snapshot.value objectForKey:uid];
             if([userinfo isKindOfClass:[NSDictionary class]]){
-                item.nickname = [userinfo objectForKey:WDGVideoItemNickNameKey];
-                item.faceUrl = [userinfo objectForKey:WDGVideoItemFaceUrlKey];
+                item.nickname = [userinfo objectForKey:WDGVideoUserItemNickNameKey];
+                item.faceUrl = [userinfo objectForKey:WDGVideoUserItemFaceUrlKey];
             }
         }
         complete(item);

@@ -52,7 +52,7 @@
 #if __has_include(<TuSDKVideoLite/TuSDKFilterProcessor.h>)
     _processor = [[TuSDKFilterProcessor alloc] initWithFormatType:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange adjustByVideoOrientation:YES];
     _processor.outputPixelFormatType = lsqFormatTypeYUV420F;
-    [_processor switchFilterWithCode:@"SkinNature"];
+    [_processor switchFilterWithCode:@"DeepWhitening"];
 #endif
 }
 

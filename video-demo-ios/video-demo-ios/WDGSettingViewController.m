@@ -42,7 +42,9 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    UITableViewCell *cell =[self.tableView viewWithTag:11];
+    UITableViewCell *cell =[self.tableView viewWithTag:10];
+    cell.detailTextLabel.text = [WDGVideoConfig videoConstraints];
+    cell =[self.tableView viewWithTag:11];
     cell.detailTextLabel.text =[WDGVideoConfig beautyPlan];
     [super viewDidAppear:animated];
 }

@@ -23,7 +23,7 @@
 
 @end
 
-static NSMutableArray<NSMutableArray<WDGVideoItem *> *> *_sortedArray;
+static NSMutableArray<NSMutableArray<WDGVideoUserItem *> *> *_sortedArray;
 static NSMutableDictionary *_indexes;
 static NSMutableArray<NSMutableArray *> *_nameSortedArray;
 static dispatch_queue_t _sortqueue;
@@ -42,7 +42,7 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return indexpath;
 }
 @implementation WDGSortedArray
-+(NSIndexPath *)addObject:(WDGVideoItem *)nickName
++(NSIndexPath *)addObject:(WDGVideoUserItem *)nickName
 {
     [self initSortArray];
     return runSyncSortedArrayInSortQueue(^{
@@ -50,12 +50,12 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     });
 }
 
-+(NSIndexPath *)_addObject:(WDGVideoItem *)obj
++(NSIndexPath *)_addObject:(WDGVideoUserItem *)obj
 {
     return [self sortAddObject:obj];
 }
 
-+(NSIndexPath *)removeObject:(WDGVideoItem *)obj
++(NSIndexPath *)removeObject:(WDGVideoUserItem *)obj
 {
     [self initSortArray];
     return runSyncSortedArrayInSortQueue(^{
@@ -63,12 +63,12 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     });
 }
 
-+(NSIndexPath *)_removeObject:(WDGVideoItem *)obj
++(NSIndexPath *)_removeObject:(WDGVideoUserItem *)obj
 {
     return [self sortRemoveObject:obj];
 }
 
-+(NSArray<NSArray<WDGVideoItem *> *> *)sortedArray
++(NSArray<NSArray<WDGVideoUserItem *> *> *)sortedArray
 {
     return _sortedArray;
 }
@@ -99,7 +99,7 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return  [self maopaoSortedArray:[_indexes allKeys]];
 }
 
-+(NSIndexPath *)sortAddObject:(WDGVideoItem *)obj
++(NSIndexPath *)sortAddObject:(WDGVideoUserItem *)obj
 {
     NSInteger section;
     NSInteger row;
@@ -140,7 +140,7 @@ NSIndexPath* runSyncSortedArrayInSortQueue(SortBlock block)
     return [NSIndexPath indexPathForRow:row inSection:section];
 }
 
-+(NSIndexPath *)sortRemoveObject:(WDGVideoItem *)obj
++(NSIndexPath *)sortRemoveObject:(WDGVideoUserItem *)obj
 {
     NSInteger section;
     NSInteger row;

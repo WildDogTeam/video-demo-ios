@@ -78,7 +78,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WDGVideoItem *item = [WDGConversationsHistory itemAtIndex:indexPath.row];
+    WDGVideoUserItem *item = [WDGConversationsHistory itemAtIndex:indexPath.row];
     if(item){
         WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
         [self presentViewController:vc animated:YES completion:nil];

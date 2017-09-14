@@ -11,11 +11,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "WDGFileManager.h"
 
-#define WDGVideoSDKVersion 
-#define WDGSyncSDKVersion 
-#define WDGAuthSDKVersion
-#define Camera360Version
-#define TUSDKVersion 
 
 @interface WDGRecordFilesViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic,strong) NSMutableArray *recordFiles;

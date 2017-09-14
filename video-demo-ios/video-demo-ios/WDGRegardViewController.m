@@ -7,7 +7,7 @@
 //
 
 #import "WDGRegardViewController.h"
-#define WDGVideoSDKVersion @"2.0.1"
+#define WDGVideoSDKVersion @"2.0.2"
 #define WDGSyncSDKVersion @"2.3.11"
 #define WDGAuthSDKVersion @"2.0.7"
 #define Camera360SDKVersion @"1.6"
@@ -41,7 +41,7 @@
     [titleLabel sizeToFit];
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+9+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];
-    UILabel *versionLabel = [self pingfangLabelWithText:@"V2.1.0"];
+    UILabel *versionLabel = [self pingfangLabelWithText:@"V2.2.0"];
     versionLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
     versionLabel.font = [UIFont fontWithName:@"pingfang sc" size:15];
     [versionLabel sizeToFit];

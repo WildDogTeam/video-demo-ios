@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class WDGVideoUserItem;
 @interface WDGSignalPush : NSObject
 +(void)prepare;
-+(void)pushVideoCallWithUid:(NSString *)uid;
++(void)pushVideoCallWithUserItem:(WDGVideoUserItem *)item;
 @end

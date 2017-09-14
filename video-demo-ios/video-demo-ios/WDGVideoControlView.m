@@ -41,8 +41,7 @@
 -(void)createTimer
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        _calculateTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_calculateTimer forMode:NSRunLoopCommonModes];
+        _calculateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] run];
     });
 }
@@ -53,7 +52,9 @@
     NSUInteger sec,min;
     sec = _calculateNum%60;
     min = _calculateNum/60;
-    _timeLabel.text =[NSString stringWithFormat:@"%02lu:%02lu",min,sec];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _timeLabel.text =[NSString stringWithFormat:@"%02lu:%02lu",(unsigned long)min,sec];
+    });
 }
 
 -(void)showInView:(UIView *)view animate:(BOOL)animate

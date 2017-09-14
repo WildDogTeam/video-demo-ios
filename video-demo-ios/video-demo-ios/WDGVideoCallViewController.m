@@ -19,7 +19,7 @@
 
 @implementation WDGVideoCallViewController
 
-+(instancetype)makeCallToUserItem:(WDGVideoItem *)userItem
++(instancetype)makeCallToUserItem:(WDGVideoUserItem *)userItem
 {
     WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeCaller];
     cc.oppositeItem =userItem;
@@ -32,7 +32,7 @@
 //    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
     self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeItem.uid localStream:self.localStream data:nil];
-    [WDGSignalPush pushVideoCallWithUid:self.oppositeItem.uid];
+    [WDGSignalPush pushVideoCallWithUserItem:self.oppositeItem];
 }
 
 -(void)viewWillAppear:(BOOL)animated

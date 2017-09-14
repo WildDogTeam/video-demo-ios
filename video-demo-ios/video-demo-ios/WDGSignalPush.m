@@ -11,6 +11,7 @@
 #import "WDGSimpleConnection.h"
 #import "WDGUserDefine.h"
 #import "NSString+Sha256.h"
+#import "WDGVideoUserItem.h"
 @implementation WDGSignalPush
 static NSString *_auth_token;
 
@@ -32,16 +33,17 @@ static NSString *_auth_token;
 
 }
 
-+(void)pushVideoCallWithUid:(NSString *)uid
++(void)pushVideoCallWithUserItem:(WDGVideoUserItem *)item
 {
-    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:WDGWholeUsers] child:uid] observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+    NSString *body = item.nickname.length?item.nickname:item.uid;
+    [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:WDGWholeUsers] child:item.uid] observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         if(snapshot.value){
-            [self pushVideoCallWithClientId:snapshot.value];
+            [self pushVideoCallWithClientId:snapshot.value body:body];
         }
     }];
 }
 
-+(void)pushVideoCallWithClientId:(NSString *)clientId
++(void)pushVideoCallWithClientId:(NSString *)clientId body:(NSString *)body
 {
     if(_auth_token.length ==0) return;
     NSString *requestStr = [NSString stringWithFormat:@"https://restapi.getui.com/v1/%@/push_single",WDGGTSDKAppID];
@@ -56,8 +58,8 @@ static NSString *_auth_token;
             },@"push_info": @{
                 @"aps": @{
                     @"alert": @{
-                        @"title": @"xxxx",
-                        @"body": @"xxxxx"
+                        @"title": @"野狗视频电话",
+                        @"body": body
                     },
                     @"autoBadge": @"+1",
                     @"content-available": @1
