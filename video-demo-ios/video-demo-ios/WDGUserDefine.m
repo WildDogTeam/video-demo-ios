@@ -26,7 +26,13 @@
 
 
 #ifndef WDGInternalUserDefine_h
+//required
+//野狗开发平台注册
+NSString const *WDGSyncId = @"";
+NSString const *WDGVideoId =@"";
+
 /**
+    optional
     这里需要用户向第三方平台申请拿到相应的信息之后填写并配合各级开关打开或关闭相应的功能 如果用户没有按照正常流程操作(比如未申请appkey及打开开关等) 则可能出现未知错误或者闪退 此处作者只验证了正常情况未发现异常
  */
 //总开关
@@ -43,9 +49,7 @@ NSString const *WDGGTSDKAppID = @"";
 NSString const *WDGGTSDKAppKey = @"";
 NSString const *WDGGTSDKAppSecret = @"";
 NSString const *WDGGTSDKMasterSecret =@"";
-//野狗开发平台注册
-NSString const *WDGSyncId = @"";
-NSString const *WDGVideoId =@"";
+
 
 #endif
 

@@ -7,8 +7,11 @@ WilddogVideo 2.0.0版本和以前的版本有了很大的区别 内部没有集�
     项目较之前进行的修改：1.修改代码接入新版sdk
                       2.产品新需求
 
-
 demo新增了微信登录功能 
-用户在使用demo之前请及时填写WDGUserDefine.m里的信息 如果未填写则丢失涂图、camera360美颜功能以及微信登录功能 只提供匿名登录功能 但不影响其他功能体验
+用户在使用demo之前请及时填写WDGUserDefine.m里的信息 
+required为必填信息 否则demo不能正常运行 为野狗的syncid及videoid 在野狗开发平台注册后新建video项目即可取得 
+注：1.如果没有申请微信登录权限请打开匿名登录选项(app现有两种登录方式 微信登录及匿名登录) 
+   2.注意syncid及videoid的保密性 不要随意泄露给他人 
+optional为选填信息 如果未填写则丢失涂图、camera360美颜功能以及微信登录功能 只提供匿名登录功能 但不影响其他功能体验 可根据上方各级开关单独添加相应功能
 
 17/9/4 : 用户在使用demo之前需填写WDGUserDefine.m里的信息 其中required为必填项 optional为选填项 optional如果不正确填写会丢失相应功能 但不影响video体验
