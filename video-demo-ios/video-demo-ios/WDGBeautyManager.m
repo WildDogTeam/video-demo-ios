@@ -33,6 +33,9 @@
             _option = [WDGBeautyOption new];
         }
     }
+    if(!_option){
+        _option =[WDGBeautyOption new];
+    }
     return [_option proccessPixelBuffer:buffer];
 }
 @end

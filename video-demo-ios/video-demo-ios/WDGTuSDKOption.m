@@ -33,8 +33,6 @@
     self = [super init];
     if (self) {
         [self initTUSDK];
-        _myQueue = dispatch_queue_create("han", DISPATCH_QUEUE_SERIAL);
-
     }
     return self;
 }
@@ -42,6 +40,7 @@
 #if __has_include(<TuSDK/TuSDK.h>)
 -(void)initTUSDK
 {
+    _myQueue = dispatch_queue_create("han", DISPATCH_QUEUE_SERIAL);
     [TuSDK initSdkWithAppKey:WDGTUSDKAppKey];
     [TuSDK checkManagerWithDelegate:self];
     

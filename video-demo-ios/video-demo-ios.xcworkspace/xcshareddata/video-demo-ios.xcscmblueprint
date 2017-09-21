@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "D183096CF9C9EC112938AE1D7DB47EC734F863A1" : 9223372036854775807,
+    "35D814DD18B10A6599070027791721F33F96E459" : 9223372036854775807,
     "ACE44512EDBFEE6631F6CD42298110E0F18A3C59" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "19F33704-471E-4961-8F49-B2A61633F092",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5EED898C-1688-4FEF-B411-EA6E758CC223",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "D183096CF9C9EC112938AE1D7DB47EC734F863A1" : "video-demo-ios\/",
+    "35D814DD18B10A6599070027791721F33F96E459" : "WilddogVideoBase\/",
     "ACE44512EDBFEE6631F6CD42298110E0F18A3C59" : "WilddogVideo-V2\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "video-demo-ios",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "video-demo-ios\/video-demo-ios.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.wilddog.cn:ios\/WilddogVideoBase.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35D814DD18B10A6599070027791721F33F96E459"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.wilddog.cn:ios\/WilddogVideo-V2.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

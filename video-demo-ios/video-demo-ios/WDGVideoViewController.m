@@ -272,7 +272,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 //        localStreamOptions.audioOn = YES;
         localStreamOptions.dimension = [WDGVideoConfig videoConstraintsNum];
         // 创建本地媒体流
-        _localStream = [[WilddogSDKManager sharedManager].wilddogVideo localStreamWithOptions:localStreamOptions];
+        _localStream = [WDGLocalStream localStreamWithOptions:localStreamOptions];
         _localStream.delegate =self;
     }
     return _localStream;

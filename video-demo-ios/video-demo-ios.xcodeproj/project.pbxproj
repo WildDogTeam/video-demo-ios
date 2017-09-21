@@ -460,7 +460,7 @@
 					C87EAED21F18AA7600548531 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5RERN32D73;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -748,9 +748,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "video-demo-ios/video-demo-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 5RERN32D73;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,8 +766,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27894df1-4bda-4425-b01a-ce89a8549c7f";
-				PROVISIONING_PROFILE_SPECIFIER = WDGVideoConversation;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -779,8 +779,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "video-demo-ios/video-demo-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Wilddog Technology (Beijing) Co., Ltd. (5RERN32D73)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 5RERN32D73;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -796,8 +796,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.conversation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27894df1-4bda-4425-b01a-ce89a8549c7f";
-				PROVISIONING_PROFILE_SPECIFIER = WDGVideoConversation;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

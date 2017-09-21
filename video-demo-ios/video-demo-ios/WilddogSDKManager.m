@@ -8,6 +8,7 @@
 
 #import "WilddogSDKManager.h"
 #import "WDGAccount.h"
+#import <WilddogVideoBase/WDGVideoInitializer.h>
 //#define WilddogAppForVideo @"com.wilddog.app.video"
 //#define WilddogAppForSync @"com.wilddog.app.sync"
 
@@ -33,7 +34,7 @@
 {
     [WDGApp configureWithOptions:[[WDGOptions alloc] initWithSyncURL:[NSString stringWithFormat:@"https://%@.wilddogio.com",syncId]]];
     NSString *token =[WDGAccountManager currentAccount].token;
-    [[self wilddogVideo] configureWithVideoAppId:videoId token:token?:@""];
+    [[WDGVideoInitializer sharedInstance] configureWithVideoAppId:videoId token:token?:@""];
 }
 
 -(WDGVideo *)wilddogVideo

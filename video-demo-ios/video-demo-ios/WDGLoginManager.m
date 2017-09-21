@@ -8,6 +8,7 @@
 
 #import "WDGLoginManager.h"
 #import <WilddogAuth/WilddogAuth.h>
+#import <WilddogVideoBase/WDGVideoInitializer.h>
 #import "WDGAccount.h"
 #import "WDGNotifications.h"
 #import "WilddogSDKManager.h"
@@ -79,7 +80,7 @@
             NSAssert(error == nil, @"[WilddogVideo][Error] WDGVideoErrorInvalidAuthArgument : failed to get token of user %@ with error: %@", user, error);
             return ;
         }
-        [[WilddogSDKManager sharedManager].wilddogVideo setToken:idToken];
+        [[WDGVideoInitializer sharedInstance] setToken:idToken];
         WDGAccount *account = [WDGAccountManager currentAccount];
         account.userID = user.uid;
         account.token =idToken;

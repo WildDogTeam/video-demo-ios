@@ -31,7 +31,7 @@
 
 - (CVPixelBufferRef)proccessPixelBuffer:(CVPixelBufferRef)pixelBuffer
 {
-    double start = [[NSDate date] timeIntervalSince1970];
+//    double start = [[NSDate date] timeIntervalSince1970];
     
     if (!_pPGSkinPrettifyEngine) {
         return pixelBuffer;

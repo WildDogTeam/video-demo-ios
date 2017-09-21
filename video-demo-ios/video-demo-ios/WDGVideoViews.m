@@ -7,8 +7,8 @@
 //
 
 #import "WDGVideoViews.h"
-#import <WilddogVideo/WDGBeautyVideoView.h>
-#import <WilddogVideo/WDGLocalStream.h>
+#import <WilddogVideoBase/WDGBeautyVideoView.h>
+#import <WilddogVideoBase/WDGLocalStream.h>
 #import <WilddogVideo/WDGRemoteStream.h>
 @interface WDGVideoViews()
 @property (nonatomic,strong) WDGBeautyVideoView *localView;
