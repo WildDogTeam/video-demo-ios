@@ -23,6 +23,16 @@
     [self.iconView setClipsToBounds:YES];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.iconView.layer.cornerRadius = 20;
+        [self.iconView setClipsToBounds:YES];
+    }
+    return self;
+}
+
 -(void)showWithNickName:(NSString *)nickname iconUrl:(NSString *)iconurl
 {
     self.nickNameLabel.text = nickname;

@@ -11,6 +11,7 @@
 #import "WDGConversationCell.h"
 #import "WDGVideoCallViewController.h"
 #import "WDGVideoTool.h"
+#import "WDGVideoControllerManager.h"
 @interface WDGConversationViewController ()
 @end
 
@@ -37,7 +38,7 @@
 
 -(void)showEmptyView
 {
-    [self showEmptyViewNamed:@"no-user" size:CGSizeMake(150, 150) title:@"暂无通话记录"];
+    [self showEmptyViewNamed:@"call-history" size:CGSizeMake(150, 150) title:@"暂无好友"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,8 +81,10 @@
 {
     WDGVideoUserItem *item = [WDGConversationsHistory itemAtIndex:indexPath.row];
     if(item){
-        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
-        [self presentViewController:vc animated:YES completion:nil];
+        [[WDGVideoControllerManager sharedManager] makeCallToUserItem:item inViewController:self];
+//        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
+////        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 @end

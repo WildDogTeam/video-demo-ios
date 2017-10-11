@@ -23,6 +23,7 @@
 {
     WDGVideoCallViewController *cc = [self controllerWithType:VideoTypeCaller];
     cc.oppositeItem =userItem;
+    cc.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:cc.oppositeItem.uid localStream:cc.localStream data:nil];
     return cc;
 }
 
@@ -31,7 +32,6 @@
     // Do any additional setup after loading the view.
 //    [self createNoticeView];
     [self rendarViewWithLocalStream:self.localStream remoteStream:nil];
-    self.conversation =[[WilddogSDKManager sharedManager].wilddogVideo callWithUid:self.oppositeItem.uid localStream:self.localStream data:nil];
     [WDGSignalPush pushVideoCallWithUserItem:self.oppositeItem];
 }
 
@@ -63,7 +63,7 @@
     callingLabel.text = @"正在呼叫...";
     callingLabel.textColor = [UIColor whiteColor];
     callingLabel.textAlignment = NSTextAlignmentCenter;
-    callingLabel.font = [UIFont fontWithName:@"pingfang SC" size:30];
+    callingLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:30];
     [self.view addSubview:callingLabel];
     self.callingLabel =callingLabel;
     
@@ -71,7 +71,7 @@
     oppoUidLabel.text = self.oppositeItem.description;
     oppoUidLabel.textAlignment = NSTextAlignmentCenter;
     oppoUidLabel.textColor = [UIColor whiteColor];
-    oppoUidLabel.font = [UIFont fontWithName:@"pingfang SC" size:20];
+    oppoUidLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [self.view addSubview:oppoUidLabel];
     self.oppoUidLabel =oppoUidLabel;
 }

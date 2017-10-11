@@ -23,11 +23,11 @@
 -(void)cancelTitleRender
 {
     NSMutableDictionary * normalAttrs = [NSMutableDictionary dictionary];
-    normalAttrs[NSFontAttributeName] =  [UIFont fontWithName:@"PingFang SC" size:12];
+    normalAttrs[NSFontAttributeName] =  [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     normalAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
     
     NSMutableDictionary * selectAttrs = [NSMutableDictionary dictionary];
-    selectAttrs[NSFontAttributeName] =  [UIFont fontWithName:@"PingFang SC" size:12];
+    selectAttrs[NSFontAttributeName] =  [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     selectAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
     
     UITabBarItem * item = [UITabBarItem appearance];

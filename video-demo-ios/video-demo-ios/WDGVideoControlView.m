@@ -11,6 +11,15 @@
 #define controlViewWidth [UIScreen mainScreen].bounds.size.width
 #define animationTime .5
 
+#define itemButtonTag 10
+#define itemLabelTag 11
+
+#define micphoneItemViewTag 100
+#define speakerItemViewTag 101
+#define cameraEnableItemViewTag 102
+#define cameraTurnItemViewTag 103
+
+
 @implementation WDGVideoControlView
 {
     BOOL _microPhoneOpen;
@@ -42,6 +51,7 @@
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         _calculateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_calculateTimer forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] run];
     });
 }
@@ -86,14 +96,14 @@
 {
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 45, self.frame.size.width, 25)];
     nameLabel.textColor = [UIColor whiteColor];
-    nameLabel.font = [UIFont fontWithName:@"pingfang SC" size:20];
+    nameLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [self addSubview:nameLabel];
     nameLabel.textAlignment =NSTextAlignmentCenter;
     _nameLabel =nameLabel;
     
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_nameLabel.frame)+10, self.frame.size.width, 20)];
     timeLabel.textColor = [UIColor whiteColor];
-    timeLabel.font = [UIFont fontWithName:@"pingfang SC" size:13];
+    timeLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     [self addSubview:timeLabel];
     timeLabel.textAlignment =NSTextAlignmentCenter;
     _timeLabel =timeLabel;
@@ -108,7 +118,7 @@
     
     UIView *micView = [self itemViewWithTitle:@"麦克风" imageName:@"mike-on" selectImageName:@"mike-off" selector:@selector(micButtonClick:)];
     micView.center = CGPointMake(startCenterX, itemCenterY);
-    UIView *speakerView = [self itemViewWithTitle:@"扬声器" imageName:@"speaker-on" selectImageName:@"speaker-off" selector:@selector(speakerButtonClick:)];
+    UIView *speakerView = [self itemViewWithTitle:@"扬声器" imageName:@"speaker-on" selectImageName:@"speaker-off" selector:@selector(speakerButtonClick:) tag:speakerItemViewTag];
     speakerView.center = CGPointMake(startCenterX +(gap +itemWidth), itemCenterY);
     UIView *cameraEnableView = [self itemViewWithTitle:@"摄像头" imageName:@"Camera-on" selectImageName:@"Cameraoff" selector:@selector(cameraEnableButtonClick:)];
     cameraEnableView.center = CGPointMake(startCenterX +(gap +itemWidth)*2, itemCenterY);
@@ -126,19 +136,44 @@
     [hangupButton addTarget:self action:@selector(hangupButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:hangupButton];
     UILabel *hangupLabel = [[UILabel alloc] init];
-    hangupLabel.font =[UIFont fontWithName:@"pingfang SC" size:12];
+    hangupLabel.font =[UIFont fontWithName:@"PingFangSC-Regular" size:12];
     hangupLabel.textColor = [UIColor whiteColor];
     hangupLabel.text = @"挂断";
     [hangupLabel sizeToFit];
     hangupLabel.center = CGPointMake(CGRectGetMidX(hangupButton.frame), CGRectGetMaxY(hangupButton.frame)+10+CGRectGetHeight(hangupLabel.frame)*.5);
     [self addSubview:hangupLabel];
     
+//    渐变背景
+    UIView *view = [[UIView alloc] init];
+    view.userInteractionEnabled = NO;
+    view.frame =CGRectMake(0, CGRectGetMinY(micView.frame)+80, self.frame.size.width, self.frame.size.height-view.frame.origin.y);
+    
+    UIColor *colorOne = [UIColor colorWithWhite:0. alpha:.0];
+    UIColor *colorTwo = [UIColor colorWithWhite:0. alpha:.5];
+    UIColor *colorThree = [UIColor colorWithWhite:0. alpha:1];
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,colorThree.CGColor, nil];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    //设置开始和结束位置(设置渐变的方向)
+    gradient.startPoint = CGPointMake(0, 0);
+    gradient.endPoint = CGPointMake(0, 1);
+    gradient.colors = colors;
+    gradient.locations = @[@0,@0.2,@1];
+    gradient.frame = view.bounds;
+    [view.layer insertSublayer:gradient atIndex:0];
+    [self insertSubview:view belowSubview:micView];
 }
 
 -(UIView *)itemViewWithTitle:(NSString *)title imageName:(NSString *)imageName selectImageName:(NSString *)selectImageName selector:(SEL)selector
 {
+    return [self itemViewWithTitle:title imageName:imageName selectImageName:selectImageName selector:selector tag:0];
+}
+
+-(UIView *)itemViewWithTitle:(NSString *)title imageName:(NSString *)imageName selectImageName:(NSString *)selectImageName selector:(SEL)selector tag:(NSUInteger)tag
+{
     UIView *view  =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    view.tag =tag;
     UIButton *itemBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    itemBtn.tag = itemButtonTag;
     [itemBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [itemBtn setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
     [itemBtn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
@@ -148,8 +183,9 @@
     
     UILabel *itemLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(itemBtn.frame), view.frame.size.width, 20)];
     itemLabel.textColor =[UIColor whiteColor];
-    itemLabel.font = [UIFont fontWithName:@"pingfang SC" size:12];
+    itemLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     itemLabel.text = title;
+    itemLabel.tag = itemLabelTag;
     itemLabel.textAlignment = NSTextAlignmentCenter;
     [view addSubview:itemLabel];
     
@@ -220,5 +256,17 @@
 -(NSUInteger)showTime
 {
     return _calculateNum;
+}
+
+-(void)changeAudioSpeakerState:(BOOL)isSpeakerState
+{
+    UIView *item = [self viewWithTag:speakerItemViewTag];
+    UIButton *btn = [item viewWithTag:itemButtonTag];
+    btn.selected = !isSpeakerState;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
 }
 @end

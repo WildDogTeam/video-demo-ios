@@ -12,6 +12,12 @@
 		C83B28111F41946800DE970C /* WDGSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B28101F41946800DE970C /* WDGSoundPlayer.m */; };
 		C83B28151F41998E00DE970C /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = C83B28131F41950600DE970C /* ring.caf */; };
 		C83B28161F41998E00DE970C /* videoRing.caf in Resources */ = {isa = PBXBuildFile; fileRef = C83B28141F41950600DE970C /* videoRing.caf */; };
+		C83C3D011F7E4FBF00755F88 /* WDGUserNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3D001F7E4FBF00755F88 /* WDGUserNoticeViewController.m */; };
+		C83C3D031F7E5DD500755F88 /* 《野狗视频通话用户协议》.docx in Resources */ = {isa = PBXBuildFile; fileRef = C83C3D021F7E5DB300755F88 /* 《野狗视频通话用户协议》.docx */; };
+		C83C3D061F8861A000755F88 /* WDGUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3D051F8861A000755F88 /* WDGUserViewController.m */; };
+		C83C3D091F886E4A00755F88 /* WDGReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3D081F886E4A00755F88 /* WDGReportViewController.m */; };
+		C83C3D0C1F88867300755F88 /* WDGRecordFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3D0B1F88867300755F88 /* WDGRecordFilesViewController.m */; };
+		C83C3D0F1F8888A800755F88 /* WDGBlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83C3D0E1F8888A800755F88 /* WDGBlackListViewController.m */; };
 		C856D7861F468C2E00E6636C /* WDGSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7851F468C2E00E6636C /* WDGSortedArray.m */; };
 		C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7881F468DAA00E6636C /* WDGOnlineCell.m */; };
 		C856D7991F4C180700E6636C /* WDGSimpleConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7981F4C180700E6636C /* WDGSimpleConnection.m */; };
@@ -19,6 +25,10 @@
 		C856D79F1F4C380300E6636C /* WDGVideoUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D79E1F4C380300E6636C /* WDGVideoUserItem.m */; };
 		C856D7A11F4D2CB600E6636C /* WDGUserDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A01F4D2CB600E6636C /* WDGUserDefine.m */; };
 		C856D7A41F4FC41100E6636C /* WDGSignalPush.m in Sources */ = {isa = PBXBuildFile; fileRef = C856D7A31F4FC41100E6636C /* WDGSignalPush.m */; };
+		C85A7B931F7C990700A2E16E /* WDGPhoneNumCheckValid.m in Sources */ = {isa = PBXBuildFile; fileRef = C85A7B921F7C990700A2E16E /* WDGPhoneNumCheckValid.m */; };
+		C85A7B961F7CA6D100A2E16E /* WDGPhoneBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85A7B951F7CA6D100A2E16E /* WDGPhoneBindViewController.m */; };
+		C85A7B991F7CEC6B00A2E16E /* WDGImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C85A7B981F7CEC6B00A2E16E /* WDGImageTool.m */; };
+		C85A7B9C1F7CF43F00A2E16E /* WDGTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C85A7B9B1F7CF43F00A2E16E /* WDGTimer.m */; };
 		C87EAED81F18AA7600548531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAED71F18AA7600548531 /* main.m */; };
 		C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAEDA1F18AA7600548531 /* AppDelegate.m */; };
 		C87EAEE11F18AA7600548531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C87EAEDF1F18AA7600548531 /* Main.storyboard */; };
@@ -37,7 +47,6 @@
 		C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */; };
 		C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */; };
 		C87EAF381F18AB5800548531 /* WDGReciveCallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */; };
-		C87EAF391F18AB5800548531 /* WDGRecordFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */; };
 		C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF111F18AB5800548531 /* WDGRegardViewController.m */; };
 		C87EAF3B1F18AB5800548531 /* WDGSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF131F18AB5800548531 /* WDGSelectViewController.m */; };
 		C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF151F18AB5800548531 /* WDGSettingViewController.m */; };
@@ -58,6 +67,10 @@
 		C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */; };
 		C89AC1011F580793001731F3 /* NSString+Sha256.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AC1001F580793001731F3 /* NSString+Sha256.m */; };
 		C89AC1041F591BFD001731F3 /* WDGCamera360Option.m in Sources */ = {isa = PBXBuildFile; fileRef = C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */; };
+		C8C0539A1F89117B005F57F3 /* WDGBlackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C053991F89117B005F57F3 /* WDGBlackManager.m */; };
+		C8C0539D1F8B89D1005F57F3 /* WDGVideoControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0539C1F8B89D1005F57F3 /* WDGVideoControllerManager.m */; };
+		C8C053A01F8CB1B6005F57F3 /* WDGFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C0539F1F8CB1B6005F57F3 /* WDGFunctionView.m */; };
+		C8C053A21F8DC009005F57F3 /* WDGSettingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C053A11F8DC009005F57F3 /* WDGSettingDetailViewController.m */; };
 		C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */; };
 		C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = C87EAF211F18AB5800548531 /* WDGVideoControlView.m */; };
 /* End PBXBuildFile section */
@@ -72,6 +85,17 @@
 		C83B28101F41946800DE970C /* WDGSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSoundPlayer.m; sourceTree = "<group>"; };
 		C83B28131F41950600DE970C /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
 		C83B28141F41950600DE970C /* videoRing.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoRing.caf; sourceTree = "<group>"; };
+		C83C3CFF1F7E4FBF00755F88 /* WDGUserNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserNoticeViewController.h; sourceTree = "<group>"; };
+		C83C3D001F7E4FBF00755F88 /* WDGUserNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserNoticeViewController.m; sourceTree = "<group>"; };
+		C83C3D021F7E5DB300755F88 /* 《野狗视频通话用户协议》.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "《野狗视频通话用户协议》.docx"; sourceTree = "<group>"; };
+		C83C3D041F8861A000755F88 /* WDGUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserViewController.h; sourceTree = "<group>"; };
+		C83C3D051F8861A000755F88 /* WDGUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserViewController.m; sourceTree = "<group>"; };
+		C83C3D071F886E4A00755F88 /* WDGReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGReportViewController.h; sourceTree = "<group>"; };
+		C83C3D081F886E4A00755F88 /* WDGReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGReportViewController.m; sourceTree = "<group>"; };
+		C83C3D0A1F88867300755F88 /* WDGRecordFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGRecordFilesViewController.h; sourceTree = "<group>"; };
+		C83C3D0B1F88867300755F88 /* WDGRecordFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGRecordFilesViewController.m; sourceTree = "<group>"; };
+		C83C3D0D1F8888A800755F88 /* WDGBlackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGBlackListViewController.h; sourceTree = "<group>"; };
+		C83C3D0E1F8888A800755F88 /* WDGBlackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGBlackListViewController.m; sourceTree = "<group>"; };
 		C8515E351F53F49C002973F4 /* WDGInternalUserDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGInternalUserDefine.h; sourceTree = "<group>"; };
 		C856D7841F468C2E00E6636C /* WDGSortedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSortedArray.h; sourceTree = "<group>"; };
 		C856D7851F468C2E00E6636C /* WDGSortedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSortedArray.m; sourceTree = "<group>"; };
@@ -88,6 +112,14 @@
 		C856D7A21F4FC41100E6636C /* WDGSignalPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSignalPush.h; sourceTree = "<group>"; };
 		C856D7A31F4FC41100E6636C /* WDGSignalPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSignalPush.m; sourceTree = "<group>"; };
 		C856D7A71F53C7C500E6636C /* video-demo-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "video-demo-ios.entitlements"; sourceTree = "<group>"; };
+		C85A7B911F7C990700A2E16E /* WDGPhoneNumCheckValid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGPhoneNumCheckValid.h; sourceTree = "<group>"; };
+		C85A7B921F7C990700A2E16E /* WDGPhoneNumCheckValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGPhoneNumCheckValid.m; sourceTree = "<group>"; };
+		C85A7B941F7CA6D100A2E16E /* WDGPhoneBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGPhoneBindViewController.h; sourceTree = "<group>"; };
+		C85A7B951F7CA6D100A2E16E /* WDGPhoneBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGPhoneBindViewController.m; sourceTree = "<group>"; };
+		C85A7B971F7CEC6B00A2E16E /* WDGImageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGImageTool.h; sourceTree = "<group>"; };
+		C85A7B981F7CEC6B00A2E16E /* WDGImageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGImageTool.m; sourceTree = "<group>"; };
+		C85A7B9A1F7CF43F00A2E16E /* WDGTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGTimer.h; sourceTree = "<group>"; };
+		C85A7B9B1F7CF43F00A2E16E /* WDGTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGTimer.m; sourceTree = "<group>"; };
 		C87EAED31F18AA7600548531 /* video-demo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "video-demo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C87EAED71F18AA7600548531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C87EAED91F18AA7600548531 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,8 +153,7 @@
 		C87EAF0B1F18AB5700548531 /* WDGReciveCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGReciveCallViewController.h; sourceTree = "<group>"; };
 		C87EAF0C1F18AB5700548531 /* WDGReciveCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGReciveCallViewController.m; sourceTree = "<group>"; };
 		C87EAF0D1F18AB5800548531 /* WDGReciveCallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WDGReciveCallViewController.xib; sourceTree = "<group>"; };
-		C87EAF0E1F18AB5800548531 /* WDGRecordFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGRecordFilesViewController.h; sourceTree = "<group>"; };
-		C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGRecordFilesViewController.m; sourceTree = "<group>"; };
+		C87EAF0E1F18AB5800548531 /* WDGSettingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSettingDetailViewController.h; sourceTree = "<group>"; };
 		C87EAF101F18AB5800548531 /* WDGRegardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGRegardViewController.h; sourceTree = "<group>"; };
 		C87EAF111F18AB5800548531 /* WDGRegardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGRegardViewController.m; sourceTree = "<group>"; };
 		C87EAF121F18AB5800548531 /* WDGSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGSelectViewController.h; sourceTree = "<group>"; };
@@ -163,6 +194,13 @@
 		C89AC1001F580793001731F3 /* NSString+Sha256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sha256.m"; sourceTree = "<group>"; };
 		C89AC1021F591BFD001731F3 /* WDGCamera360Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGCamera360Option.h; sourceTree = "<group>"; };
 		C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGCamera360Option.m; sourceTree = "<group>"; };
+		C8C053981F89117B005F57F3 /* WDGBlackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGBlackManager.h; sourceTree = "<group>"; };
+		C8C053991F89117B005F57F3 /* WDGBlackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGBlackManager.m; sourceTree = "<group>"; };
+		C8C0539B1F8B89D1005F57F3 /* WDGVideoControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGVideoControllerManager.h; sourceTree = "<group>"; };
+		C8C0539C1F8B89D1005F57F3 /* WDGVideoControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGVideoControllerManager.m; sourceTree = "<group>"; };
+		C8C0539E1F8CB1B6005F57F3 /* WDGFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGFunctionView.h; sourceTree = "<group>"; };
+		C8C0539F1F8CB1B6005F57F3 /* WDGFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGFunctionView.m; sourceTree = "<group>"; };
+		C8C053A11F8DC009005F57F3 /* WDGSettingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGSettingDetailViewController.m; sourceTree = "<group>"; };
 		C8F18FEC1F3D9C3B00114D4A /* WDGUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGUserInfoView.h; sourceTree = "<group>"; };
 		C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGUserInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +251,14 @@
 				C856D7A31F4FC41100E6636C /* WDGSignalPush.m */,
 				C856D79A1F4C1BA300E6636C /* WDGUserInfoRequest.h */,
 				C856D79B1F4C1BA300E6636C /* WDGUserInfoRequest.m */,
+				C85A7B911F7C990700A2E16E /* WDGPhoneNumCheckValid.h */,
+				C85A7B921F7C990700A2E16E /* WDGPhoneNumCheckValid.m */,
+				C85A7B971F7CEC6B00A2E16E /* WDGImageTool.h */,
+				C85A7B981F7CEC6B00A2E16E /* WDGImageTool.m */,
+				C85A7B9A1F7CF43F00A2E16E /* WDGTimer.h */,
+				C85A7B9B1F7CF43F00A2E16E /* WDGTimer.m */,
+				C8C053981F89117B005F57F3 /* WDGBlackManager.h */,
+				C8C053991F89117B005F57F3 /* WDGBlackManager.m */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -292,6 +338,9 @@
 				C87EAF041F18AB5700548531 /* WDGLoginManager.m */,
 				C87EAF051F18AB5700548531 /* WDGLoginViewController.h */,
 				C87EAF061F18AB5700548531 /* WDGLoginViewController.m */,
+				C83C3CFF1F7E4FBF00755F88 /* WDGUserNoticeViewController.h */,
+				C83C3D001F7E4FBF00755F88 /* WDGUserNoticeViewController.m */,
+				C83C3D021F7E5DB300755F88 /* 《野狗视频通话用户协议》.docx */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -326,14 +375,24 @@
 				C89441CE1F3C349B00FA4E4A /* WDGConversationViewController.m */,
 				C87EAF091F18AB5700548531 /* WDGOnlineViewController.h */,
 				C87EAF0A1F18AB5700548531 /* WDGOnlineViewController.m */,
-				C87EAF0E1F18AB5800548531 /* WDGRecordFilesViewController.h */,
-				C87EAF0F1F18AB5800548531 /* WDGRecordFilesViewController.m */,
+				C87EAF0E1F18AB5800548531 /* WDGSettingDetailViewController.h */,
+				C8C053A11F8DC009005F57F3 /* WDGSettingDetailViewController.m */,
+				C83C3D0A1F88867300755F88 /* WDGRecordFilesViewController.h */,
+				C83C3D0B1F88867300755F88 /* WDGRecordFilesViewController.m */,
+				C83C3D0D1F8888A800755F88 /* WDGBlackListViewController.h */,
+				C83C3D0E1F8888A800755F88 /* WDGBlackListViewController.m */,
 				C87EAF101F18AB5800548531 /* WDGRegardViewController.h */,
 				C87EAF111F18AB5800548531 /* WDGRegardViewController.m */,
 				C87EAF121F18AB5800548531 /* WDGSelectViewController.h */,
 				C87EAF131F18AB5800548531 /* WDGSelectViewController.m */,
 				C87EAF141F18AB5800548531 /* WDGSettingViewController.h */,
 				C87EAF151F18AB5800548531 /* WDGSettingViewController.m */,
+				C85A7B941F7CA6D100A2E16E /* WDGPhoneBindViewController.h */,
+				C85A7B951F7CA6D100A2E16E /* WDGPhoneBindViewController.m */,
+				C83C3D041F8861A000755F88 /* WDGUserViewController.h */,
+				C83C3D051F8861A000755F88 /* WDGUserViewController.m */,
+				C83C3D071F886E4A00755F88 /* WDGReportViewController.h */,
+				C83C3D081F886E4A00755F88 /* WDGReportViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -385,6 +444,8 @@
 				C8F18FED1F3D9C3B00114D4A /* WDGUserInfoView.m */,
 				C87EAF281F18AB5800548531 /* WDGVideoViews.h */,
 				C87EAF291F18AB5800548531 /* WDGVideoViews.m */,
+				C8C0539E1F8CB1B6005F57F3 /* WDGFunctionView.h */,
+				C8C0539F1F8CB1B6005F57F3 /* WDGFunctionView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -412,6 +473,8 @@
 				C87EAF1F1F18AB5800548531 /* WDGVideoConfig.m */,
 				C87EAF241F18AB5800548531 /* WDGVideoTool.h */,
 				C87EAF251F18AB5800548531 /* WDGVideoTool.m */,
+				C8C0539B1F8B89D1005F57F3 /* WDGVideoControllerManager.h */,
+				C8C0539C1F8B89D1005F57F3 /* WDGVideoControllerManager.m */,
 			);
 			name = tool;
 			sourceTree = "<group>";
@@ -493,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83B28161F41998E00DE970C /* videoRing.caf in Resources */,
+				C83C3D031F7E5DD500755F88 /* 《野狗视频通话用户协议》.docx in Resources */,
 				C83B28151F41998E00DE970C /* ring.caf in Resources */,
 				C87EAF6A1F18C77800548531 /* TuSDK.bundle in Resources */,
 				C87EAEE61F18AA7600548531 /* LaunchScreen.storyboard in Resources */,
@@ -584,20 +648,26 @@
 				C87EAF351F18AB5800548531 /* WDGNotifications.m in Sources */,
 				C87EAF411F18AB5800548531 /* WDGVideoConfig.m in Sources */,
 				C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */,
+				C83C3D061F8861A000755F88 /* WDGUserViewController.m in Sources */,
 				C87EAEDB1F18AA7600548531 /* AppDelegate.m in Sources */,
-				C87EAF391F18AB5800548531 /* WDGRecordFilesViewController.m in Sources */,
 				C87EAF451F18AB5800548531 /* WDGVideoViewController.m in Sources */,
 				C87EAF3A1F18AB5800548531 /* WDGRegardViewController.m in Sources */,
+				C85A7B9C1F7CF43F00A2E16E /* WDGTimer.m in Sources */,
 				C87EAF371F18AB5800548531 /* WDGReciveCallViewController.m in Sources */,
+				C8C053A21F8DC009005F57F3 /* WDGSettingDetailViewController.m in Sources */,
 				C89AC1011F580793001731F3 /* NSString+Sha256.m in Sources */,
 				C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */,
 				C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */,
 				C87EAF3D1F18AB5800548531 /* WDGStaticRootTableViewCell.m in Sources */,
+				C8C0539D1F8B89D1005F57F3 /* WDGVideoControllerManager.m in Sources */,
 				C87EAF3C1F18AB5800548531 /* WDGSettingViewController.m in Sources */,
 				C87EAEF41F18AB4A00548531 /* UIView+MBProgressHud.m in Sources */,
+				C83C3D091F886E4A00755F88 /* WDGReportViewController.m in Sources */,
+				C85A7B961F7CA6D100A2E16E /* WDGPhoneBindViewController.m in Sources */,
 				C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */,
 				C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */,
 				C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */,
+				C8C053A01F8CB1B6005F57F3 /* WDGFunctionView.m in Sources */,
 				C87EAF461F18AB5800548531 /* WDGVideoViews.m in Sources */,
 				C87EAF441F18AB5800548531 /* WDGVideoTool.m in Sources */,
 				C856D7991F4C180700E6636C /* WDGSimpleConnection.m in Sources */,
@@ -606,11 +676,14 @@
 				C8F18FEE1F3D9C3B00114D4A /* WDGUserInfoView.m in Sources */,
 				C87EAF361F18AB5800548531 /* WDGOnlineViewController.m in Sources */,
 				C856D7A41F4FC41100E6636C /* WDGSignalPush.m in Sources */,
+				C83C3D0F1F8888A800755F88 /* WDGBlackListViewController.m in Sources */,
+				C85A7B991F7CEC6B00A2E16E /* WDGImageTool.m in Sources */,
 				C8F18FEF1F3DABE700114D4A /* WDGVideoControlView.m in Sources */,
 				C87EAF331F18AB5800548531 /* WDGLoginManager.m in Sources */,
 				C89441CF1F3C349B00FA4E4A /* WDGConversationViewController.m in Sources */,
 				C856D7861F468C2E00E6636C /* WDGSortedArray.m in Sources */,
 				C87EAF3B1F18AB5800548531 /* WDGSelectViewController.m in Sources */,
+				C83C3D0C1F88867300755F88 /* WDGRecordFilesViewController.m in Sources */,
 				C87EAF2E1F18AB5800548531 /* WDGBeautyOption.m in Sources */,
 				C83B28111F41946800DE970C /* WDGSoundPlayer.m in Sources */,
 				C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */,
@@ -618,10 +691,13 @@
 				C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */,
 				C89AC1041F591BFD001731F3 /* WDGCamera360Option.m in Sources */,
 				C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */,
+				C85A7B931F7C990700A2E16E /* WDGPhoneNumCheckValid.m in Sources */,
+				C8C0539A1F89117B005F57F3 /* WDGBlackManager.m in Sources */,
 				C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */,
 				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
 				C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */,
 				C856D79C1F4C1BA300E6636C /* WDGUserInfoRequest.m in Sources */,
+				C83C3D011F7E4FBF00755F88 /* WDGUserNoticeViewController.m in Sources */,
 				C89441D21F3C5FDD00FA4E4A /* WDGConversationsHistory.m in Sources */,
 				C856D7891F468DAA00E6636C /* WDGOnlineCell.m in Sources */,
 			);

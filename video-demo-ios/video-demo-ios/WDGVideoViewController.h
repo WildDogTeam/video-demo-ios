@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "WDGSoundPlayer.h"
 #import "WDGVideoUserItem.h"
+#import <WilddogVideo/WDGConversation.h>
 @class WDGLocalStream;
 @class WDGConversation;
 @class WDGRemoteStream;
-@protocol WDGConversationDelegate;
+@class WDGVideoViews;
+//@protocol WDGConversationDelegate;
 typedef NS_ENUM(NSUInteger,VideoType){
-    VideoTypeCaller,
+    VideoTypeCaller =1,
     VideoTypeReciver
 };
 @interface WDGVideoViewController : UIViewController<WDGConversationDelegate>
@@ -22,6 +24,6 @@ typedef NS_ENUM(NSUInteger,VideoType){
 +(instancetype)controllerWithType:(VideoType)type;
 -(void)closeRoom;
 @property (nonatomic, strong) WDGLocalStream *localStream;
-@property (nonatomic, strong) WDGConversation *conversation;
+@property (nonatomic, weak) WDGConversation *conversation;
 -(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream;
 @end

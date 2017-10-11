@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class WDGVideoLocalStream;
-@class WDGVideoRemoteStream;
-@interface WDGVideoViews : UIView
--(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(WDGVideoRemoteStream *)remoteStream;
+@class WDGLocalStream;
+@class WDGRemoteStream;
+@interface WDGVideoViews : UIView<NSCopying>
+-(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream;
+-(void)rendarViewWithRemoteStream:(WDGRemoteStream *)remoteStream;
 -(BOOL)isPresentViewLocalView;
--(instancetype)initWithViewChange:(void(^)(BOOL isLocalViewPresent))viewChange;
 -(void)showMirrorLocalView:(BOOL)showMirror;
+@property (nonatomic,copy) void(^viewChange)(BOOL isLocalViewPresent);
+
+-(instancetype)initWithViewChange:(void(^)(BOOL isLocalViewPresent))viewChange ;
 @end

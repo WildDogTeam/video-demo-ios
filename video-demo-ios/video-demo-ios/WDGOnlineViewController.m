@@ -19,13 +19,16 @@
 #import "WDGVideoUserItem.h"
 #import <WilddogVideo/WDGConversation.h>
 #import "WDGLoginManager.h"
-#import <AdSupport/AdSupport.h>
+//#import <AdSupport/AdSupport.h>
+#import "WDGUserViewController.h"
+#import "WDGBlackManager.h"
 @interface WDGOnlineViewController ()<WDGVideoDelegate>
 @end
 
 @implementation WDGOnlineViewController
 {
     NSString *_deviceId;
+    WDGSyncHandle _syncHandle;
 }
 -(void)awakeFromNib
 {
@@ -55,6 +58,20 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor colorWithRed:242.0/255 green:242.0/255 blue:242.0/255 alpha:1.];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addBlackUser:) name:WDGBlackListAddUserNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeBlackUser:) name:WDGBlackListRemoveUserNotification object:nil];
+}
+
+-(void)addBlackUser:(NSNotification *)noti
+{
+    [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] removeObserverWithHandle:_syncHandle];
+    [self observeringOnlineUser];
+}
+
+-(void)removeBlackUser:(NSNotification *)noti
+{
+    [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] removeObserverWithHandle:_syncHandle];
+    [self observeringOnlineUser];
 }
 
 - (void)initWilddog
@@ -88,13 +105,16 @@
 }
 
 - (void)observeringOnlineUser {
-    
     __weak typeof(self) weakSelf = self;
-    [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+    _syncHandle = [[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         __strong typeof(weakSelf) self = weakSelf;
         NSDictionary *dic = snapshot.value;
         NSMutableArray *users = [dic.allKeys mutableCopy];
+        for (WDGVideoUserItem *item in [WDGBlackManager blackList]) {
+            [users removeObject:item.uid];
+        }
         for (NSString *uid in users) {
+            
             if ([uid isEqualToString:[WDGAccountManager currentAccount].userID]) {
                 [users removeObject:uid];
                 if([dic[uid] isKindOfClass:[NSDictionary class]]){
@@ -163,8 +183,9 @@
 {
     WDGVideoUserItem *item = [WDGSortedArray sortedArray][indexPath.section][indexPath.row];
     if(item){
-        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
-        [self presentViewController:vc animated:YES completion:nil];
+        WDGUserViewController *userVC = [WDGUserViewController controllerWithUserItem:item];
+//        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
+        [self.navigationController pushViewController:userVC animated:YES];
     }
 }
 

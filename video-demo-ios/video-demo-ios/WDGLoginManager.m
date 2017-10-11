@@ -69,7 +69,7 @@
         UIViewController *mainViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         return mainViewController;
     }
-    return [WDGLoginViewController new];
+    return [[UINavigationController alloc] initWithRootViewController:[WDGLoginViewController new]];
 }
 
 +(void)saveUserInfo:(WDGUser *)user complete:(void (^)())complete;

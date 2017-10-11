@@ -11,6 +11,8 @@
 #import "UIView+MBProgressHud.h"
 #import "WDGAccount.h"
 #import "WilddogSDKManager.h"
+#import "WDGImageTool.h"
+#import "WDGVideoControllerManager.h"
 @interface WDGCallViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UITextField *oppoIdField;
@@ -25,8 +27,8 @@
     [self.oppoIdField becomeFirstResponder];
     UIColor *normalColor = [UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.];
     UIColor *highlightColor = [UIColor colorWithRed:0xf0/255. green:0x91/255. blue:0x6e/255. alpha:1.];
-    [self.callButton setBackgroundImage:[self getImageFromColor:normalColor size:self.callButton.frame.size] forState:UIControlStateNormal];
-    [self.callButton setBackgroundImage:[self getImageFromColor:highlightColor size:self.callButton.frame.size] forState:UIControlStateHighlighted];
+    [self.callButton setBackgroundImage:[WDGImageTool imageFromColor:normalColor size:self.callButton.frame.size] forState:UIControlStateNormal];
+    [self.callButton setBackgroundImage:[WDGImageTool imageFromColor:highlightColor size:self.callButton.frame.size] forState:UIControlStateHighlighted];
     self.callButton.layer.cornerRadius = CGRectGetHeight(self.callButton.frame)*.5;
     self.callButton.clipsToBounds =YES;
     [self.callButton addTarget:self action:@selector(makeCall) forControlEvents:UIControlEventTouchUpInside];
@@ -59,20 +61,10 @@
 -(void)callOppoUid
 {
     [WDGVideoUserItem requestForUid:_oppoIdField.text complete:^(WDGVideoUserItem *item) {
-        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
-        [self presentViewController:vc animated:YES completion:nil];
+        [[WDGVideoControllerManager sharedManager] makeCallToUserItem:item inViewController:self];
+//        WDGVideoViewController *vc = [WDGVideoCallViewController makeCallToUserItem:item];
+//        [self presentViewController:vc animated:YES completion:nil];
     }];
-}
-
--(UIImage *)getImageFromColor:(UIColor *)color size:(CGSize)size
-{
-    UIGraphicsBeginImageContext(size);
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(currentContext, color.CGColor);
-    CGContextFillRect(currentContext, CGRectMake(0, 0, size.width, size.height));
-    UIImage *targetImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return targetImage;
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -12,6 +12,8 @@
 #import "WDGUserDefine.h"
 #import "WDGNotifications.h"
 #import "UIView+MBProgressHud.h"
+#import "WDGImageTool.h"
+#import "WDGUserNoticeViewController.h"
 @interface WDGLoginViewController ()
 @property (nonatomic,assign) BOOL loginByWechat;
 @property (nonatomic,assign) BOOL loginByWechatCancelled;
@@ -19,7 +21,10 @@
 @end
 
 @implementation WDGLoginViewController
-
+{
+    UILabel *_noticeLabel;
+    UIButton *_noticeBtn;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -46,12 +51,25 @@
     loginButton.center = CGPointMake(centerX, CGRectGetMaxY(detailLabel.frame)+99+CGRectGetHeight(loginButton.frame)*.5);
     UIColor *normalColor = [UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.];
     UIColor *highlightColor = [UIColor colorWithRed:0xf0/255. green:0x91/255. blue:0x6e/255. alpha:1.];
-    [loginButton setBackgroundImage:[self getImageFromColor:normalColor size:loginButton.frame.size] forState:UIControlStateNormal];
-    [loginButton setBackgroundImage:[self getImageFromColor:highlightColor size:loginButton.frame.size] forState:UIControlStateHighlighted];
+    [loginButton setBackgroundImage:[WDGImageTool imageFromColor:normalColor size:loginButton.frame.size] forState:UIControlStateNormal];
+    [loginButton setBackgroundImage:[WDGImageTool imageFromColor:highlightColor size:loginButton.frame.size] forState:UIControlStateHighlighted];
     loginButton.layer.cornerRadius = CGRectGetHeight(loginButton.frame)*.5;
     loginButton.clipsToBounds =YES;
     [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
+    
+//    条款
+    UILabel *noticeLabel = [self pingfangLabelWithText:@"登录代表你已同意" size:10];
+    [self.view addSubview:noticeLabel];
+    UIButton *noticeBtn =[UIButton buttonWithType:UIButtonTypeCustom];
+    [noticeBtn setTitle:@"《用户协议》" forState:UIControlStateNormal];
+    [noticeBtn setTitleColor:[UIColor colorWithRed:221/255. green:58/255. blue:39/255. alpha:1.] forState:UIControlStateNormal];
+    [noticeBtn addTarget:self action:@selector(gotoNoticeVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:noticeBtn];
+    [noticeBtn.titleLabel sizeToFit];
+    _noticeLabel = noticeLabel;
+    _noticeBtn = noticeBtn;
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginByWechatDidCancelled) name:WDGAppSigninWechatDidcancelledByUser object:nil];
 }
@@ -61,20 +79,9 @@
     UILabel *label = [[UILabel alloc] init];
     label.text =text;
     label.textColor = [UIColor colorWithRed:0x66/255. green:0x66/255. blue:0x66/255. alpha:1];
-    label.font = [UIFont fontWithName:@"pingfang sc" size:size];
+    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:size];
     [label sizeToFit];
     return label;
-}
-
--(UIImage *)getImageFromColor:(UIColor *)color size:(CGSize)size
-{
-    UIGraphicsBeginImageContext(size);
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(currentContext, color.CGColor);
-    CGContextFillRect(currentContext, CGRectMake(0, 0, size.width, size.height));
-    UIImage *targetImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return targetImage;
 }
 
 -(void)loginByWechatDidCancelled
@@ -97,6 +104,32 @@
     [WDGLoginManager loginByTouristComplete:^{
         [UIApplication sharedApplication].delegate.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
     }];
+}
+
+-(void)gotoNoticeVC
+{
+    [self.navigationController pushViewController:[WDGUserNoticeViewController new] animated:YES];
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    _noticeBtn.frame = _noticeBtn.titleLabel.bounds;
+    _noticeLabel.center = CGPointMake(self.view.center.x-_noticeBtn.frame.size.width/2, self.view.frame.size.height-15-CGRectGetHeight(_noticeLabel.frame)/2);
+    _noticeBtn.center = CGPointMake(self.view.center.x+_noticeLabel.frame.size.width/2, CGRectGetMidY(_noticeLabel.frame));
+    _noticeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden =YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden =NO;
 }
 
 -(void)dealloc

@@ -17,8 +17,18 @@
     [super awakeFromNib];
     [self setNeedsLayout];
     [self layoutIfNeeded];
-    self.textLabel.font = [UIFont fontWithName:@"pingfang SC" size:15];
+    self.textLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
 
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if(self = [super initWithCoder:aDecoder]){
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+        self.textLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
+    }
+    return self;
 }
 
 -(void)layoutSubviews
@@ -44,14 +54,14 @@
     self.detailTextLabel.text =[NSString stringWithFormat:@"ID:%@",[WDGAccountManager currentAccount].userID];
     UIButton *copyButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [copyButton setTitle:@"复制" forState:UIControlStateNormal];
-    copyButton.titleLabel.font = [UIFont fontWithName:@"pingfang SC" size:18];
+    copyButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:18];
     [copyButton setTitleColor:[UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.] forState:UIControlStateNormal];
     [copyButton setTitleColor:[UIColor colorWithRed:0xf0/255. green:0x91/255. blue:0x6e/255. alpha:1.] forState:UIControlStateHighlighted];
     [copyButton addTarget:self action:@selector(copyID) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:copyButton];
     _copyButton = copyButton;
     _copyButton.frame = CGRectMake(0, 0, 60, 40);
-    self.detailTextLabel.font = [UIFont fontWithName:@"pingfang SC" size:12];
+    self.detailTextLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     CGSize itemSize = CGSizeMake(60 , 60);
     UIGraphicsBeginImageContextWithOptions(itemSize,NO,0.0);
     CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);

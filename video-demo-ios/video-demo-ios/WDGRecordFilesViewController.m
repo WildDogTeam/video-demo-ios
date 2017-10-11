@@ -1,114 +1,46 @@
 //
 //  WDGRecordFilesViewController.m
-//  WDGVideoDemo
+//  video-demo-ios
 //
-//  Created by han wp on 2017/7/6.
+//  Created by han wp on 2017/10/7.
 //  Copyright © 2017年 wilddog. All rights reserved.
 //
 
 #import "WDGRecordFilesViewController.h"
-#import "WDGFileManager.h"
-#import <MediaPlayer/MediaPlayer.h>
-#import "WDGFileManager.h"
 
+@interface WDGRecordFilesViewController ()
 
-@interface WDGRecordFilesViewController ()<UIGestureRecognizerDelegate>
-@property (nonatomic,strong) NSMutableArray *recordFiles;
 @end
 
 @implementation WDGRecordFilesViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
-    self.navigationController.interactivePopGestureRecognizer.delegate =self;
-    _recordFiles = [NSMutableArray arrayWithArray:[[WDGFileManager sharedManager] saveFileNames]];
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    if(!_recordFiles.count){
-        [self showEmptyView];
+- (instancetype)init
+{
+    self = [super initForTyoe:SettingDetailTypeRecordFiles];
+    if (self) {
     }
+    return self;
 }
 
--(void)showEmptyView
+-(void)awakeFromNib
 {
-    [self showEmptyViewNamed:@"no-call" size:CGSizeMake(150, 150) title:@"暂无录制文件"];
+    [super awakeFromNib];
+    self.detailType = SettingDetailTypeRecordFiles;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _recordFiles.count;
-}
+/*
+#pragma mark - Navigation
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    cell.textLabel.text = _recordFiles[indexPath.row];
-    NSUInteger time =[[WDGFileManager sharedManager] fileObjectForName:_recordFiles[indexPath.row]].recordTime;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",time/60,time%60];
-    cell.textLabel.font = [UIFont fontWithName:@"pingfang SC" size:15];
-    return cell;
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return   UITableViewCellEditingStyleDelete;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[WDGFileManager sharedManager] deleteFileWithName:_recordFiles[indexPath.row]];
-        _recordFiles = [NSMutableArray arrayWithArray:[[WDGFileManager sharedManager] saveFileNames]];
-        if(!_recordFiles.count){
-            [self showEmptyView];
-        }
-        [tableView reloadData];
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"删除";
-}
-
-- (IBAction)goback:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *filePath =[[WDGFileManager sharedManager] fileObjectForName:_recordFiles[indexPath.row]].filePath;
-    NSURL *URL = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:filePath]];
-    MPMoviePlayerViewController  * moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:URL];
-    [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
-    moviePlayerController.moviePlayer.movieSourceType=MPMovieSourceTypeFile;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 55;
-}
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return self.navigationController.childViewControllers.count > 1;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return self.navigationController.viewControllers.count > 1;
-}
+*/
 
 @end

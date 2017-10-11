@@ -30,14 +30,14 @@
     nameLabel.text =name;
     nameLabel.textColor = [UIColor whiteColor];
     nameLabel.textAlignment = NSTextAlignmentCenter;
-    nameLabel.font = [UIFont fontWithName:@"pingfang SC" size:24];
+    nameLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:24];
     [self addSubview:nameLabel];
     
     UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(nameLabel.frame)+15, self.frame.size.width, 17)];
     detailLabel.text =type==WDGUserTypeCaller?@"等待对方接受邀请":@"邀你视频通话";
     detailLabel.textColor = [UIColor whiteColor];
     detailLabel.textAlignment = NSTextAlignmentCenter;
-    detailLabel.font = [UIFont fontWithName:@"pingfang SC" size:15];
+    detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self addSubview:detailLabel];
 }
 @end

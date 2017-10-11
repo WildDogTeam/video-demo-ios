@@ -7,7 +7,7 @@
 //
 
 #import "WDGRegardViewController.h"
-#define WDGVideoSDKVersion @"2.0.2"
+#define WDGVideoSDKVersion @"2.1.1"
 #define WDGSyncSDKVersion @"2.3.11"
 #define WDGAuthSDKVersion @"2.0.7"
 #define Camera360SDKVersion @"1.6"
@@ -37,13 +37,13 @@
     
     UILabel *titleLabel = [self pingfangLabelWithText:@"野狗视频通话"];
     titleLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
-    titleLabel.font = [UIFont fontWithName:@"pingfang sc" size:15];
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [titleLabel sizeToFit];
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+9+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];
     UILabel *versionLabel = [self pingfangLabelWithText:@"V2.2.0"];
     versionLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
-    versionLabel.font = [UIFont fontWithName:@"pingfang sc" size:15];
+    versionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [versionLabel sizeToFit];
     versionLabel.center = CGPointMake(CGRectGetMidX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame)+CGRectGetHeight(versionLabel.frame)*.5);
     [self.view addSubview:versionLabel];
@@ -75,7 +75,7 @@
     UILabel *label = [[UILabel alloc] init];
     label.text =text;
     label.textColor = [UIColor colorWithRed:0x66/255. green:0x66/255. blue:0x66/255. alpha:1];
-    label.font = [UIFont fontWithName:@"pingfang sc" size:12];
+    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     [label sizeToFit];
     return label;
 }

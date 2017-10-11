@@ -1,13 +1,13 @@
 //
 //  WDGRecordFilesViewController.h
-//  WDGVideoDemo
+//  video-demo-ios
 //
-//  Created by han wp on 2017/7/6.
+//  Created by han wp on 2017/10/7.
 //  Copyright © 2017年 wilddog. All rights reserved.
 //
 
-#import "WDGTableViewController.h"
+#import "WDGSettingDetailViewController.h"
 
-@interface WDGRecordFilesViewController : WDGTableViewController
+@interface WDGRecordFilesViewController : WDGSettingDetailViewController
 
 @end

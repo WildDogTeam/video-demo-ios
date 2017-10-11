@@ -46,7 +46,7 @@
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
-    label.font = [UIFont fontWithName:@"pingfang sc" size:12];
+    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     label.textAlignment = NSTextAlignmentRight;
     [label sizeToFit];
     [self addSubview:label];

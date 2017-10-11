@@ -35,7 +35,7 @@
     UILabel *emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView.frame)+30, bgView.frame.size.width, 20)];
     emptyLabel.text =title;
     emptyLabel.textAlignment = NSTextAlignmentCenter;
-    emptyLabel.font = [UIFont fontWithName:@"pingfang SC" size:15];
+    emptyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     emptyLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1.];
     [bgView addSubview:emptyLabel];
     self.tableView.tableHeaderView =bgView;

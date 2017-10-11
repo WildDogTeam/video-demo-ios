@@ -10,12 +10,14 @@
 #import <WilddogVideoBase/WDGBeautyVideoView.h>
 #import <WilddogVideoBase/WDGLocalStream.h>
 #import <WilddogVideo/WDGRemoteStream.h>
+
+#define SwitchViewBasicFrame CGRectMake(3, 33, 109, 166)
+
 @interface WDGVideoViews()
 @property (nonatomic,strong) WDGBeautyVideoView *localView;
 @property (nonatomic,strong) WDGBeautyVideoView *remoteView;
 @property (nonatomic,strong) WDGLocalStream *localStream;
 @property (nonatomic,strong) WDGRemoteStream *remoteStream;
-@property (nonatomic,copy) void(^viewChange)(BOOL isLocalViewPresent);
 @end
 
 @implementation WDGVideoViews
@@ -29,7 +31,6 @@
 {
     if(self = [self init]){
         self.viewChange = viewChange;
-        _showMirror =NO;
     }
     return self;
 }
@@ -37,7 +38,9 @@
 -(instancetype)init
 {
     if(self = [super initWithFrame:[UIScreen mainScreen].bounds]){
+        _showMirror =NO;
         [self createMyView];
+        [self createSwitchView];
     }
     return self;
 }
@@ -48,12 +51,17 @@
     self.remoteView.backgroundColor = [UIColor lightGrayColor];
     self.remoteView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.remoteView];
-    self.localView = [WDGBeautyVideoView new];
+    self.localView = [[WDGBeautyVideoView alloc] init];
     self.localView.backgroundColor = [UIColor grayColor];
     self.localView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.localView];
+    
+}
+
+-(void)createSwitchView
+{
     UIButton *switchView = [UIButton buttonWithType:UIButtonTypeCustom];
-    switchView.frame =CGRectMake(3, 33, 109, 166);
+    switchView.frame =SwitchViewBasicFrame;
     [switchView addTarget:self action:@selector(switchMyViews) forControlEvents:UIControlEventTouchUpInside];
     _switchView =switchView;
     [self addSubview:switchView];
@@ -72,14 +80,18 @@
         bigView.frame = _switchView.frame;
         [self bringSubviewToFront:bigView];
         [self bringSubviewToFront:_switchView];
-        if(finished){
-            _animating =NO;
+        _animating =NO;
+        if(_viewChange)
             _viewChange([self isPresentViewLocalView]);
-        }
     }];
 }
 
--(void)rendarViewWithLocalStream:(WDGVideoLocalStream *)localStream remoteStream:(id)remoteStream
+-(void)rendarViewWithRemoteStream:(WDGRemoteStream *)remoteStream
+{
+    [self rendarViewWithLocalStream:self.localStream remoteStream:remoteStream];
+}
+
+-(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream
 {
     if(self.localStream!=localStream){
 //        [self.localStream detach:self.localView];
@@ -120,6 +132,7 @@
 
 -(BOOL)isPresentViewLocalView
 {
+    return _remoteView.frame.size.width<_localView.frame.size.width;
     return !CGRectEqualToRect(_switchView.frame, self.localView.frame);
 }
 
@@ -139,4 +152,26 @@
     }
 }
 
+-(void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    CGFloat scaleX = frame.size.width / [UIScreen mainScreen].bounds.size.width;
+    CGFloat scaleY = frame.size.height / [UIScreen mainScreen].bounds.size.height;
+    CGRect rect = CGRectMake(SwitchViewBasicFrame.origin.x*scaleX, SwitchViewBasicFrame.origin.y*scaleY, SwitchViewBasicFrame.size.width*scaleX, SwitchViewBasicFrame.size.height*scaleY);
+    if(![self isPresentViewLocalView]){
+        _remoteView.frame = self.bounds;
+        _localView.frame = rect;
+    }else{
+        _localView.frame = self.bounds;
+        _remoteView.frame = rect;
+    }
+    _switchView.frame = rect;
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    WDGVideoViews *videoview = [[WDGVideoViews alloc] init];
+    [videoview rendarViewWithLocalStream:self.localStream remoteStream:self.remoteStream];
+    return videoview;
+}
 @end

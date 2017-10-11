@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger,WDGVideoControlViewMode){
 @property (nonatomic,weak) id<WDGVideoControl> controlDelegate;
 @property (nonatomic,copy) NSString *oppoSiteName;
 @property (nonatomic,assign) WDGVideoControlViewMode mode;
+-(void)changeAudioSpeakerState:(BOOL)isSpeakerState;
 -(void)showInView:(UIView *)view animate:(BOOL)animate;
 -(void)dismiss;
 -(NSUInteger)showTime;
