@@ -111,6 +111,7 @@
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizer:)];
     [self.gestureView addGestureRecognizer:panGesture];
     [self.contentView addSubview:self.gestureView];
+    
 }
 
 -(void)returnVideoController
