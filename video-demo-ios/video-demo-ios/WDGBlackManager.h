@@ -12,7 +12,7 @@ extern NSString *const WDGBlackListAddUserNotification;
 extern NSString *const WDGBlackListRemoveUserNotification;
 
 @interface WDGBlackManager : NSObject
-+(void)addBlack:(WDGVideoUserItem *)userItem;
++(BOOL)addBlack:(WDGVideoUserItem *)userItem;
 +(NSArray<WDGVideoUserItem *> *)blackList;
 +(void)deleteBlack:(WDGVideoUserItem *)userItem;
 @end

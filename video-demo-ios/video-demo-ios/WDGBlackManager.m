@@ -16,12 +16,27 @@ NSString *const WDGBlackListRemoveUserNotification =@"com.wilddog.WDGBlackListRe
 @implementation WDGBlackManager
 static NSMutableArray<WDGVideoUserItem *> *_blackList;
 
-+(void)addBlack:(WDGVideoUserItem *)userItem
++(BOOL)addBlack:(WDGVideoUserItem *)userItem
 {
     [self initBlackList];
+    if([self checkIncludeBlackItem:userItem]){
+        return NO;
+    }
     [_blackList addObject:userItem];
     [self writeToFile];
     [[NSNotificationCenter defaultCenter] postNotificationName:WDGBlackListAddUserNotification object:userItem];
+    return YES;
+}
+
++(BOOL)checkIncludeBlackItem:(WDGVideoUserItem *)blackItem
+{
+    if(!_blackList.count) return NO;
+    for (WDGVideoUserItem *item in _blackList) {
+        if([item.uid isEqualToString:blackItem.uid]){
+            return YES;
+        }
+    }
+    return NO;
 }
 
 +(NSArray<WDGVideoUserItem *> *)blackList

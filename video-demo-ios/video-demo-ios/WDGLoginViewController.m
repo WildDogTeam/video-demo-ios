@@ -35,7 +35,7 @@
     imageView.center = CGPointMake(centerX, 200+CGRectGetHeight(imageView.frame)*.5);
     [self.view addSubview:imageView];
     
-    UILabel *titleLabel = [self pingfangLabelWithText:@"野狗通信云" size:24];
+    UILabel *titleLabel = [self pingfangLabelWithText:@"野狗视频通话" size:24];
     titleLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+22+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];

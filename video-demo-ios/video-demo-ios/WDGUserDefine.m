@@ -28,8 +28,8 @@
 #ifndef WDGInternalUserDefine_h
 //required
 //野狗开发平台注册
-NSString const *WDGSyncId = @"";
-NSString const *WDGVideoId =@"";
+NSString const *WDGSyncId = @"wd1621490197hjoglv";
+NSString const *WDGVideoId =@"wd4449761657cslfcf";
 
 /**
     optional

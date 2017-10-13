@@ -14,6 +14,7 @@
 #import "WDGImageTool.h"
 #import "WDGBlackManager.h"
 #import "WDGVideoControllerManager.h"
+#import "UIView+MBProgressHud.h"
 //@interface WDGBasicCell :UITableViewCell
 //@property (nonatomic,copy) NSString *title;
 //@property (nonatomic,strong) UIImage *headImg;
@@ -171,7 +172,15 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        [WDGBlackManager addBlack:self.userItem];
+        if([WDGBlackManager addBlack:self.userItem]){
+            [self.view showHUDAnimate:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.view hideHUDAnimate:NO];
+                [self.view showHUDWithMessage:@"已将对方移入黑名单" hideAfter:1 animate:YES];
+            });
+        }else{
+            [self.view showHUDWithMessage:@"对方已在黑名单中,无需重复操作" hideAfter:1 animate:YES];
+        }
     }
 }
 

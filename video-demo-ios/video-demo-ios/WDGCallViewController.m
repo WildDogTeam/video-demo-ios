@@ -33,6 +33,7 @@
     self.callButton.clipsToBounds =YES;
     [self.callButton addTarget:self action:@selector(makeCall) forControlEvents:UIControlEventTouchUpInside];
 }
+
 - (IBAction)dismiss {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

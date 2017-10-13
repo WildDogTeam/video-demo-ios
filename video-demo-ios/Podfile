@@ -14,7 +14,7 @@ target 'video-demo-ios' do
   pod 'PGSkinPrettifyEngine','0.0.1'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'GPUImage',:git=>'https://github.com/BradLarson/GPUImage.git'
+  pod 'GPUImage',:git=>’git://github.com/BradLarson/GPUImage.git'
   pod 'SDWebImage'
   
   pod 'WechatOpenSDK'

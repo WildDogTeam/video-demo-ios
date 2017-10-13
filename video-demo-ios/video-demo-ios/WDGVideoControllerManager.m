@@ -21,7 +21,7 @@
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoCallViewController.h"
 #import "WDGVideoReceiveViewController.h"
-@interface WDGVideoControllerManager()<UIGestureRecognizerDelegate,UIAlertViewDelegate>
+@interface WDGVideoControllerManager()<UIGestureRecognizerDelegate,UIAlertViewDelegate,WDGLocalStreamDelegate>
 @property (nonatomic,strong) UIView *contentView;
 @property (nonatomic,strong) UIView *gestureView;
 @property (nonatomic) CGPoint center;
@@ -165,6 +165,7 @@
         localStreamOptions.dimension = [WDGVideoConfig videoConstraintsNum];
         // 创建本地媒体流
         _localStream = [WDGLocalStream localStreamWithOptions:localStreamOptions];
+        _localStream.delegate =self;
         [self setupBeauty];
     }
     return _localStream;

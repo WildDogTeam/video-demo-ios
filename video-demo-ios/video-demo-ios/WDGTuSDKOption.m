@@ -48,6 +48,7 @@
 
 -(void)onTuSDKFilterManagerInited:(TuSDKFilterManager *)manager
 {
+    NSLog(@"1111111");
 #if __has_include(<TuSDKVideoLite/TuSDKFilterProcessor.h>)
     _processor = [[TuSDKFilterProcessor alloc] initWithFormatType:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange adjustByVideoOrientation:YES];
     _processor.outputPixelFormatType = lsqFormatTypeYUV420F;
