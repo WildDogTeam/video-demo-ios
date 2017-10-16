@@ -9,7 +9,7 @@
 #import "WDGVideoViews.h"
 #import <WilddogVideoBase/WDGBeautyVideoView.h>
 #import <WilddogVideoBase/WDGLocalStream.h>
-#import <WilddogVideo/WDGRemoteStream.h>
+#import <WilddogVideoCall/WDGRemoteStream.h>
 
 #define SwitchViewBasicFrame CGRectMake(3, 33, 109, 166)
 

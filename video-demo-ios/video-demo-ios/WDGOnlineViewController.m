@@ -17,12 +17,12 @@
 #import "WDGSortedArray.h"
 #import "WDGOnlineCell.h"
 #import "WDGVideoUserItem.h"
-#import <WilddogVideo/WDGConversation.h>
+#import <WilddogVideoCall/WDGConversation.h>
 #import "WDGLoginManager.h"
 //#import <AdSupport/AdSupport.h>
 #import "WDGUserViewController.h"
 #import "WDGBlackManager.h"
-@interface WDGOnlineViewController ()<WDGVideoDelegate>
+@interface WDGOnlineViewController ()<WDGVideoCallDelegate>
 @end
 
 @implementation WDGOnlineViewController
@@ -211,7 +211,7 @@
  * @param conversation 代表收到的视频通话的 `WDGConversation` 实例。
  * @param data 随通话邀请传递的 `NSString` 类型的数据。
  */
-- (void)wilddogVideo:(WDGVideo *)video didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString * _Nullable)data{
+- (void)wilddogVideoCall:(WDGVideoCall *)videoCall didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString *)data{
     [WDGVideoUserItem requestForUid:conversation.remoteUid complete:^(WDGVideoUserItem *item) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self getTopController] presentViewController:[WDGVideoReceiveViewController receiveCallWithConversation:conversation userItem:item] animated:YES completion:nil];
@@ -232,7 +232,7 @@
  * @param video 调用该方法的 `WDGVideo` 实例。
  * @param error 代表错误信息。
  */
-- (void)wilddogVideo:(WDGVideo *)video didFailWithTokenError:(NSError * _Nullable)error{
+- (void)wilddogVideoCall:(WDGVideoCall *)videoCall didFailWithTokenError:(NSError *)error{
     [WDGLoginManager logOut];
 //    NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
 }

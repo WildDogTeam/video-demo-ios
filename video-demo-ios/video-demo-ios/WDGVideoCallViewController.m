@@ -10,7 +10,7 @@
 #import "WilddogSDKManager.h"
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoControlView.h"
-#import <WilddogVideo/WDGConversation.h>
+#import <WilddogVideoCall/WDGConversation.h>
 #import "WDGSignalPush.h"
 @interface WDGVideoCallViewController ()
 @property (nonatomic, strong) UILabel *callingLabel;

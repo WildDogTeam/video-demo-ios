@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "WDGVideoViews.h"
 #import "WDGVideoViewController.h"
-#import <WilddogVideo/WilddogVideo.h>
+#import <WilddogVideoCall/WilddogVideoCall.h>
 #import "WDGVideoConfig.h"
 #import "WDGBeautyManager.h"
 #import "WDGVideoControlView.h"

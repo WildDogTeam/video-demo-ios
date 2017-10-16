@@ -12,7 +12,7 @@
 #import "WDGInfoView.h"
 #import <WilddogSync/WilddogSync.h>
 #import <WilddogAuth/WilddogAuth.h>
-#import <WilddogVideo/WilddogVideo.h>
+#import <WilddogVideoCall/WilddogVideoCall.h>
 #import <WilddogCore/WDGApp.h>
 #import "UIView+MBProgressHud.h"
 #import <AVFoundation/AVFoundation.h>
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     WDGCaptureDevicePositionBack
 };
 
-@interface WDGVideoViewController ()<UIAlertViewDelegate,WDGLocalStreamDelegate,WDGConversationDelegate,WDGVideoDelegate,WDGConversationStatsDelegate,WDGVideoControl,WDGFunctionViewDelegate>
+@interface WDGVideoViewController ()<UIAlertViewDelegate,WDGLocalStreamDelegate,WDGConversationDelegate,WDGConversationStatsDelegate,WDGVideoControl,WDGFunctionViewDelegate>
 @property (nonatomic, assign) VideoType myType;
 
 @property (nonatomic, strong) WDGUserInfoView *userInfoView;

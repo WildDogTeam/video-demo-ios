@@ -12,7 +12,7 @@
 @class WDGVideoControlView;
 @class WDGFunctionView;
 #import "WDGVideoUserItem.h"
-#import <WilddogVideo/WDGConversation.h>
+#import <WilddogVideoCall/WDGConversation.h>
 @interface WDGVideoControllerManager : NSObject<WDGConversationDelegate>
 +(instancetype)sharedManager;
 @property (nonatomic, strong) WDGVideoUserItem *oppositeItem;

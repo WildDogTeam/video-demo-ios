@@ -14,7 +14,7 @@
 
 @interface WilddogSDKManager()
 @property (nonatomic, strong, readwrite) WDGSyncReference *wilddogSyncRootReference;
-@property (nonatomic, strong, readwrite) WDGVideo *wilddogVideo;
+@property (nonatomic, strong, readwrite) WDGVideoCall *wilddogVideo;
 @property (nonatomic, strong, readwrite) WDGAuth *wilddogVideoAuth;
 @property (nonatomic, strong) WDGSync *wilddogSync;
 @end
@@ -37,10 +37,10 @@
     [[WDGVideoInitializer sharedInstance] configureWithVideoAppId:videoId token:token?:@""];
 }
 
--(WDGVideo *)wilddogVideo
+-(WDGVideoCall *)wilddogVideo
 {
     if(!_wilddogVideo){
-        _wilddogVideo = [WDGVideo sharedVideo];
+        _wilddogVideo = [WDGVideoCall sharedInstance];
         
     }
     return _wilddogVideo;

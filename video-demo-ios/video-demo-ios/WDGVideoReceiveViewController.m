@@ -8,7 +8,7 @@
 
 #import "WDGVideoReceiveViewController.h"
 #import "WDGReciveCallViewController.h"
-#import <WilddogVideo/WilddogVideo.h>
+#import <WilddogVideoCall/WilddogVideoCall.h>
 #import "WilddogSDKManager.h"
 @interface WDGVideoReceiveViewController ()
 @property (nonatomic, strong) WDGReciveCallViewController *receiveController;

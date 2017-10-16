@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WDGSoundPlayer.h"
 #import "WDGVideoUserItem.h"
-#import <WilddogVideo/WDGConversation.h>
+#import <WilddogVideoCall/WDGConversation.h>
 @class WDGLocalStream;
 @class WDGConversation;
 @class WDGRemoteStream;
