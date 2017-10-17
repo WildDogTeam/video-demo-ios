@@ -10,6 +10,8 @@
 #import "WDGSelectViewController.h"
 #import "WDGVideoConfig.h"
 #import "WDGLoginManager.h"
+#import "WDGVideoControllerManager.h"
+#import "UIView+MBProgressHud.h"
 @interface WDGSettingViewController ()<UIAlertViewDelegate>
 
 @end
@@ -92,6 +94,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 2){
+        if(![[WDGVideoControllerManager sharedManager] conversationClosed]){
+            [self.view showHUDWithMessage:@"请先结束当前通话再进行操作" hideAfter:1 animate:YES];
+            return;
+        }
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否退出登录" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
         [alertView show];
     }

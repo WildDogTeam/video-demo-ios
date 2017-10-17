@@ -63,6 +63,11 @@
     return _sharedManager;
 }
 
+-(BOOL)conversationClosed
+{
+    return !self.conversation;
+}
+
 -(void)setFrame:(CGRect)frame
 {
     self.contentView.bounds =frame;

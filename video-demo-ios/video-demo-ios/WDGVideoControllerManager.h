@@ -30,5 +30,5 @@
 
 -(void)makeCallToUserItem:(WDGVideoUserItem *)userItem inViewController:(UIViewController *)viewController;
 -(void)receiveCallWithConversation:(WDGConversation *)conversation userItem:(WDGVideoUserItem *)userItem inViewController:(UIViewController *)viewController;
-
+-(BOOL)conversationClosed;
 @end

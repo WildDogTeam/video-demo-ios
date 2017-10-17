@@ -132,7 +132,7 @@
 
 -(BOOL)isPresentViewLocalView
 {
-    return _remoteView.frame.size.width<_localView.frame.size.width;
+    return _remoteView.frame.size.width-_localView.frame.size.width<1;
     return !CGRectEqualToRect(_switchView.frame, self.localView.frame);
 }
 

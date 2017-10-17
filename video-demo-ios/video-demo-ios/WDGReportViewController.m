@@ -10,9 +10,14 @@
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoUserItem.h"
 #import <UIImageView+WebCache.h>
-@interface WDGReportViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+#define maxReportTextNum 200
+#define textForLeftLabelleft(num) [NSString stringWithFormat:@"还可以输入%d个字   ",(num)];
+
+@interface WDGReportViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 @property (nonatomic,strong) WDGVideoUserItem *userItem;
 @property (nonatomic,strong) UITextView *textView;
+@property (nonatomic,strong) UILabel *leftLabel;
 @end
 
 @implementation WDGReportViewController
@@ -92,11 +97,28 @@
         cell.imageView.layer.cornerRadius = 30;
         cell.imageView.layer.masksToBounds =YES;
     }else{
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 160)];
-        _textView =textView;
-        [cell.contentView addSubview:textView];
+        [cell.contentView addSubview:[self reportView]];
     }
     return cell;
+}
+
+-(UIView *)reportView
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 160)];
+    view.backgroundColor =[UIColor whiteColor];
+    CGFloat labelHeight = 30;
+    UILabel *leftlabel = [[UILabel alloc] initWithFrame:CGRectMake(0, view.frame.size.height-labelHeight, view.frame.size.width-10, labelHeight)];
+    leftlabel.textAlignment = NSTextAlignmentRight;
+    leftlabel.textColor = [UIColor lightGrayColor];
+    leftlabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    leftlabel.text = textForLeftLabelleft(maxReportTextNum);
+    _leftLabel =leftlabel;
+    [view addSubview:leftlabel];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height-labelHeight)];
+    _textView =textView;
+    _textView.delegate =self;
+    [view addSubview:_textView];
+    return view;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -125,6 +147,14 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.text.length >= maxReportTextNum) {
+        textView.text = [textView.text substringToIndex:maxReportTextNum];
+    }
+    _leftLabel.text = textForLeftLabelleft(maxReportTextNum-(int)textView.text.length);
 }
 
 @end

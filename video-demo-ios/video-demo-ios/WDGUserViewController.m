@@ -15,6 +15,7 @@
 #import "WDGBlackManager.h"
 #import "WDGVideoControllerManager.h"
 #import "UIView+MBProgressHud.h"
+#import "WDGConversationsHistory.h"
 //@interface WDGBasicCell :UITableViewCell
 //@property (nonatomic,copy) NSString *title;
 //@property (nonatomic,strong) UIImage *headImg;
@@ -41,7 +42,7 @@
 
 
 
-@interface WDGUserViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
+@interface WDGUserViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) WDGVideoUserItem *userItem;
 @end
 
@@ -60,6 +61,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     self.title = @"详细资料";
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -174,6 +177,7 @@
     if(buttonIndex == 0){
         if([WDGBlackManager addBlack:self.userItem]){
             [self.view showHUDAnimate:YES];
+            [WDGConversationsHistory removeHistoryItemForUid:self.userItem.uid];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.view hideHUDAnimate:NO];
                 [self.view showHUDWithMessage:@"已将对方移入黑名单" hideAfter:1 animate:YES];
@@ -182,6 +186,16 @@
             [self.view showHUDWithMessage:@"对方已在黑名单中,无需重复操作" hideAfter:1 animate:YES];
         }
     }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return self.navigationController.childViewControllers.count > 1;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return self.navigationController.viewControllers.count > 1;
 }
 
 @end

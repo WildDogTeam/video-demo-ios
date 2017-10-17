@@ -17,4 +17,5 @@
 +(void)addHistoryItem:(WDGConversationItem *)item;
 +(NSUInteger)count;
 +(WDGConversationItem *)itemAtIndex:(NSUInteger)index;
++(void)removeHistoryItemForUid:(NSString *)uid;
 @end

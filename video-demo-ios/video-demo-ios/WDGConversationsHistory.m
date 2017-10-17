@@ -40,6 +40,18 @@ static NSArray *conversationsHistory = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(void)removeHistoryItemForUid:(NSString *)uid
+{
+    NSArray *history =[self getConversationsHistory];
+    NSMutableArray *uids = [NSMutableArray arrayWithArray:history[0]];
+    [uids removeObject:uid];
+    NSMutableDictionary *items = [NSMutableDictionary dictionaryWithDictionary:history[1]];
+    [items removeObjectForKey:uid];
+    conversationsHistory = @[uids,items];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:conversationsHistory] forKey:WDGConversationsHistoryKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 +(NSArray *)getConversationsHistory
 {
     if(!conversationsHistory){
