@@ -13,9 +13,6 @@
 #import <WDGVideoCallKit/WDGVideoCallKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#define WDGAPPSyncId     @""
-#define WDGAPPVideoId    @""
-
 @interface ViewController ()
 @property (nonatomic,copy) NSString *token;
 @property (nonatomic,copy) NSString *uid;
@@ -59,10 +56,25 @@
 
 -(void)setupOnlineUserMonitoring
 {
-    [[[[[WDGSync sync] reference] child:@"users"] child:self.uid] onDisconnectRemoveValueWithCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
-        assert(error == nil);
+    __weak typeof(self) WS =self;
+    [[[[[WDGSync sync] reference] root] child:@".info/connected"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+        __strong typeof(WS) self =WS;
+        if ([snapshot.value boolValue]) {
+            if(self.uid){
+                WDGSyncReference *ref = [[[[WDGSync sync] reference] child:@"users"] child:self.uid];
+                [ref setValue:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+                    assert(error==nil);
+                    [ref onDisconnectRemoveValueWithCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+                        assert(error == nil);
+                    }];
+                }];
+            }
+        }
     }];
-    [[[[[WDGSync sync] reference] child:@"users"] child:self.uid] setValue:@1];
+
+    [[[[[WDGSync sync] reference] child:@"users"] child:self.uid] setValue:@1 withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
+        
+    }];
     __weak __typeof__(self) weakSelf = self;
     [[[[WDGSync sync] reference] child:@"users"] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
         __strong __typeof__(self) strongSelf = weakSelf;
