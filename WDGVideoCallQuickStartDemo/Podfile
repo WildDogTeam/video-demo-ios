@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, ‘8.0’
+workspace ‘WDGVideoCallQuickStart.xcworkspace'
+source 'https://github.com/WildDogTeam/wilddog-ios-repo.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+abstract_target 'RoomDemo' do
+
+  pod 'WilddogSync'
+  pod 'WilddogVideoCall'
+  target 'WDGVideoCallQuickStart’ do
+      project 'WDGVideoCallQuickStart/WDGVideoCallQuickStart.xcodeproj'
+      pod 'SDWebImage'
+  end
+  target 'WDGVideoCallKit’ do
+      project 'WDGVideoCallKit/WDGVideoCallKit.xcodeproj'
+  end
+
+  
+end
+

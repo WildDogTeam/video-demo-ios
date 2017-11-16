@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		518F9F3ED5EA5743D600F4EC /* libPods-RoomDemo-WDGVideoCallQuickStart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CE5475D2FC3F87D1FE9E9F /* libPods-RoomDemo-WDGVideoCallQuickStart.a */; };
+		C814B9B11FBAE91800F50552 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C814B9B01FBAE91800F50552 /* main.m */; };
+		C814B9B41FBAE91800F50552 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C814B9B31FBAE91800F50552 /* AppDelegate.m */; };
+		C814B9BA1FBAE91800F50552 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C814B9B81FBAE91800F50552 /* Main.storyboard */; };
+		C814B9BC1FBAE91800F50552 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C814B9BB1FBAE91800F50552 /* Assets.xcassets */; };
+		C814B9BF1FBAE91800F50552 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C814B9BD1FBAE91800F50552 /* LaunchScreen.storyboard */; };
+		C814BA001FBAEB6B00F50552 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C814B9FF1FBAEB6B00F50552 /* ViewController.m */; };
+		C814BA061FBAF05900F50552 /* WDGVideoCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C814BA051FBAF05900F50552 /* WDGVideoCallKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		407AC40B6A9C5C94100515DC /* Pods-RoomDemo-WDGVideoCallQuickStart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomDemo-WDGVideoCallQuickStart.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RoomDemo-WDGVideoCallQuickStart/Pods-RoomDemo-WDGVideoCallQuickStart.release.xcconfig"; sourceTree = "<group>"; };
+		41B310A82DCF43AB97F9C357 /* Pods-RoomDemo-WDGVideoCallQuickStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomDemo-WDGVideoCallQuickStart.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RoomDemo-WDGVideoCallQuickStart/Pods-RoomDemo-WDGVideoCallQuickStart.debug.xcconfig"; sourceTree = "<group>"; };
+		74CE5475D2FC3F87D1FE9E9F /* libPods-RoomDemo-WDGVideoCallQuickStart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RoomDemo-WDGVideoCallQuickStart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C814B9AC1FBAE91800F50552 /* WDGVideoCallQuickStart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDGVideoCallQuickStart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C814B9B01FBAE91800F50552 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C814B9B21FBAE91800F50552 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C814B9B31FBAE91800F50552 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C814B9B51FBAE91800F50552 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C814B9B91FBAE91800F50552 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C814B9BB1FBAE91800F50552 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C814B9BE1FBAE91800F50552 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C814B9C01FBAE91800F50552 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C814B9FF1FBAEB6B00F50552 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C814BA031FBAEFFE00F50552 /* libPods-RoomDemo-WDGVideoCallKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-RoomDemo-WDGVideoCallKit.a"; path = "../../../Library/Developer/Xcode/DerivedData/WDGVideoCallQuickStart-ahuvtjksvhahpuemyyggpagtppht/Build/Products/Debug-iphoneos/libPods-RoomDemo-WDGVideoCallKit.a"; sourceTree = "<group>"; };
+		C814BA051FBAF05900F50552 /* WDGVideoCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WDGVideoCallKit.framework; path = "../WDGVideoCallKit/build/Debug-iphoneos/WDGVideoCallKit.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C814B9A91FBAE91800F50552 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C814BA061FBAF05900F50552 /* WDGVideoCallKit.framework in Frameworks */,
+				518F9F3ED5EA5743D600F4EC /* libPods-RoomDemo-WDGVideoCallQuickStart.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B3AEC4C2C1FE8EE94AC3A98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41B310A82DCF43AB97F9C357 /* Pods-RoomDemo-WDGVideoCallQuickStart.debug.xcconfig */,
+				407AC40B6A9C5C94100515DC /* Pods-RoomDemo-WDGVideoCallQuickStart.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3F4946D490B0547D79E104A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C814BA051FBAF05900F50552 /* WDGVideoCallKit.framework */,
+				C814BA031FBAEFFE00F50552 /* libPods-RoomDemo-WDGVideoCallKit.a */,
+				74CE5475D2FC3F87D1FE9E9F /* libPods-RoomDemo-WDGVideoCallQuickStart.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C814B9A31FBAE91800F50552 = {
+			isa = PBXGroup;
+			children = (
+				C814B9AE1FBAE91800F50552 /* WDGVideoCallQuickStart */,
+				C814B9AD1FBAE91800F50552 /* Products */,
+				0B3AEC4C2C1FE8EE94AC3A98 /* Pods */,
+				3F4946D490B0547D79E104A2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C814B9AD1FBAE91800F50552 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C814B9AC1FBAE91800F50552 /* WDGVideoCallQuickStart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C814B9AE1FBAE91800F50552 /* WDGVideoCallQuickStart */ = {
+			isa = PBXGroup;
+			children = (
+				C814B9B21FBAE91800F50552 /* AppDelegate.h */,
+				C814B9B31FBAE91800F50552 /* AppDelegate.m */,
+				C814B9B51FBAE91800F50552 /* ViewController.h */,
+				C814B9FF1FBAEB6B00F50552 /* ViewController.m */,
+				C814B9B81FBAE91800F50552 /* Main.storyboard */,
+				C814B9BB1FBAE91800F50552 /* Assets.xcassets */,
+				C814B9BD1FBAE91800F50552 /* LaunchScreen.storyboard */,
+				C814B9C01FBAE91800F50552 /* Info.plist */,
+				C814B9AF1FBAE91800F50552 /* Supporting Files */,
+			);
+			path = WDGVideoCallQuickStart;
+			sourceTree = "<group>";
+		};
+		C814B9AF1FBAE91800F50552 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C814B9B01FBAE91800F50552 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C814B9AB1FBAE91800F50552 /* WDGVideoCallQuickStart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C814B9C31FBAE91800F50552 /* Build configuration list for PBXNativeTarget "WDGVideoCallQuickStart" */;
+			buildPhases = (
+				DB481155C9F91F22A682095A /* [CP] Check Pods Manifest.lock */,
+				C814B9A81FBAE91800F50552 /* Sources */,
+				C814B9A91FBAE91800F50552 /* Frameworks */,
+				C814B9AA1FBAE91800F50552 /* Resources */,
+				ED598D2C59AE5EB2A4483F56 /* [CP] Embed Pods Frameworks */,
+				A0CC71B3F1F07B95F986A26A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WDGVideoCallQuickStart;
+			productName = WDGVideoCallQuickStart;
+			productReference = C814B9AC1FBAE91800F50552 /* WDGVideoCallQuickStart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C814B9A41FBAE91800F50552 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = wilddog;
+				TargetAttributes = {
+					C814B9AB1FBAE91800F50552 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 5RERN32D73;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C814B9A71FBAE91800F50552 /* Build configuration list for PBXProject "WDGVideoCallQuickStart" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C814B9A31FBAE91800F50552;
+			productRefGroup = C814B9AD1FBAE91800F50552 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C814B9AB1FBAE91800F50552 /* WDGVideoCallQuickStart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C814B9AA1FBAE91800F50552 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C814B9BF1FBAE91800F50552 /* LaunchScreen.storyboard in Resources */,
+				C814B9BC1FBAE91800F50552 /* Assets.xcassets in Resources */,
+				C814B9BA1FBAE91800F50552 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0CC71B3F1F07B95F986A26A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-RoomDemo-WDGVideoCallQuickStart/Pods-RoomDemo-WDGVideoCallQuickStart-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB481155C9F91F22A682095A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED598D2C59AE5EB2A4483F56 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-RoomDemo-WDGVideoCallQuickStart/Pods-RoomDemo-WDGVideoCallQuickStart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C814B9A81FBAE91800F50552 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C814BA001FBAEB6B00F50552 /* ViewController.m in Sources */,
+				C814B9B41FBAE91800F50552 /* AppDelegate.m in Sources */,
+				C814B9B11FBAE91800F50552 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C814B9B81FBAE91800F50552 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C814B9B91FBAE91800F50552 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C814B9BD1FBAE91800F50552 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C814B9BE1FBAE91800F50552 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C814B9C11FBAE91800F50552 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C814B9C21FBAE91800F50552 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C814B9C41FBAE91800F50552 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41B310A82DCF43AB97F9C357 /* Pods-RoomDemo-WDGVideoCallQuickStart.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5RERN32D73;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = WDGVideoCallQuickStart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.WDGVideoCallQuickStart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C814B9C51FBAE91800F50552 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 407AC40B6A9C5C94100515DC /* Pods-RoomDemo-WDGVideoCallQuickStart.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5RERN32D73;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = WDGVideoCallQuickStart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wilddog.WDGVideoCallQuickStart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C814B9A71FBAE91800F50552 /* Build configuration list for PBXProject "WDGVideoCallQuickStart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C814B9C11FBAE91800F50552 /* Debug */,
+				C814B9C21FBAE91800F50552 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C814B9C31FBAE91800F50552 /* Build configuration list for PBXNativeTarget "WDGVideoCallQuickStart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C814B9C41FBAE91800F50552 /* Debug */,
+				C814B9C51FBAE91800F50552 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C814B9A41FBAE91800F50552 /* Project object */;
+}
