@@ -1,6 +1,5 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '9.0'
-source 'git@gitlab.wilddog.cn:ios/Specs.git'
 source 'https://github.com/WildDogTeam/wilddog-ios-repo.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -12,9 +11,9 @@ target 'video-demo-ios' do
   pod 'WilddogBoard'
   pod 'Qiniu' , '7.1.7'
   #  wilddog sdk
-  pod 'WilddogVideoCall’,:path => '../../WilddogVideo-V2/'
+  pod 'WilddogVideoCall’
   pod 'WilddogSync'
-  pod 'WilddogVideoRoom',:path => '../../WilddogRoom/'
+  pod 'WilddogVideoRoom'
   #  美颜
   pod 'TUSDK','0.0.1'
   pod 'GPUImage',:git=>'https://github.com/BradLarson/GPUImage.git'
