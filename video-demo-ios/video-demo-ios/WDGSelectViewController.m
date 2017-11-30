@@ -32,7 +32,7 @@
 {
     UIActionSheet *actionSheet = nil;
     if(_style == SelectStyleDefinition){
-        actionSheet = [[UIActionSheet alloc] initWithTitle:@"切换清晰度" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"360p",@"480p",@"720p",@"1080p", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"切换清晰度" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"120p",@"240p",@"360p",@"480p",@"720p",@"1080p", nil];
     }
     if(_style == SelectStyleBeauty){
         actionSheet = [[UIActionSheet alloc] initWithTitle:@"切换美颜方案" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"Camera360",@"TuSDK",@"不使用美颜", nil];

@@ -19,6 +19,9 @@
 #define cameraEnableItemViewTag 102
 #define cameraTurnItemViewTag 103
 
+@interface WDGVideoControlView ()
+@property (nonatomic,copy) UIView *inviteView;
+@end
 
 @implementation WDGVideoControlView
 {
@@ -49,11 +52,11 @@
 
 -(void)createTimer
 {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+   // dispatch_async(dispatch_get_global_queue(0, 0), ^{
         _calculateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_calculateTimer forMode:NSRunLoopCommonModes];
-        [[NSRunLoop currentRunLoop] run];
-    });
+     //   [[NSRunLoop currentRunLoop] addTimer:_calculateTimer forMode:NSRunLoopCommonModes];
+       // [[NSRunLoop currentRunLoop] run];
+//    });
 }
 
 -(void)calculate
@@ -114,7 +117,7 @@
     CGFloat itemHeight = 60;
     CGFloat gap = (controlViewWidth - itemWidth*4)/5;
     CGFloat startCenterX = itemWidth*.5+gap;
-    CGFloat itemCenterY =controlViewHeight -180+itemHeight*.5;
+    CGFloat itemCenterY =controlViewHeight -ControlItemsViewHeight+itemHeight*.5;
     
     UIView *micView = [self itemViewWithTitle:@"麦克风" imageName:@"mike-on" selectImageName:@"mike-off" selector:@selector(micButtonClick:)];
     micView.center = CGPointMake(startCenterX, itemCenterY);
@@ -143,6 +146,10 @@
     hangupLabel.center = CGPointMake(CGRectGetMidX(hangupButton.frame), CGRectGetMaxY(hangupButton.frame)+10+CGRectGetHeight(hangupLabel.frame)*.5);
     [self addSubview:hangupLabel];
     
+    _inviteView = [self itemViewWithTitle:@"邀请他人" imageName:@"邀请他人" selectImageName:nil selector:@selector(inviteOthers)];
+    _inviteView.center =CGPointMake(CGRectGetMidX(cameraTurnView.frame) , (CGRectGetMinY(hangupButton.frame)+CGRectGetMaxY(hangupLabel.frame))*.5);
+    _inviteView.hidden =YES;
+    [self addSubview:_inviteView];
 //    渐变背景
     UIView *view = [[UIView alloc] init];
     view.userInteractionEnabled = NO;
@@ -175,7 +182,8 @@
     UIButton *itemBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     itemBtn.tag = itemButtonTag;
     [itemBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [itemBtn setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
+    if(selectImageName.length)
+        [itemBtn setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
     [itemBtn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     itemBtn.frame = CGRectMake(0, 0, 40, 40);
     itemBtn.center = CGPointMake(30, 20);
@@ -244,6 +252,12 @@
 -(void)setMode:(WDGVideoControlViewMode)mode
 {
     _mode = mode;
+    if(_mode == WDGVideoControlViewModeRoom){
+        _inviteView.hidden =NO;
+        _nameLabel.hidden = YES;
+        return;
+    }
+    _inviteView.hidden =YES;
     if(_mode == WDGVideoControlViewMode2){
         _nameLabel.hidden = NO;
         [self startTimer];
@@ -268,5 +282,12 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+}
+
+-(void)inviteOthers
+{
+    if([self.controlDelegate respondsToSelector:@selector(videoControlViewDidInviteOthers:)]){
+        [self.controlDelegate videoControlViewDidInviteOthers:self];
+    }
 }
 @end

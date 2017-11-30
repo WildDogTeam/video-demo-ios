@@ -121,7 +121,11 @@ static WDGVideoManager *_videoManager =nil;
 - (void)conversation:(WDGConversation *)conversation didFailedWithError:(NSError *)error
 {
     NSLog(@"WDGConversation Error:%@",error);
-    [self.videoConversation videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonError];
+    if(error.code == WDGVideoErrorConversationTimeOut){
+        [self.videoConversation videoStateChange:WDGVideoConversationStateFinishCalling finishReason:_videoConversation.isConnecting?WDGVideoFinishReasonOutOfTimeForReConnection:WDGVideoFinishReasonOutOfTimeForAnswer];
+    }else{
+        [self.videoConversation videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonError];
+    }
 }
 
 - (void)conversationDidClosed:(WDGConversation *)conversation

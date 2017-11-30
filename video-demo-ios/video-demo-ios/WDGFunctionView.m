@@ -34,7 +34,7 @@
     [infoButton setImage:[UIImage imageNamed:@"说明"] forState:UIControlStateNormal];
     [infoButton addTarget:self action:@selector(showInfoView) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:infoButton];
-    infoButton.hidden =YES;
+    //infoButton.hidden =YES;
     _infoButton =infoButton;
     
     UIButton *recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -44,7 +44,7 @@
     [recordButton addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:recordButton];
     _recordButton =recordButton;
-    recordButton.hidden =YES;
+    //recordButton.hidden =YES;
     
     UIButton *smallWinBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     smallWinBtn.frame =CGRectMake(CGRectGetMinX(_infoButton.frame), CGRectGetMaxY(recordButton.frame)+21, 33, 33);
@@ -52,7 +52,7 @@
     [smallWinBtn addTarget:self action:@selector(smallWinBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:smallWinBtn];
     _smallWinBtn =smallWinBtn;
-    smallWinBtn.hidden =YES;
+    //smallWinBtn.hidden =YES;
 }
 
 -(WDGInfoView *)infoView

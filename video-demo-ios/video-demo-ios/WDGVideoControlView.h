@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 @class WDGVideoControlView;
+
+#define ControlItemsViewHeight 180
+
 typedef NS_ENUM(NSUInteger,WDGVideoControlViewMode){
     WDGVideoControlViewMode1, //没有上方nameLabel，timeLabel
-    WDGVideoControlViewMode2
+    WDGVideoControlViewMode2,
+    WDGVideoControlViewModeRoom //room竖屏模式
 };
 
 @protocol WDGVideoControl <NSObject>
@@ -20,7 +24,8 @@ typedef NS_ENUM(NSUInteger,WDGVideoControlViewMode){
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidTurned:(BOOL)isFront;
 -(void)videoControlView:(WDGVideoControlView *)controlView speakerDidOpen:(BOOL)micphoneOpened;
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidOpen:(BOOL)cameraOpen;
-
+@optional
+-(void)videoControlViewDidInviteOthers:(WDGVideoControlView *)controlView;
 @end
 @interface WDGVideoControlView : UIView
 @property (nonatomic,weak) id<WDGVideoControl> controlDelegate;

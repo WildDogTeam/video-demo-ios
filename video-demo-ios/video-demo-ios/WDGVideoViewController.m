@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 @interface WDGVideoViewController ()<UIAlertViewDelegate,WDGLocalStreamDelegate,WDGConversationDelegate,WDGConversationStatsDelegate,WDGVideoControl,WDGFunctionViewDelegate>
 @property (nonatomic, assign) VideoType myType;
-
+@property (nonatomic, strong) WDGFunctionView *functionView;
 @property (nonatomic, strong) WDGUserInfoView *userInfoView;
 @property (nonatomic, assign) WDGCaptureDevicePosition capturePosition;
 @end
@@ -77,7 +77,8 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     functionView.frame = CGRectMake(self.view.frame.size.width-functionView.frame.size.width, 30, functionView.frame.size.width, functionView.frame.size.height);
     [self.view addSubview:functionView];
     functionView.delegate =self;
-
+    _functionView =functionView;
+    
 //    悬浮窗
     if(self.conversation){
         [WDGVideoControllerManager sharedManager].conversationDelegate =self;
@@ -115,9 +116,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 -(WDGLocalStream *)localStream
 {
-    WDGLocalStream *localStream = [WDGVideoControllerManager sharedManager].localStream;
-    if(localStream.delegate==nil) localStream.delegate =self;
-    return localStream;
+    return [WDGVideoControllerManager sharedManager].localStream;
 }
 
 -(void)setConversation:(WDGConversation *)conversation
@@ -166,21 +165,29 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 - (void)closeRoom
 {
-    [WDGSoundPlayer stop];
     if(_recording){
         _shouldClose =YES;
         [self recordEnd];
         return;
     }
+    [[WDGVideoControllerManager sharedManager] closeRoom];
+    [WDGSoundPlayer stop];
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+- (void)closeConversation
+{
     [[WDGVideoControllerManager sharedManager] closeConversation];
+    [self closeRoom];
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [WDGVideoControllerManager sharedManager].controlView.hidden?[[WDGVideoControllerManager sharedManager].controlView showInView:self.view animate:YES]:[[WDGVideoControllerManager sharedManager].controlView dismiss];
-    if([WDGVideoControllerManager sharedManager].functionView.infoView){
+    UIView *infoview =[WDGVideoControllerManager sharedManager].functionView.infoView;
+    if(infoview.superview){
         [[WDGVideoControllerManager sharedManager].functionView hideInfoView];
     }
 }
@@ -205,7 +212,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 -(void)videoControlViewDidHangup:(WDGVideoControlView *)controlView
 {
-    [self closeRoom];
+    [self closeConversation];
 }
 
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidTurned:(BOOL)isFront
@@ -236,7 +243,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self.view showHUDWithMessage:@"你所拨打的用户暂时无法接通，请稍后再拨" hideAfter:1 animate:YES];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self closeRoom];
+        [self closeConversation];
     });
 }
 
@@ -250,6 +257,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     [self.userInfoView removeFromSuperview];
     self.userInfoView = nil;
     [self rendarViewWithLocalStream:self.localStream remoteStream:remoteStream];
+    self.functionView.hidden =NO;
 }
 
 /**
@@ -259,11 +267,11 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
  */
 - (void)conversation:(WDGConversation *)conversation didFailedWithError:(NSError *)error{
     NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
-    [self closeRoom];
+    [self closeConversation];
 }
 
 - (void)conversationDidClosed:(WDGConversation *)conversation{
-    [self closeRoom];
+    [self closeConversation];
 }
 
 

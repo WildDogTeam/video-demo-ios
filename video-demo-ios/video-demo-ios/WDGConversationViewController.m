@@ -38,7 +38,7 @@
 
 -(void)showEmptyView
 {
-    [self showEmptyViewNamed:@"call-history" size:CGSizeMake(150, 150) title:@"暂无好友"];
+    [self showEmptyViewNamed:@"Friends-history" size:CGSizeMake(150, 150) title:@"暂无好友"];
 }
 
 - (void)didReceiveMemoryWarning {

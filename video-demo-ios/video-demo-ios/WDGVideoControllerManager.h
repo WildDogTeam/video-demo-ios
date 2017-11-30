@@ -25,6 +25,7 @@
 @property (nonatomic) CGRect frame;
 -(void)showSmallView:(WDGVideoViewController *)videoVC;
 -(void)closeConversation;
+-(void)closeRoom;
 -(BOOL)recordStart;
 -(void)recordEndCompletion:(void(^)(BOOL success))completion;
 

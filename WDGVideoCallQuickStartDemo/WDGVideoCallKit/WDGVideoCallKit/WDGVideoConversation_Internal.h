@@ -7,13 +7,15 @@
 //
 
 #import "WDGVideoConversation.h"
-
+#import <WilddogVideoCall/WDGConversation.h>
 @protocol WDGVideoConversationDelegate <NSObject>
 -(void)videoConversationDidClosed:(WDGVideoConversation *)videoConversation;
 -(void)remoteStreamDidAdded:(WDGVideoConversation *)videoConversation;
 @end
 
 @interface WDGVideoConversation()
+@property (nonatomic,strong) WDGLocalStream *localStream;
+@property (nonatomic,strong) WDGRemoteStream *remoteStream;
 @property (nonatomic,assign) id<WDGVideoConversationStatusDelegate> statusDelegate;
 @property (nonatomic,assign) id<WDGVideoConversationDelegate> conversationDelegate;
 @property (nonatomic,assign) id<WDGConversationStatsDelegate> statsDelegate;
@@ -21,9 +23,6 @@
 @property (nonatomic,assign) BOOL isConnecting;
 -(void)videoStateChange:(WDGVideoConversationState)state finishReason:(WDGVideoFinishReason)finishReason;
 
-
--(void)rejectImmediately;
--(void)closeImmediately;
 
 -(void)close;
 -(void)accept;

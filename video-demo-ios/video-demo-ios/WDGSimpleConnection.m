@@ -23,7 +23,7 @@
     [con start];
 }
 
-+(NSURLConnection *)connectionWithPostUrlString:(NSString *)urlString requestHeader:(NSDictionary *)header body:(NSDictionary *)body completion:(void (^)(NSDictionary *))completion
++(void)connectionWithPostUrlString:(NSString *)urlString requestHeader:(NSDictionary *)header body:(NSDictionary *)body completion:(void (^)(NSDictionary *))completion
 {
     NSURL *url =[NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     WDGSimpleConnection *simCon = [WDGSimpleConnection new];
@@ -33,7 +33,8 @@
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:nil];
     request.HTTPMethod =@"POST";
     NSURLConnection *con = [NSURLConnection connectionWithRequest:request delegate:simCon];
-    return con;
+    [con start];
+//    return con;
 }
 
 -(instancetype)init
@@ -47,10 +48,12 @@
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 }
+
 -(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [self.storageData appendData:data];
 }
+
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSDictionary *dict =[NSJSONSerialization JSONObjectWithData:self.storageData options:NSJSONReadingMutableContainers error:nil];
@@ -58,10 +61,12 @@
         self.complete(dict);
     }
 }
+
 -(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     if(self.complete){
         self.complete(nil);
     }
 }
+
 @end

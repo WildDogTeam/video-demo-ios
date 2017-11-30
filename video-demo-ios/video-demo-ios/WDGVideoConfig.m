@@ -9,7 +9,7 @@
 
 #import "WDGVideoConfig.h"
 
-#define WDGVideoDimension @[WDGVideoDimensions360p,WDGVideoDimensions480p,WDGVideoDimensions720p,WDGVideoDimensions1080p]
+#define WDGVideoDimension @[WDGVideoDimensions120p,WDGVideoDimensions240p,WDGVideoDimensions360p,WDGVideoDimensions480p,WDGVideoDimensions720p,WDGVideoDimensions1080p]
 #define WDGVideoConstraintsKey @"com.wilddog.video.constraints"
 #define WDGVideoBeautyPlanKey @"com.wilddog.video.beautyPlan"
 

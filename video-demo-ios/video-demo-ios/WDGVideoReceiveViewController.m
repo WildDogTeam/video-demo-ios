@@ -54,7 +54,7 @@
             [WDGSoundPlayer stop];
             if(!accept){
                 [self reject];
-                [self closeRoom];
+                [self closeConversation];
             }else{
                 [self connect];
             }

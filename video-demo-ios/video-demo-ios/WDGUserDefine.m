@@ -28,8 +28,13 @@
 #ifndef WDGInternalUserDefine_h
 //required
 //野狗开发平台注册
-NSString const *WDGSyncId = @"wd1621490197hjoglv";
-NSString const *WDGVideoId =@"wd4449761657cslfcf";
+NSString const *WDGSyncId = @"";
+NSString const *WDGVideoId =@"";
+// 七牛sdk 对象存储 如不填写 白板功能的图片功能将不可用
+NSString const *QiniuAK = @"";
+NSString const *QiniuSK = @"";
+NSString const *QiniuRoomName = @"";
+NSString const *QiniuRoomURL = @"";
 
 /**
     optional

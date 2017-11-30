@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WilddogVideoCall/WDGConversation.h>
+
 @class WDGVideoConversation;
 @protocol WDGVideoConversationStatusDelegate<NSObject>
 -(void)videoStatusDidChanged:(WDGVideoConversation *)videoConversation;
@@ -32,26 +32,15 @@ typedef NS_ENUM(NSUInteger, WDGVideoFinishReason){
     WDGVideoFinishReasonHungupByOppositeSide,       //通话中对方挂断通话
     WDGVideoFinishReasonHungupByMySelf,             //通话中自己挂断通话
     WDGVideoFinishReasonNoAnswerByOppositeSide,         //拨打电话对方未在规定时间内应答操作
+    WDGVideoFinishReasonOutOfTimeForAnswer,         //在超时时间内未接听通话
+    WDGVideoFinishReasonOutOfTimeForReConnection,   //通话中网络等原因造成通话断开并在超时时间内没有重连成功
     WDGVideoFinishReasonError, //sdk 视频连接error
+    
     
     /*
      *  需要用户自行添加 快速集成demo没有黑名单系统
      **/
     WDGVideoFinishReasonInBlack,                    //黑名单 不得向对方通话
-    
-    /*
-     *  此状态与WDGVideoFinishReasonCancel sdk暂时缺少标识分辨不出来
-     *  所以demo均用WDGVideoFinishReasonCancel状态代替
-     *  如有需要请联系客服
-     **/
-    WDGVideoFinishReasonOutOfTimeForAnswer,         //在超时时间内未接听通话
-   
-    /*
-     *  此状态与WDGVideoFinishReasonHungupByOppositeSide sdk暂时缺少标识分辨不出来
-     *  所以demo均用WDGVideoFinishReasonHungupByOppositeSide状态代替
-     *  如有需要请联系客服
-     **/
-    WDGVideoFinishReasonOutOfTimeForReConnection,   //通话中网络等原因造成通话断开并在超时时间内没有重连成功
     
 };
 
@@ -63,8 +52,7 @@ typedef NS_ENUM(NSUInteger, WDGVideoFinishReason){
 @end
 
 @interface WDGVideoConversation : NSObject
-@property (nonatomic,strong) WDGLocalStream *localStream;
-@property (nonatomic,strong) WDGRemoteStream *remoteStream;
+
 @property (nonatomic,strong) WDGVideoConversationConfig *config;
 @property (nonatomic,assign) BOOL shouldLoudspeaker;
 @end

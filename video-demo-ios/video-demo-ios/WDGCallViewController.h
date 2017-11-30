@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WDGCallViewController : UIViewController
+#import "WDGBaseViewController.h"
+@interface WDGCallViewController : WDGBaseViewController
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "WDGRegardViewController.h"
-#define WDGVideoSDKVersion @"2.1.1"
+#define WDGVideoCallSDKVersion @"2.3.3"
+#define WDGVideoRoomSDKVersion @"2.2.1"
 #define WDGSyncSDKVersion @"2.3.11"
 #define WDGAuthSDKVersion @"2.0.7"
 #define Camera360SDKVersion @"1.6"
@@ -23,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self createMyView];
 }
 
@@ -41,7 +41,7 @@
     [titleLabel sizeToFit];
     titleLabel.center = CGPointMake(centerX, CGRectGetMaxY(imageView.frame)+9+CGRectGetHeight(titleLabel.frame)*.5);
     [self.view addSubview:titleLabel];
-    UILabel *versionLabel = [self pingfangLabelWithText:@"V2.2.0"];
+    UILabel *versionLabel = [self pingfangLabelWithText:@"V3.0.0"];
     versionLabel.textColor = [UIColor colorWithRed:0x33/255. green:0x33/255. blue:0x33/255. alpha:1];
     versionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [versionLabel sizeToFit];
@@ -53,11 +53,14 @@
     [self.view addSubview:detailLabel];
     
     CGFloat gap = 10;
-    UILabel *videoLabel = [self pingfangLabelWithText:[NSString stringWithFormat:@"Wilddog Video SDK v%@",WDGVideoSDKVersion]];
-    videoLabel.center = CGPointMake(centerX, CGRectGetMaxY(detailLabel.frame)+gap+CGRectGetHeight(videoLabel.frame)*.5);
-    [self.view addSubview:videoLabel];
+    UILabel *videoCallLabel = [self pingfangLabelWithText:[NSString stringWithFormat:@"Wilddog VideoCall SDK v%@",WDGVideoCallSDKVersion]];
+    videoCallLabel.center = CGPointMake(centerX, CGRectGetMaxY(detailLabel.frame)+gap+CGRectGetHeight(videoCallLabel.frame)*.5);
+    [self.view addSubview:videoCallLabel];
+    UILabel *videoRoomLabel = [self pingfangLabelWithText:[NSString stringWithFormat:@"Wilddog VideoRoom SDK v%@",WDGVideoRoomSDKVersion]];
+    videoRoomLabel.center = CGPointMake(centerX, CGRectGetMaxY(videoCallLabel.frame)+gap+CGRectGetHeight(videoRoomLabel.frame)*.5);
+    [self.view addSubview:videoRoomLabel];
     UILabel *syncLabel = [self pingfangLabelWithText:[NSString stringWithFormat:@"Wilddog Sync SDK v%@",WDGSyncSDKVersion]];
-    syncLabel.center = CGPointMake(centerX, CGRectGetMaxY(videoLabel.frame)+gap+CGRectGetHeight(syncLabel.frame)*.5);
+    syncLabel.center = CGPointMake(centerX, CGRectGetMaxY(videoRoomLabel.frame)+gap+CGRectGetHeight(syncLabel.frame)*.5);
     [self.view addSubview:syncLabel];
     UILabel *authLabel = [self pingfangLabelWithText:[NSString stringWithFormat:@"Wilddog Auth SDK v%@",WDGAuthSDKVersion]];
     authLabel.center = CGPointMake(centerX, CGRectGetMaxY(syncLabel.frame)+gap+CGRectGetHeight(authLabel.frame)*.5);
@@ -84,18 +87,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)goback:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (IBAction)goback:(UIBarButtonItem *)sender {
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return self.navigationController.childViewControllers.count > 1;
-} 
-
- - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return self.navigationController.viewControllers.count > 1;
-}
 
 @end

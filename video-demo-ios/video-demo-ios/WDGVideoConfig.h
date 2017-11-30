@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <WilddogVideoBase/WDGLocalStreamOptions.h>
-
+#define WDGVideoDimensions120p @"120p"
+#define WDGVideoDimensions240p @"240p"
 #define WDGVideoDimensions360p @"360p"
 #define WDGVideoDimensions480p @"480p"
 #define WDGVideoDimensions720p @"720p"

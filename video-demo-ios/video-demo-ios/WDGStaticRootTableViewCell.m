@@ -60,6 +60,7 @@
     [copyButton addTarget:self action:@selector(copyID) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:copyButton];
     _copyButton = copyButton;
+    copyButton.hidden =YES;
     _copyButton.frame = CGRectMake(0, 0, 60, 40);
     self.detailTextLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     CGSize itemSize = CGSizeMake(60 , 60);

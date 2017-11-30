@@ -96,6 +96,7 @@
 {
     _conversation = conversation;
     _conversation.delegate =self;
+    NSLog(@"test-setdelegate-----");
 }
 
 -(void)showSmallView:(WDGVideoViewController *)videoVC
@@ -193,7 +194,7 @@
     if(callStatus == WDGCallStatusAccepted){
         return;
     }
-    [self closeConversation];
+    [self closeRoom];
 }
 
 /**
@@ -219,27 +220,36 @@
         [self.conversationDelegate conversation:conversation didFailedWithError:error];
         return;
     }
-    [self closeConversation];
+    [self closeRoom];
 }
 
 - (void)conversationDidClosed:(WDGConversation *)conversation{
+    NSLog(@"test-dismissController----%@",conversation);
     if(self.conversationDelegate){
         [self.conversationDelegate conversationDidClosed:conversation];
         return;
     }
-    [self closeConversation];
+    [self closeRoom];
 }
 
 -(void)closeConversation
 {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"test-removedelegate---%@--",_conversation);
+        _conversation.delegate = nil;
+        [_conversation close];
+        self.conversation = nil;
+        if(_localStream){
+            [_localStream close];
+            _localStream =nil;
+        }
+    });
+}
+
+-(void)closeRoom
+{
     if(_recordCurrentTime>0)
         [self recordEndCompletion:nil];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.conversation close];
-        self.conversation = nil;
-        [self.localStream close];
-        self.localStream =nil;
-    });
     [self.functionView removeFromSuperview];
     self.functionView = nil;
     [self addHistoryItem];
@@ -254,7 +264,6 @@
 {
     [self.gestureView removeFromSuperview];
     self.gestureView = nil;
-
     [self.contentView removeFromSuperview];
     self.contentView = nil;
 }
@@ -316,10 +325,10 @@
 
 -(void)timerBegin
 {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+   // dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRecordTime) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] run];
-    });
+      //  [[NSRunLoop currentRunLoop] run];
+   // });
 }
 
 -(void)updateRecordTime
@@ -387,6 +396,7 @@
 {
     if(!_functionView){
         _functionView = [[WDGFunctionView alloc] init];
+        _functionView.hidden =YES;
     }
     return _functionView;
 }

@@ -194,8 +194,7 @@ NSString *WDGGetVideoFinshReason(WDGVideoFinishReason finishReason)
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        [self.conversation rejectImmediately];
-        [self exitRoom];
+        [self.conversation reject];
     }else if(buttonIndex == 1){
         [self.conversation accept];
         [self.coverView removeFromSuperview];
@@ -252,8 +251,7 @@ NSString *WDGGetVideoFinshReason(WDGVideoFinishReason finishReason)
 
 -(void)exitroomImmediately
 {
-    [self.conversation closeImmediately];
-    [self exitRoom];
+    [self.conversation close];
 }
 
 -(void)exitRoom

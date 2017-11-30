@@ -212,8 +212,10 @@
  * @param data 随通话邀请传递的 `NSString` 类型的数据。
  */
 - (void)wilddogVideoCall:(WDGVideoCall *)videoCall didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString *)data{
+    NSLog(@"test-conversationreceive");
     [WDGVideoUserItem requestForUid:conversation.remoteUid complete:^(WDGVideoUserItem *item) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"test-presentController-----");
             [[self getTopController] presentViewController:[WDGVideoReceiveViewController receiveCallWithConversation:conversation userItem:item] animated:YES completion:nil];
         });
     }];

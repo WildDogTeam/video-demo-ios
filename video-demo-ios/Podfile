@@ -1,22 +1,32 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, ‘8.0’
+platform :ios, '9.0'
+source 'git@gitlab.wilddog.cn:ios/Specs.git'
 source 'https://github.com/WildDogTeam/wilddog-ios-repo.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'video-demo-ios' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
-  pod 'WilddogVideoCall’,'2.2.0'
-
+  
+  #  白板
+  pod 'WilddogBoard'
+  pod 'Qiniu' , '7.1.7'
+  #  wilddog sdk
+  pod 'WilddogVideoCall’,:path => '../../WilddogVideo-V2/'
   pod 'WilddogSync'
-  pod 'MBProgressHUD'
+  pod 'WilddogVideoRoom',:path => '../../WilddogRoom/'
+  #  美颜
   pod 'TUSDK','0.0.1'
+  pod 'GPUImage',:git=>'https://github.com/BradLarson/GPUImage.git'
   pod 'PGSkinPrettifyEngine','0.0.1'
+  #  日志
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'GPUImage',:git=>’git://github.com/BradLarson/GPUImage.git'
-  pod 'SDWebImage'
-  
+  #微信登陆
   pod 'WechatOpenSDK'
+  #个推
   pod 'GTSDK'
+  #
+  pod 'MBProgressHUD'
+  pod 'SDWebImage'
 end

@@ -30,3 +30,14 @@ FOUNDATION_EXTERN NSString *WDGGTSDKMasterSecret;
 //野狗sdk 
 FOUNDATION_EXTERN NSString *WDGSyncId;
 FOUNDATION_EXTERN NSString *WDGVideoId;
+
+// 七牛sdk 对象存储
+//七牛accessKey密钥 个人中心 密钥管理
+FOUNDATION_EXTERN NSString * QiniuAK;
+//七牛secretKey密钥 个人中心 密钥管理
+FOUNDATION_EXTERN NSString *QiniuSK;
+//七牛命名空间 创建存储空间时确定
+FOUNDATION_EXTERN NSString *QiniuRoomName;
+//七牛外链域名
+FOUNDATION_EXTERN NSString *QiniuRoomURL;
+

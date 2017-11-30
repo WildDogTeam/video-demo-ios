@@ -20,6 +20,7 @@
 @property (nonatomic,assign) id<WDGFunctionViewDelegate> delegate;
 @property (nonatomic,strong) WDGInfoView *infoView;
 @property (nonatomic,strong) UILabel *timeLabel;
+-(void)show;
 -(void)showInfoView;
 -(void)hideInfoView;
 @end

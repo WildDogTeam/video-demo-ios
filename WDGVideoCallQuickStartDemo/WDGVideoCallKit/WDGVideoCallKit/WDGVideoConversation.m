@@ -136,17 +136,10 @@
     [self.conversation acceptWithLocalStream:self.localStream];
 }
 
--(void)rejectImmediately
-{
-    self.isConnecting =YES;
-    [self videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonReject];
-    [self.conversation reject];
-}
-
 -(void)reject
 {
     self.isConnecting =YES;
-    [self videoStateChange:0 finishReason:WDGVideoFinishReasonReject];
+    [self videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonReject];
     [self.conversation reject];
 }
 
@@ -160,24 +153,14 @@
     [self.conversation stopLocalRecording];
 }
 
--(void)closeImmediately
+-(void)close
 {
+    [self.conversation close];
     if(self.isConnecting){
         [self videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonHungupByMySelf];
     }else{
         [self videoStateChange:WDGVideoConversationStateFinishCalling finishReason:WDGVideoFinishReasonCancel];
     }
-    [self.conversation close];
-}
-
--(void)close
-{
-    if(self.isConnecting){
-        [self videoStateChange:0 finishReason:WDGVideoFinishReasonHungupByMySelf];
-    }else{
-        [self videoStateChange:0 finishReason:WDGVideoFinishReasonCancel];
-    }
-    [self.conversation close];
 }
 
 -(void)dealloc

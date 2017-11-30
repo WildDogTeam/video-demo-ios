@@ -19,15 +19,15 @@
 {
     WDGTimer *timer =[self new];
     NSTimeInterval interval = timeInterval>0?timeInterval:-timeInterval;
-    timer->_timer = [NSTimer timerWithTimeInterval:interval target:timer selector:@selector(calculate:) userInfo:nil repeats:YES];
+    timer->_timer = [NSTimer scheduledTimerWithTimeInterval:interval target:timer selector:@selector(calculate:) userInfo:nil repeats:YES];
     timer->_currentTime = start;
     timer->_interval =timeInterval;
     timer->_timerBlock = [block copy];
     timer->_timerBlock(start);
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [[NSRunLoop currentRunLoop] addTimer:timer->_timer forMode:NSRunLoopCommonModes];
-        [[NSRunLoop currentRunLoop] run];
-    });
+ //   dispatch_async(dispatch_get_global_queue(0, 0), ^{
+   //     [[NSRunLoop currentRunLoop] addTimer:timer->_timer forMode:NSRunLoopCommonModes];
+  //      [[NSRunLoop currentRunLoop] run];
+//    });
     return timer->_timer;
 }
 

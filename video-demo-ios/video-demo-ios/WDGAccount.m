@@ -32,6 +32,11 @@
 {
     return _token?:@"";
 }
+
+-(NSString *)nickName
+{
+    return _nickName?:_userID;
+}
 @end
 
 @implementation WDGAccountManager
