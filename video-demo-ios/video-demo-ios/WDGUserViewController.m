@@ -16,6 +16,7 @@
 #import "WDGVideoControllerManager.h"
 #import "UIView+MBProgressHud.h"
 #import "WDGConversationsHistory.h"
+#import "WDGiPhoneXAdapter.h"
 //@interface WDGBasicCell :UITableViewCell
 //@property (nonatomic,copy) NSString *title;
 //@property (nonatomic,strong) UIImage *headImg;
@@ -79,7 +80,7 @@
     [callBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [callBtn addTarget:self action:@selector(callUser) forControlEvents:UIControlEventTouchUpInside];
     callBtn.frame = CGRectMake(0, 0, 241, 41);
-    callBtn.center =CGPointMake(self.view.center.x, self.view.frame.size.height-64-20-.5*CGRectGetHeight(callBtn.frame));
+    callBtn.center =CGPointMake(self.view.center.x, self.view.frame.size.height-64-20-.5*CGRectGetHeight(callBtn.frame)-WDG_ViewSafeAreInsetsBottom);
     callBtn.layer.cornerRadius = CGRectGetHeight(callBtn.frame)*.5;
     callBtn.clipsToBounds =YES;
     UIColor *normalColor = [UIColor colorWithRed:0xe6/255. green:0x50/255. blue:0x1e/255. alpha:1.];
@@ -127,6 +128,9 @@
             cell.textLabel.text = self.userItem.uid;
         }
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.userItem.faceUrl] placeholderImage:[UIImage imageNamed:@"Calling"]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTap:)];
+        [cell.imageView addGestureRecognizer:tap];
+        cell.imageView.userInteractionEnabled =YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         CGSize itemSize = CGSizeMake(60, 60);
         UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
@@ -198,4 +202,29 @@
     return self.navigationController.viewControllers.count > 1;
 }
 
+-(void)imageTap:(UIGestureRecognizer *)gesture
+{
+    UIImageView *imageView = gesture.view;
+    UIView *mainView = [UIApplication sharedApplication].delegate.window;
+    CGRect rect = [imageView convertRect:imageView.frame toView:mainView];
+    UIView *backView = [[UIView alloc] initWithFrame:mainView.bounds];
+    backView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+    UIImageView *imageShowerView = [[UIImageView alloc] initWithFrame:rect];
+    imageShowerView.image = imageView.image;
+    [backView addSubview:imageShowerView];
+    [mainView addSubview:backView];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackView:)];
+    [backView addGestureRecognizer:tap];
+    [UIView animateWithDuration:.3 animations:^{
+        backView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:1];
+        imageShowerView.frame = CGRectMake(0, 0, mainView.frame.size.width, mainView.frame.size.width);
+        imageShowerView.center = backView.center;
+    }];
+}
+
+-(void)dismissBackView:(UIGestureRecognizer *)gesture
+{
+    UIView *view = gesture.view;
+    [view removeFromSuperview];
+}
 @end

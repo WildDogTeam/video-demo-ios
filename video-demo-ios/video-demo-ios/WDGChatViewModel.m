@@ -37,7 +37,7 @@
 -(void)initData
 {
     _chatMessages = [NSMutableArray array];
-    [[[[WDGSync sync] reference] child:[NSString stringWithFormat:@"%@/chat",_roomId]] observeEventType:WDGDataEventTypeChildAdded withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+    [[[[WDGSync sync] reference] child:[NSString stringWithFormat:@"room/%@/chat",_roomId]] observeEventType:WDGDataEventTypeChildAdded withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         NSLog(@"%@",snapshot.value);
 //        NSEnumerator *enmerator =snapshot.children;
 //        WDGDataSnapshot *obj =nil;
@@ -86,6 +86,6 @@
     NSLog(@"sendMessage");
     NSString *uid = [WDGAuth auth].currentUser.uid;
     NSDictionary *dict =@{@"author":_nickname,@"message":message,@"uid":uid};
-    [[[[[WDGSync sync] reference] child:[NSString stringWithFormat:@"%@/chat",_roomId]] childByAutoId] setValue:dict];
+    [[[[[WDGSync sync] reference] child:[NSString stringWithFormat:@"room/%@/chat",_roomId]] childByAutoId] setValue:dict];
 }
 @end

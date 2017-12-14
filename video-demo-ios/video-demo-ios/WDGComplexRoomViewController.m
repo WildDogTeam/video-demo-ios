@@ -16,11 +16,21 @@
 #import "WDGRoomCollectionViewCell.h"
 #import "UIView+MBProgressHud.h"
 #import "WDGUserDefine.h"
+#import "WDGiPhoneXAdapter.h"
+#import "WDGVideoConfig.h"
+#import "WDGTextView.h"
+#import "WilddogSDKManager.h"
+#import <WilddogSync/WilddogSync.h>
+#import "WDGTimer.h"
+#import "WDGRoomManager.h"
 @import WilddogBoard;
 
 #define animationTime .5
-#define screenProportion (self.view.frame.size.width/667)
+
+
+#define screenProportion ((self.view.frame.size.width-WDG_ViewSafeAreInsetsLeft-WDG_ViewSafeAreInsetsRight)/667)
 #define collectionViewMaxWidth (166*screenProportion)
+
 
 typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     RoomMemberStyleSimple,
@@ -31,6 +41,7 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
 @property (nonatomic,copy) NSString *roomId;
 @property (nonatomic,strong) UIColor *navigationBarStorageColor;
 @property (nonatomic, strong) WDGRoom *room;
+@property (nonatomic, strong) WDGRoomManager *roomManager;
 @property (nonatomic, strong) WDGLocalStream *localStream;
 @property (nonatomic, strong) NSMutableArray<WDGRoomCollectionViewCellLayout *> *streams;
 @property (nonatomic, strong) WDGBoard *boardView;
@@ -39,6 +50,9 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
 @property (nonatomic,assign) RoomMemberStyle style;
 @property (nonatomic,strong) UILabel *membersCountLabel;
 @property (nonatomic,strong) UIButton *showerButton;
+@property (nonatomic,strong) WDGTextView *textView;
+@property (nonatomic) NSTimeInterval startTime;
+@property (nonatomic,strong) WDGTimer *timer;
 @end
 
 @implementation WDGComplexRoomViewController
@@ -52,17 +66,61 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self confirmStartTime];
+    // Do any setup after loading the view.
+    [self initController];
+    [self createNavigationItems];
+
+    [self createBoard];
+    [self createCollectionView];
+    [self createChatView];
+    [self addShowerButton];
+    [self createMessageInputView];
+    [self setupLocalStream];
+    [self audioSpeaker];
+    _room = [[WDGRoom alloc] initWithRoomId:_roomId url:@"wss://bt-sh.wilddog.com:2600/ws" delegate:self];
+    [_room connect];
+}
+
+-(void)confirmStartTime
+{
+    __weak typeof(self) WS =self;
+    _roomManager = [[WDGRoomManager alloc] initWithRoomId:_roomId complete:^(NSTimeInterval time) {
+        __strong typeof(WS) self =WS;
+        self.startTime = time;
+        [self createTimer];
+    }];
+}
+
+-(void)createTimer
+{
+    NSUInteger enterTime = (NSUInteger)([[NSDate date] timeIntervalSince1970]-self.startTime/1000);
+    __weak typeof(self) WS =self;
+    self.timer = [WDGTimer timerWithstart:enterTime interval:1 block:^(NSTimeInterval timeInterval) {
+        __strong typeof(WS) self =WS;
+        NSLog(@"time ------%lu",(NSInteger)timeInterval);
+        NSInteger time =(NSInteger)timeInterval;
+        UIButton *btn = self.navigationItem.titleView;
+        btn.titleLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d",time/60/60,time/60%60,time%60];
+    }];
+}
+
+-(void)initController
+{
     [UIApplication sharedApplication].statusBarHidden=NO;
     self.navigationBarStorageColor = self.navigationController.navigationBar.barTintColor;
     self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
     self.navigationController.interactivePopGestureRecognizer.delegate =self;
-    // Do any setup after loading the view.
     _streams = [NSMutableArray array];
     self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+-(void)createNavigationItems
+{
     UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     exitButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     [exitButton setTitle:@"退出房间" forState:UIControlStateNormal];
-    [exitButton setImage:[UIImage imageNamed:@"向左箭头"] forState:UIControlStateNormal];
+    [exitButton setImage:[UIImage imageNamed:@"向左箭头1"] forState:UIControlStateNormal];
     [exitButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     exitButton.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     exitButton.frame = CGRectMake(0, 0, 120, 44);
@@ -75,28 +133,28 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     [inviteButton setTitle:@"邀请他人" forState:UIControlStateNormal];
     [inviteButton setImage:[UIImage imageNamed:@"小邀请他人"] forState:UIControlStateNormal];
     [inviteButton addTarget:self action:@selector(inviteOthers) forControlEvents:UIControlEventTouchUpInside];
-    inviteButton.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
+    inviteButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 7);
     inviteButton.frame = CGRectMake(0, 0, 120, 44);
     inviteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    //inviteButton.contentEdgeInsets =UIEdgeInsetsMake(0, 0, 0, 5);
+//    inviteButton.contentEdgeInsets =UIEdgeInsetsMake(0, 0, 0, 5);
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:inviteButton];
-
-    [self createBoard];
-    [self createCollectionView];
-    [self createChatView];
-    [self addShowerButton];
-    [self setupLocalStream];
-    [self audioSpeaker];
-    _room = [[WDGRoom alloc] initWithRoomId:_roomId url:@"wss://bt-sh.wilddog.com:2600/ws" delegate:self];
-    [_room connect];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification object:nil];
+    UIButton *titleView = [UIButton buttonWithType:UIButtonTypeCustom];
+    titleView.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    [titleView setTitle:@"--:--:--" forState:UIControlStateNormal];
+    [titleView setImage:[UIImage imageNamed:@"上课中"] forState:UIControlStateNormal];
+    titleView.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
+    titleView.frame = CGRectMake(0, 0, 120, 44);
+    titleView.userInteractionEnabled =NO;
+    self.navigationItem.titleView = titleView;
 }
 
 -(void)goBack
 {
+    _room.delegate=nil;
     [_room disconnect];
+    [self.timer invalidate];
+    [_roomManager closeOperation];
     self.navigationController.interactivePopGestureRecognizer.delegate =nil;
     self.navigationController.navigationBar.barTintColor =self.navigationBarStorageColor;
     [self.navigationController popViewControllerAnimated:YES];
@@ -125,26 +183,29 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     option.canvasSize = CGSizeMake(1366, 768);
     
     WDGBoard *boardView = [WDGBoard creatBoardWithAppID:WDGSyncId
-                                                   Path:[NSString stringWithFormat:@"%@/board",_roomId]
+                                                   Path:[NSString stringWithFormat:@"room/%@/board",_roomId]
                                                  userID:[WDGAccountManager currentAccount].userID
                                                opthions:option];
     
     
-    boardView.frame = CGRectMake(0, 0,
-                                 self.view.frame.size.width,
-                                 self.view.frame.size.height);
+    boardView.frame = CGRectMake(WDG_ViewSafeAreInsetsLeft, 0,
+                                 self.view.frame.size.width -WDG_ViewSafeAreInsetsLeft -WDG_ViewSafeAreInsetsRight,
+                                 self.view.frame.size.height -self.navigationController.navigationBar.frame.size.height-WDG_ViewSafeAreInsetsTop-WDG_ViewSafeAreInsetsBottom-WDG_StatusbarHeight);
     
+    boardView.layer.masksToBounds = YES;
     boardView.backgroundColor = [UIColor blackColor];
+
     [self.view addSubview:boardView];
     _boardView = boardView;
-    
+    NSLog(@"%@",NSStringFromUIEdgeInsets(WDG_ViewSafeAreInsets));
+    CGRect rect =CGRectMake((self.view.frame.size.width - 350)*.5,self.view.frame.size.height -55-self.navigationController.navigationBar.frame.size.height -WDG_ViewSafeAreInsetsTop-WDG_ViewSafeAreInsetsBottom -WDG_StatusbarHeight,350,55);
     BoardToolBar *toolbar = [BoardToolBar new];
     [toolbar setupWithBoard:boardView
                   direction:BoardToolBarDirectionHorizontal
                       theme:BoardToolThemeDark
-                      frame:CGRectMake((self.view.frame.size.width - 350)*.5,self.view.frame.size.height -55-20-self.navigationController.navigationBar.frame.size.height,350,55)
+                      frame:rect
      ];
-    
+
     [self.view addSubview:toolbar];
 }
 
@@ -156,12 +217,14 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     layout.sectionInset = UIEdgeInsetsMake(0, 14, 10, 14);
     layout.minimumLineSpacing=10;
     layout.minimumInteritemSpacing=0;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 20, 74*screenProportion, 275*screenProportion) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(WDG_ViewSafeAreInsetsLeft, 20, 74*screenProportion, 275) collectionViewLayout:layout];
     collectionView.dataSource =self;
     collectionView.delegate =self;
     collectionView.backgroundColor = [UIColor colorWithRed:46/255. green:46/255. blue:46/255. alpha:1.];
     [collectionView registerClass:[WDGRoomCollectionViewCell class] forCellWithReuseIdentifier:[WDGRoomCollectionViewCell identifier]];
     [self.view addSubview:collectionView];
+    collectionView.layer.cornerRadius =5;
+    collectionView.clipsToBounds=YES;
     UILabel *membersCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(collectionView.frame.origin.x, collectionView.frame.origin.y, collectionView.frame.size.width, 24)];
     membersCountLabel.text = [NSString stringWithFormat:@"房间成员(%lu)",(unsigned long)_streams.count];
     membersCountLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
@@ -182,7 +245,7 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
 
 -(void)createChatView
 {
-    WDGChatView *chatView = [WDGChatView viewWithNickname:[WDGAccountManager currentAccount].nickName roomId:_roomId frame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width-collectionViewMaxWidth, self.view.frame.size.height-20-self.navigationController.navigationBar.frame.size.height)];
+    WDGChatView *chatView = [WDGChatView viewWithNickname:[WDGAccountManager currentAccount].nickName roomId:_roomId frame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width-collectionViewMaxWidth-WDG_ViewSafeAreInsetsLeft-WDG_ViewSafeAreInsetsRight, self.view.frame.size.height-WDG_StatusbarHeight-self.navigationController.navigationBar.frame.size.height-WDG_ViewSafeAreInsetsBottom-WDG_ViewSafeAreInsetsTop-49)];
     self.chatView =chatView;
     chatView.hidden =YES;
     chatView.backgroundColor = [UIColor whiteColor];
@@ -192,6 +255,21 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
     recognizer.delegate = self;
     [chatView addGestureRecognizer:recognizer];
+}
+
+-(void)createMessageInputView
+{
+    _textView = [[WDGTextView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.chatView.frame), CGRectGetMaxY(self.chatView.frame), CGRectGetWidth(self.chatView.frame), 49)];
+    _textView.hidden =YES;
+    [_textView setPlaceholderText:@"请输入..."];
+    __weak typeof(self) WS =self;
+    _textView.textViewBlock = ^(NSString *message){
+        [WS.chatView sendMessage:message];
+    };
+    _textView.superfluousHeightWhenKeyboardHide=^(CGFloat superfluousHeight){
+        WS.chatView.insetBottom =superfluousHeight;
+    };
+    [self.view addSubview:_textView];
 }
 
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
@@ -214,13 +292,15 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     if(self.style==RoomMemberStyleComplex){
         self.style = RoomMemberStyleSimple;
         [UIView animateWithDuration:animationTime animations:^{
-            self.collectionView.frame = CGRectMake(0, 20, 74*screenProportion, 275*screenProportion);
+            self.collectionView.frame = CGRectMake(WDG_ViewSafeAreInsetsLeft, WDG_ViewSafeAreInsetsTop+20, 74*screenProportion, 275);
             ((UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout).itemSize = CGSizeMake(60*screenProportion, 60*screenProportion);
-            self.chatView.center = CGPointMake(self.chatView.center.x+self.chatView.frame.size.width, self.chatView.center.y);
+            self.chatView.center = CGPointMake(self.chatView.center.x+self.chatView.frame.size.width+WDG_ViewSafeAreInsetsRight, self.chatView.center.y);
+            [self.textView updateFrame:CGRectMake(CGRectGetMinX(self.chatView.frame), CGRectGetMaxY(self.chatView.frame), CGRectGetWidth(self.chatView.frame), 49)];
             self.membersCountLabel.center =CGPointMake(self.membersCountLabel.center.x, self.membersCountLabel.center.y+20);
             self.showerButton.frame = CGRectMake(CGRectGetMaxX(self.collectionView.frame), 140, 8*1.5, 48*1.5);
         } completion:^(BOOL finished) {
             self.chatView.hidden =YES;
+            self.textView.hidden =YES;
         }];
     }
 }
@@ -230,11 +310,13 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     if(self.style==RoomMemberStyleSimple){
         self.style = RoomMemberStyleComplex;
         self.chatView.hidden=NO;
+        self.textView.hidden =NO;
         [UIView animateWithDuration:animationTime animations:^{
-            self.collectionView.frame = CGRectMake(0, 0, collectionViewMaxWidth, self.view.frame.size.height);
+            self.collectionView.frame = CGRectMake(WDG_ViewSafeAreInsetsLeft, 0, collectionViewMaxWidth, self.view.frame.size.height-WDG_ViewSafeAreInsetsBottom);
             ((UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout).itemSize = CGSizeMake(150*screenProportion, 110*screenProportion);
             self.membersCountLabel.center =CGPointMake(self.membersCountLabel.center.x, self.membersCountLabel.center.y-20);
-            self.chatView.center = CGPointMake(self.chatView.center.x-self.chatView.frame.size.width, self.chatView.center.y);
+            self.chatView.center = CGPointMake(self.chatView.center.x-self.chatView.frame.size.width-WDG_ViewSafeAreInsetsRight, self.chatView.center.y);
+            [self.textView updateFrame:CGRectMake(CGRectGetMinX(self.chatView.frame), CGRectGetMaxY(self.chatView.frame), CGRectGetWidth(self.chatView.frame), 49)];
             self.showerButton.frame = CGRectMake(CGRectGetMaxX(self.collectionView.frame), 140, 8*1.5, 48*1.5);
         } completion:^(BOOL finished) {
         }];
@@ -270,7 +352,7 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     // 创建本地流
     WDGLocalStreamOptions *localStreamOptions = [[WDGLocalStreamOptions alloc] init];
     localStreamOptions.shouldCaptureAudio = YES;
-    localStreamOptions.dimension = WDGVideoDimensions360p;
+    localStreamOptions.dimension = [WDGVideoConfig videoConstraintsNum];
     self.localStream = [WDGLocalStream localStreamWithOptions:localStreamOptions];
 
     [self addStream:self.localStream];
@@ -281,6 +363,7 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
 {
     WDGRoomCollectionViewCellLayout *layout = [WDGRoomCollectionViewCellLayout new];
     layout.stream =stream;
+    layout.cornerRadius =4;
     [self.streams addObject:layout];
     _membersCountLabel.text = [NSString stringWithFormat:@"房间成员(%lu)",(unsigned long)_streams.count];
 }
@@ -415,20 +498,10 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     }
 }
 
--(void)keyboardWillShow:(NSNotification *)aNotification
-{
-    self.showerButton.hidden =YES;
-}
-
--(void)keyboardWillHide:(NSNotification *)aNotification
-{
-    self.showerButton.hidden =NO;
-}
-
 #pragma mark - controller init
 -(BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation

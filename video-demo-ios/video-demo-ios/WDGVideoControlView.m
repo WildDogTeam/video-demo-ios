@@ -7,6 +7,7 @@
 //
 
 #import "WDGVideoControlView.h"
+#import "WDGTimer.h"
 #define controlViewHeight [UIScreen mainScreen].bounds.size.height
 #define controlViewWidth [UIScreen mainScreen].bounds.size.width
 #define animationTime .5
@@ -27,7 +28,7 @@
 {
     BOOL _microPhoneOpen;
     BOOL _cameraFront;
-    NSTimer *_calculateTimer;
+    WDGTimer *_calculateTimer;
     NSUInteger _calculateNum;
     UILabel *_timeLabel;
     UILabel *_nameLabel;
@@ -52,11 +53,7 @@
 
 -(void)createTimer
 {
-   // dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        _calculateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil repeats:YES];
-     //   [[NSRunLoop currentRunLoop] addTimer:_calculateTimer forMode:NSRunLoopCommonModes];
-       // [[NSRunLoop currentRunLoop] run];
-//    });
+    _calculateTimer = [WDGTimer timerWithTimeInterval:1 target:self selector:@selector(calculate) userInfo:nil];
 }
 
 -(void)calculate
@@ -150,24 +147,27 @@
     _inviteView.center =CGPointMake(CGRectGetMidX(cameraTurnView.frame) , (CGRectGetMinY(hangupButton.frame)+CGRectGetMaxY(hangupLabel.frame))*.5);
     _inviteView.hidden =YES;
     [self addSubview:_inviteView];
+    
 //    渐变背景
     UIView *view = [[UIView alloc] init];
     view.userInteractionEnabled = NO;
-    view.frame =CGRectMake(0, CGRectGetMinY(micView.frame)+80, self.frame.size.width, self.frame.size.height-view.frame.origin.y);
+    CGFloat y = CGRectGetMinY(micView.frame)-100;
+    view.frame =CGRectMake(0,y, self.frame.size.width, self.frame.size.height-y);
     
-    UIColor *colorOne = [UIColor colorWithWhite:0. alpha:.0];
-    UIColor *colorTwo = [UIColor colorWithWhite:0. alpha:.5];
-    UIColor *colorThree = [UIColor colorWithWhite:0. alpha:1];
-    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,colorThree.CGColor, nil];
+    UIColor *colorOne = [[UIColor clearColor] colorWithAlphaComponent:0];
+    UIColor *colorTwo = [[UIColor blackColor] colorWithAlphaComponent:1];
+//    UIColor *colorThree = [[UIColor blackColor] colorWithAlphaComponent:1];
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, (id)colorTwo.CGColor, nil];
+    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     //设置开始和结束位置(设置渐变的方向)
+    gradient.frame = view.bounds;
     gradient.startPoint = CGPointMake(0, 0);
     gradient.endPoint = CGPointMake(0, 1);
     gradient.colors = colors;
-    gradient.locations = @[@0,@0.2,@1];
-    gradient.frame = view.bounds;
-    [view.layer insertSublayer:gradient atIndex:0];
-    [self insertSubview:view belowSubview:micView];
+    gradient.locations = @[@(0.01),@(1.4)];
+    [view.layer addSublayer:gradient];
+    [self insertSubview:view atIndex:0];
 }
 
 -(UIView *)itemViewWithTitle:(NSString *)title imageName:(NSString *)imageName selectImageName:(NSString *)selectImageName selector:(SEL)selector

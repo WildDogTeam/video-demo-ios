@@ -8,32 +8,80 @@
 
 #import "WDGTimer.h"
 
+@interface WDGTimer()
+@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic,strong) NSRunLoop *currentRunloop;
+@property (nonatomic,copy) void (^timerBlock)(NSTimeInterval timeInterval);
+@property (nonatomic) NSTimeInterval interval;
+@property (nonatomic) NSTimeInterval currentTime;
+@end
+
 @implementation WDGTimer
+
++(instancetype)timeWithInterval:(NSTimeInterval)interval block:(void (^)(NSTimeInterval))block
 {
-    void (^_timerBlock)(NSTimeInterval timeInterval);
-    NSTimeInterval _currentTime;
-    NSTimer *_timer;
-    NSTimeInterval _interval;
-}
-+(NSTimer *)timerWithstart:(NSTimeInterval)start interval:(NSTimeInterval)timeInterval block:(void (^)(NSTimeInterval timeInterval))block
-{
-    WDGTimer *timer =[self new];
-    NSTimeInterval interval = timeInterval>0?timeInterval:-timeInterval;
-    timer->_timer = [NSTimer scheduledTimerWithTimeInterval:interval target:timer selector:@selector(calculate:) userInfo:nil repeats:YES];
-    timer->_currentTime = start;
-    timer->_interval =timeInterval;
-    timer->_timerBlock = [block copy];
-    timer->_timerBlock(start);
- //   dispatch_async(dispatch_get_global_queue(0, 0), ^{
-   //     [[NSRunLoop currentRunLoop] addTimer:timer->_timer forMode:NSRunLoopCommonModes];
-  //      [[NSRunLoop currentRunLoop] run];
-//    });
-    return timer->_timer;
+    return [self timerWithstart:0 interval:interval block:block];
 }
 
--(void)calculate:(NSTimer *)timer
++(instancetype)timerWithstart:(NSTimeInterval)start interval:(NSTimeInterval)timeInterval block:(void (^)(NSTimeInterval timeInterval))block
+{
+    return [[self alloc] initWithstart:start interval:timeInterval block:block];
+}
+
++(instancetype)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo
+{
+    return [[self alloc] initWithTimeInterval:ti target:aTarget selector:aSelector userInfo:userInfo];
+}
+
+-(instancetype)initWithstart:(NSTimeInterval)start interval:(NSTimeInterval)timeInterval block:(void (^)(NSTimeInterval timeInterval))block
+{
+    if(self = [super init]){
+        self.timerBlock = [block copy];
+        self.currentTime = start;
+        self.interval = timeInterval;
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            @autoreleasepool{
+                self.currentRunloop = [NSRunLoop currentRunLoop];
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerCalculate) userInfo:nil repeats:YES];
+                CFRunLoopRun();
+            }
+        });
+    }
+    return self;
+}
+
+-(instancetype)initWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo
+{
+    if(self = [super init]){
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            @autoreleasepool{
+                self.currentRunloop = [NSRunLoop currentRunLoop];
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:ti target:aTarget selector:aSelector userInfo:userInfo repeats:YES];
+                CFRunLoopRun();
+            }
+        });
+    }
+    return self;
+}
+
+-(void)timerCalculate
 {
     _currentTime+=_interval;
-    _timerBlock(_currentTime);
+    if(self.timerBlock){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.timerBlock(self.currentTime);
+        });
+    }
 }
+
+-(void)invalidate
+{
+    [self.timer invalidate];
+    CFRunLoopStop([self.currentRunloop getCFRunLoop]);
+}
+
+-(void)dealloc{
+    NSLog(@"timer dealloc");
+}
+
 @end

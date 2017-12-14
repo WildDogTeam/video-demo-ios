@@ -12,6 +12,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WDGRoomCollectionViewCell.h"
 #import "UIView+MBProgressHud.h"
+#import "WDGVideoConfig.h"
+#import "WDGRoomManager.h"
+#import "WDGiPhoneXAdapter.h"
 @interface WDGRoomViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,WDGRoomDelegate,WDGVideoControl,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,copy) NSString *roomId;
 
@@ -19,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray <WDGRoomCollectionViewCellLayout *>*streams;
 @property (nonatomic, strong) WDGRoom *room;
 @property (nonatomic, strong) WDGLocalStream *localStream;
+@property (nonatomic, strong) WDGRoomManager *roomManager;
 
 @property (nonatomic, strong) WDGVideoControlView *controlView;
 
@@ -37,22 +41,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self confirmStartTime];
     self.cameraIsFront =YES;
-    [UIApplication sharedApplication].statusBarHidden=YES;
+    if(!WDG_iPhoneX)
+        [UIApplication sharedApplication].statusBarHidden=YES;
     self.navigationController.interactivePopGestureRecognizer.delegate =self;
     self.navigationController.navigationBar.hidden =YES;
     [UIApplication sharedApplication].idleTimerDisabled =YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:24/255. green:26/255. blue:31/255. alpha:1.];
     self.streams =[NSMutableArray array];
-    CGFloat collectionViewHeight =self.view.frame.size.height -ControlItemsViewHeight -10;
+    CGFloat collectionViewHeight =self.view.frame.size.height -WDG_ViewSafeAreInsetsTop -WDG_ViewSafeAreInsetsBottom -ControlItemsViewHeight -10;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.itemSize = CGSizeMake(self.view.frame.size.width/2, collectionViewHeight/3);
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     layout.minimumLineSpacing=0;
     layout.minimumInteritemSpacing=0;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, collectionViewHeight) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(WDG_ViewSafeAreInsetsLeft, WDG_ViewSafeAreInsetsTop, self.view.frame.size.width -WDG_ViewSafeAreInsetsLeft -WDG_ViewSafeAreInsetsRight, collectionViewHeight) collectionViewLayout:layout];
     collectionView.dataSource =self;
     collectionView.delegate =self;
     [self.view addSubview:collectionView];
@@ -74,9 +80,16 @@
     self.shouldLoudSpeaker = YES;
 }
 
+-(void)confirmStartTime
+{
+    _roomManager = [[WDGRoomManager alloc] initWithRoomId:_roomId complete:nil];
+}
+
 -(void)exitRoom
 {
+    _room.delegate =nil;
     [_room disconnect];
+    [_roomManager closeOperation];
     [UIApplication sharedApplication].statusBarHidden=NO;
     self.navigationController.interactivePopGestureRecognizer.delegate=nil;
     self.navigationController.navigationBar.hidden =NO;
@@ -173,7 +186,7 @@
     // 创建本地流
     WDGLocalStreamOptions *localStreamOptions = [[WDGLocalStreamOptions alloc] init];
     localStreamOptions.shouldCaptureAudio = YES;
-    localStreamOptions.dimension = WDGVideoDimensions720p;
+    localStreamOptions.dimension = [WDGVideoConfig videoConstraintsNum];
     self.localStream = [WDGLocalStream localStreamWithOptions:localStreamOptions];
     WDGRoomCollectionViewCellLayout *layout = [WDGRoomCollectionViewCellLayout new];
     layout.stream =self.localStream;

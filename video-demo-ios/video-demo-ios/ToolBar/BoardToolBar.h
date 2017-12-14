@@ -41,5 +41,5 @@ typedef NS_ENUM (NSInteger , BoardToolTheme){
                  frame:(CGRect)frame;
 
 
-
+- (void)inchooseModeAndCloseSubBar:(BOOL)closeSubBar;
 @end

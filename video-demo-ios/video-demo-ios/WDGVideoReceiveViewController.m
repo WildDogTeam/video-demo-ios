@@ -12,7 +12,6 @@
 #import "WilddogSDKManager.h"
 @interface WDGVideoReceiveViewController ()
 @property (nonatomic, strong) WDGReciveCallViewController *receiveController;
-@property (nonatomic, strong) NSTimer *outTimeTimer;
 @end
 
 @implementation WDGVideoReceiveViewController
@@ -30,7 +29,6 @@
     // Do any additional setup after loading the view.
     [self addChildViewController:self.receiveController];
     [self.view addSubview:self.receiveController.view];
-//    [self addOutTimeTimer];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -54,7 +52,7 @@
             [WDGSoundPlayer stop];
             if(!accept){
                 [self reject];
-                [self closeConversation];
+                [self closeRoom];
             }else{
                 [self connect];
             }
@@ -65,7 +63,6 @@
 
 -(void)reject
 {
-//    [self timerInvalidate];
     [self.conversation reject];
 }
 
@@ -83,20 +80,4 @@
     _receiveController = nil;
 }
 
-//-(void)addOutTimeTimer
-//{
-//    self.outTimeTimer = [NSTimer scheduledTimerWithTimeInterval:35 target:self selector:@selector(closeRoom) userInfo:nil repeats:NO];
-//}
-//
-//-(void)closeRoom
-//{
-//    [self reject];
-//    [super closeRoom];
-//}
-//
-//-(void)timerInvalidate
-//{
-//    [self.outTimeTimer invalidate];
-//    self.outTimeTimer = nil;
-//}
 @end

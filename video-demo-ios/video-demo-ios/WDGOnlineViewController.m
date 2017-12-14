@@ -40,7 +40,7 @@
 
 -(void)showEmptyView
 {
-    [self showEmptyViewNamed:@"暂无用户"  size:CGSizeMake(91,90) title:@"暂无其他用户可呼叫"];
+    [self showEmptyViewNamed:@"no-user"  size:CGSizeMake(91,90) title:@"暂无其他用户可呼叫"];
 }
 
 - (void)viewDidLoad {
@@ -97,7 +97,6 @@
         }
     }];
     [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:@"users"] child:uid] setValue:userInfo.allKeys.count?userInfo:@(YES) withCompletionBlock:^(NSError * _Nullable error, WDGSyncReference * _Nonnull ref) {
-        [ref onDisconnectRemoveValue];
         [WilddogSDKManager sharedManager].wilddogVideo.delegate = self;
         [self observeringOnlineUser];
     }];
@@ -212,7 +211,7 @@
  * @param data 随通话邀请传递的 `NSString` 类型的数据。
  */
 - (void)wilddogVideoCall:(WDGVideoCall *)videoCall didReceiveCallWithConversation:(WDGConversation *)conversation data:(NSString *)data{
-    NSLog(@"test-conversationreceive");
+    NSLog(@"hantest----conversationreceive");
     [WDGVideoUserItem requestForUid:conversation.remoteUid complete:^(WDGVideoUserItem *item) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"test-presentController-----");
@@ -242,8 +241,8 @@
 -(UIViewController *)getTopController
 {
     UIViewController *topController =self.tabBarController;
-    while (topController.presentedViewController) {
-        topController = topController.presentedViewController;
+    while (topController.presentingViewController) {
+        topController = topController.presentingViewController;
     }
     return topController;
 }

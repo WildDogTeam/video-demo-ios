@@ -12,9 +12,12 @@
 @interface WDGRoomCollectionViewCellLayout : NSObject
 @property (nonatomic,strong) WDGStream *stream;
 @property (nonatomic,assign) BOOL needMirror;
+@property (nonatomic) CGFloat cornerRadius;
+
 @end
 
 @interface WDGRoomCollectionViewCell : UICollectionViewCell
 +(NSString *)identifier;
 @property (nonatomic, strong) WDGRoomCollectionViewCellLayout *layout;
+
 @end

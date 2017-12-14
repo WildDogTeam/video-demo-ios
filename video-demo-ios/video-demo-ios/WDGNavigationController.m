@@ -24,6 +24,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)shouldAutorotate{
+    return self.topViewController.shouldAutorotate;
+}
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return self.topViewController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return self.topViewController.preferredInterfaceOrientationForPresentation;
+}
 
 @end

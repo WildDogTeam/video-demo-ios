@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17182DFD1FD8E98D00EC51A5 /* WDGRoomObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 17182DFC1FD8E98D00EC51A5 /* WDGRoomObserver.m */; };
+		174FB7EA1FE21E87009B1E1E /* WDGAppUpdateChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FB7E91FE21E87009B1E1E /* WDGAppUpdateChecker.m */; };
+		177978431FD7DF69009D8659 /* WDGRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 177978421FD7DF68009D8659 /* WDGRoomManager.m */; };
 		8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */; };
 		C80CFC271FCE965E008C9C44 /* NSLayoutConstraint+IB.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CFC251FCE965E008C9C44 /* NSLayoutConstraint+IB.m */; };
 		C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B280B1F41505600DE970C /* WDGConversationCell.m */; };
@@ -143,6 +146,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17182DFB1FD8E98D00EC51A5 /* WDGRoomObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGRoomObserver.h; sourceTree = "<group>"; };
+		17182DFC1FD8E98D00EC51A5 /* WDGRoomObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDGRoomObserver.m; sourceTree = "<group>"; };
+		174FB7E81FE21E87009B1E1E /* WDGAppUpdateChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGAppUpdateChecker.h; sourceTree = "<group>"; };
+		174FB7E91FE21E87009B1E1E /* WDGAppUpdateChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDGAppUpdateChecker.m; sourceTree = "<group>"; };
+		177978411FD7DF68009D8659 /* WDGRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGRoomManager.h; sourceTree = "<group>"; };
+		177978421FD7DF68009D8659 /* WDGRoomManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDGRoomManager.m; sourceTree = "<group>"; };
+		17F4AE831FCFF74F00C3A52F /* WDGiPhoneXAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGiPhoneXAdapter.h; sourceTree = "<group>"; };
 		2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.release.xcconfig"; sourceTree = "<group>"; };
 		C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-video-demo-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,6 +446,8 @@
 				C85A7B9B1F7CF43F00A2E16E /* WDGTimer.m */,
 				C8C053981F89117B005F57F3 /* WDGBlackManager.h */,
 				C8C053991F89117B005F57F3 /* WDGBlackManager.m */,
+				174FB7E81FE21E87009B1E1E /* WDGAppUpdateChecker.h */,
+				174FB7E91FE21E87009B1E1E /* WDGAppUpdateChecker.m */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -613,6 +625,8 @@
 				C87EAF2B1F18AB5800548531 /* WilddogSDKManager.m */,
 				C89441D01F3C5FDD00FA4E4A /* WDGConversationsHistory.h */,
 				C89441D11F3C5FDD00FA4E4A /* WDGConversationsHistory.m */,
+				17182DFB1FD8E98D00EC51A5 /* WDGRoomObserver.h */,
+				17182DFC1FD8E98D00EC51A5 /* WDGRoomObserver.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -659,6 +673,7 @@
 				C87EAF251F18AB5800548531 /* WDGVideoTool.m */,
 				C8C0539B1F8B89D1005F57F3 /* WDGVideoControllerManager.h */,
 				C8C0539C1F8B89D1005F57F3 /* WDGVideoControllerManager.m */,
+				17F4AE831FCFF74F00C3A52F /* WDGiPhoneXAdapter.h */,
 			);
 			name = tool;
 			sourceTree = "<group>";
@@ -679,6 +694,8 @@
 				C8DE80D11FC276A20031CE8A /* WDGRoomViewController.m */,
 				C8F0525B1FC6D69800745862 /* WDGComplexRoomViewController.h */,
 				C8F0525C1FC6D69800745862 /* WDGComplexRoomViewController.m */,
+				177978411FD7DF68009D8659 /* WDGRoomManager.h */,
+				177978421FD7DF68009D8659 /* WDGRoomManager.m */,
 				C8F052491FC6C9DB00745862 /* WDGRoomCollectionViewCell.h */,
 				C8F0524A1FC6C9DB00745862 /* WDGRoomCollectionViewCell.m */,
 				C8F0524C1FC6D61F00745862 /* WDGChatCell.h */,
@@ -1022,6 +1039,7 @@
 				C8C053A21F8DC009005F57F3 /* WDGSettingDetailViewController.m in Sources */,
 				C8F052EC1FC7B42B00745862 /* ZLThumbnailViewController.m in Sources */,
 				C89AC1011F580793001731F3 /* NSString+Sha256.m in Sources */,
+				17182DFD1FD8E98D00EC51A5 /* WDGRoomObserver.m in Sources */,
 				C87EAF2D1F18AB5800548531 /* WDGBeautyManager.m in Sources */,
 				C80CFC271FCE965E008C9C44 /* NSLayoutConstraint+IB.m in Sources */,
 				C87EAF3E1F18AB5800548531 /* WDGTabbarController.m in Sources */,
@@ -1040,6 +1058,7 @@
 				C8F052D21FC7B42B00745862 /* ZLBigImageCell.m in Sources */,
 				C8F052D51FC7B42B00745862 /* ZLForceTouchPreviewController.m in Sources */,
 				C87EAF471F18AB5800548531 /* WilddogSDKManager.m in Sources */,
+				177978431FD7DF69009D8659 /* WDGRoomManager.m in Sources */,
 				C8F052EF1FC7B42B00745862 /* BoardToolBar_rootBar.m in Sources */,
 				C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */,
 				C8F052DF1FC7B42B00745862 /* UIButton+EnlargeTouchArea.m in Sources */,
@@ -1079,6 +1098,7 @@
 				C87EAF2C1F18AB5800548531 /* WDGAccount.m in Sources */,
 				C8F052D71FC7B42B00745862 /* ZLProgressHUD.m in Sources */,
 				C87EAF401F18AB5800548531 /* WDGVideoCallViewController.m in Sources */,
+				174FB7EA1FE21E87009B1E1E /* WDGAppUpdateChecker.m in Sources */,
 				C87EAF311F18AB5800548531 /* WDGFileManager.m in Sources */,
 				C89AC1041F591BFD001731F3 /* WDGCamera360Option.m in Sources */,
 				C87EAF2F1F18AB5800548531 /* WDGCallViewController.m in Sources */,

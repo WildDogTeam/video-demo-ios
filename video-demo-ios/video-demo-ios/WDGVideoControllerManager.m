@@ -21,11 +21,13 @@
 #import "UIView+MBProgressHud.h"
 #import "WDGVideoCallViewController.h"
 #import "WDGVideoReceiveViewController.h"
+#import "WDGiPhoneXAdapter.h"
+#import "WDGTimer.h"
 @interface WDGVideoControllerManager()<UIGestureRecognizerDelegate,UIAlertViewDelegate,WDGLocalStreamDelegate>
 @property (nonatomic,strong) UIView *contentView;
 @property (nonatomic,strong) UIView *gestureView;
 @property (nonatomic) CGPoint center;
-@property (nonatomic, strong) NSTimer *recordTimer;
+@property (nonatomic, strong) WDGTimer *recordTimer;
 @property (nonatomic, strong) WDGFileObject *currentRecordFileObject;
 @property (nonatomic, assign) NSUInteger recordCurrentTime;
 @property (nonatomic, copy) void(^recordCompletion)(BOOL success);
@@ -101,7 +103,7 @@
 
 -(void)showSmallView:(WDGVideoViewController *)videoVC
 {
-    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 160)];
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, WDG_ViewSafeAreInsetsTop, 90, 160)];
     self.contentView.backgroundColor = [UIColor lightGrayColor];
 //    self.videoView = [videoVC.videoView copy];
     self.videoView.frame = self.contentView.bounds;
@@ -234,11 +236,9 @@
 
 -(void)closeConversation
 {
+    _conversation.delegate = nil;
+    [_conversation close];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"test-removedelegate---%@--",_conversation);
-        _conversation.delegate = nil;
-        [_conversation close];
-        self.conversation = nil;
         if(_localStream){
             [_localStream close];
             _localStream =nil;
@@ -248,8 +248,8 @@
 
 -(void)closeRoom
 {
-    if(_recordCurrentTime>0)
-        [self recordEndCompletion:nil];
+    _conversation.delegate = nil;
+    _conversation = nil;
     [self.functionView removeFromSuperview];
     self.functionView = nil;
     [self addHistoryItem];
@@ -325,18 +325,12 @@
 
 -(void)timerBegin
 {
-   // dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRecordTime) userInfo:nil repeats:YES];
-      //  [[NSRunLoop currentRunLoop] run];
-   // });
-}
-
--(void)updateRecordTime
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _recordCurrentTime++;
-        self.functionView.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu",_recordCurrentTime/60,_recordCurrentTime%60];
-    });
+    __weak typeof(self) WS =self;
+    self.recordTimer = [WDGTimer timeWithInterval:1 block:^(NSTimeInterval timeInterval) {
+        __strong typeof(WS) self = WS;
+        self.recordCurrentTime++;
+        self.functionView.timeLabel.text = [NSString stringWithFormat:@"%02lu:%02lu",self.recordCurrentTime/60,self.recordCurrentTime%60];
+    }];
 }
 
 -(void)recordEndCompletion:(void(^)(BOOL success))completion

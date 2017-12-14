@@ -7,6 +7,7 @@
 //
 
 #import "WDGTextView.h"
+#import "WDGiPhoneXAdapter.h"
 #define UIColorRGB(x,y,z) [UIColor colorWithRed:x/255.0 green:y/255.0 blue:z/255.0 alpha:1.0]
 
 @interface WDGTextView()<UITextViewDelegate,UIScrollViewDelegate>
@@ -39,6 +40,13 @@
     return self;
 }
 
+-(void)updateFrame:(CGRect)frame
+{
+    self.frame=frame;
+    _storeFrame=frame;
+}
+
+
 -(void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
@@ -47,7 +55,7 @@
 -(void)createUI{
     self.textView.frame = CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
     self.placeholderLabel.frame = CGRectMake(10, 5, self.textView.frame.size.width, 39);
-    self.sendButton.frame = CGRectMake(self.backGroundView.frame.size.width-55, 8, 50, self.backGroundView.frame.size.height-6*2);
+    self.sendButton.frame = CGRectMake(self.backGroundView.frame.size.width-55, 6, 50, self.backGroundView.frame.size.height-6*2);
     
 }
 
@@ -70,6 +78,7 @@
 
 -(void)keyboardWillShow:(NSNotification *)aNotification
 {
+    if(self.hidden) return;
     self.frame = [UIScreen mainScreen].bounds;
     NSDictionary *userInfo = [aNotification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -77,24 +86,50 @@
     int height = keyboardRect.size.height;
     if (self.textView.text.length == 0) {
         
-        self.backGroundView.frame = CGRectMake(_storeFrame.origin.x, self.frame.size.height-height-49-20-self.viewcontroller.navigationController.navigationBar.frame.size.height, self.backGroundView.frame.size.width, 49);
+        self.backGroundView.frame = CGRectMake(WDG_ViewSafeAreInsetsLeft, self.frame.size.height-height-49-(WDG_iPhoneX?0:20)-self.viewcontroller.navigationController.navigationBar.frame.size.height, self.frame.size.width-WDG_ViewSafeAreInsetsLeft, 49);
     }else{
-        CGRect rect = CGRectMake(_storeFrame.origin.x, self.frame.size.height - self.backGroundView.frame.size.height-height-20-self.viewcontroller.navigationController.navigationBar.frame.size.height, self.backGroundView.frame.size.width, self.backGroundView.frame.size.height);
+        CGFloat backGVWidth =self.frame.size.width-WDG_ViewSafeAreInsetsLeft;
+        self.textView.frame =CGRectMake(5, 6, backGVWidth-65-5, 1000);
+        CGFloat backGVHeight =0;
+        if(self.textView.contentSize.height<(49-6*2)){
+            backGVHeight =49;
+        }else if(self.textView.contentSize.height<MaxTextViewHeight){
+            backGVHeight =self.textView.contentSize.height+6*2;
+        }else{
+            backGVHeight =MaxTextViewHeight+6*2;
+        }
+        CGRect rect = CGRectMake(WDG_ViewSafeAreInsetsLeft, self.frame.size.height - backGVHeight-height-(WDG_iPhoneX?0:20)-self.viewcontroller.navigationController.navigationBar.frame.size.height, backGVWidth, backGVHeight);
         self.backGroundView.frame = rect;
     }
+    self.textView.frame =CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
+    self.sendButton.frame = CGRectMake(self.backGroundView.frame.size.width-55, 6, 50, self.sendButton.frame.size.height);
 }
 
 -(void)keyboardWillHide:(NSNotification *)aNotification
 {
+    if(self.hidden) return;
     if (self.textView.text.length == 0) {
         self.frame = _storeFrame;
-        self.backGroundView.frame = CGRectMake(0, 0, self.backGroundView.frame.size.width, 49);
+        self.backGroundView.frame = CGRectMake(0, 0, self.frame.size.width, 49);
     }else{
-        CGRect rect = CGRectMake(0, 0, self.backGroundView.frame.size.width, self.backGroundView.frame.size.height);
+        self.textView.frame =CGRectMake(5, 6, _storeFrame.size.width-65-5, 1000);
+        CGFloat backGVHeight =0;
+        if(self.textView.contentSize.height<(49-6*2)){
+            backGVHeight =49;
+        }else if(self.textView.contentSize.height<MaxTextViewHeight){
+            backGVHeight =self.textView.contentSize.height+6*2;
+        }else{
+            backGVHeight =MaxTextViewHeight+6*2;
+        }
+        CGRect rect = CGRectMake(0, 0, _storeFrame.size.width, backGVHeight);
         self.backGroundView.frame = rect;
         self.frame = CGRectMake(_storeFrame.origin.x, _storeFrame.origin.y+49 - rect.size.height, self.backGroundView.frame.size.width, self.backGroundView.frame.size.height);
     }
     self.textView.frame =CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
+    self.sendButton.frame = CGRectMake(self.backGroundView.frame.size.width-55, 6, 50, self.sendButton.frame.size.height);
+    if(self.superfluousHeightWhenKeyboardHide){
+        self.superfluousHeightWhenKeyboardHide(self.frame.size.height-_storeFrame.size.height);
+    }
 }
 
 -(void)centerTapClick{
@@ -115,35 +150,47 @@
         [self.sendButton setBackgroundColor:UIColorRGB(70 , 163, 231)];
         self.sendButton.userInteractionEnabled = YES;
     }
+    CGFloat backGVHeight =0;
+    if(self.textView.contentSize.height<(49-6*2)){
+        backGVHeight =49;
+    }else if(self.textView.contentSize.height<MaxTextViewHeight){
+        backGVHeight =self.textView.contentSize.height+6*2;
+    }else{
+        statusTextView = YES;
+        backGVHeight =MaxTextViewHeight+6*2;
+    }
+    CGFloat y = CGRectGetMaxY(self.backGroundView.frame);
+    self.backGroundView.frame = CGRectMake(self.backGroundView.frame.origin.x, y - backGVHeight, self.backGroundView.frame.size.width,backGVHeight);
+    self.textView.frame =CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
     
-    CGSize size = CGSizeMake(self.backGroundView.frame.size.width-65, CGFLOAT_MAX);
+}
+
+-(void)updateBackGroundViewForTextWidth:(CGFloat)width
+{
+    CGSize size = CGSizeMake(width, CGFLOAT_MAX);
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16],NSFontAttributeName, nil];
-    CGFloat curheight = [textView.text boundingRectWithSize:size
+    CGFloat curheight = [_textView.text boundingRectWithSize:size
                                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                  attributes:dic
                                                     context:nil].size.height;
     CGFloat y = CGRectGetMaxY(self.backGroundView.frame);
     if (curheight < 19.094) {
         statusTextView = NO;
-        self.backGroundView.frame = CGRectMake(_storeFrame.origin.x, y - 49, self.backGroundView.frame.size.width, 49);
+        self.backGroundView.frame = CGRectMake(self.backGroundView.frame.origin.x, y - 49, self.backGroundView.frame.size.width, 49);
         
     }else if(curheight < MaxTextViewHeight){
         statusTextView = NO;
-        self.backGroundView.frame = CGRectMake(_storeFrame.origin.x, y - textView.contentSize.height-10, self.backGroundView.frame.size.width,textView.contentSize.height+10);
+        self.backGroundView.frame = CGRectMake(self.backGroundView.frame.origin.x, y - _textView.contentSize.height-10, self.backGroundView.frame.size.width,_textView.contentSize.height+10);
     }else{
         statusTextView = YES;
-        return;
     }
-    self.textView.frame =CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
-    
 }
 
 -(void)sendClick:(UIButton *)sender{
-    [self.textView endEditing:YES];
+   
     if (self.textViewBlock) {
         self.textViewBlock(self.textView.text);
     }
-    
     self.textView.text = nil;
     self.placeholderLabel.text = placeholderText;
     [self.sendButton setBackgroundColor:UIColorRGB(180, 180, 180)];
@@ -151,7 +198,7 @@
     self.frame = _storeFrame;
     self.backGroundView.frame = CGRectMake(0, 0, self.backGroundView.frame.size.width, 49);
     self.textView.frame =CGRectMake(5, 6, self.backGroundView.frame.size.width-65-5, self.backGroundView.frame.size.height-6*2);
-
+    [self.textView endEditing:YES];
 }
 
 -(UIView *)backGroundView{
@@ -203,7 +250,7 @@
     if (statusTextView == NO) {
         scrollView.contentOffset = CGPointMake(0, 0);
     }else{
-        
+        scrollView.contentOffset = CGPointMake(0, scrollView.contentSize.height-scrollView.frame.size.height);
     }
 }
 

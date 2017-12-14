@@ -10,4 +10,6 @@
 
 @interface WDGChatView : UIView
 +(instancetype)viewWithNickname:(NSString *)nickname roomId:(NSString *)roomId frame:(CGRect)frame;
+-(void)sendMessage:(NSString *)message;
+@property (nonatomic,assign) CGFloat insetBottom;
 @end

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger,VideoType){
 @interface WDGVideoViewController : UIViewController<WDGConversationDelegate>
 @property (nonatomic, strong) WDGVideoUserItem *oppositeItem;
 +(instancetype)controllerWithType:(VideoType)type;
--(void)closeConversation;
+- (void)closeRoom;
 @property (nonatomic, strong) WDGLocalStream *localStream;
 @property (nonatomic, weak) WDGConversation *conversation;
 -(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream;

@@ -14,6 +14,8 @@
 #import "WilddogSDKManager.h"
 #import "WDGLoginViewController.h"
 #import "WDGUserInfoRequest.h"
+#import "WDGNavigationController.h"
+
 @implementation WDGLoginManager
 
 +(BOOL)hasLogin
@@ -69,7 +71,7 @@
         UIViewController *mainViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         return mainViewController;
     }
-    return [[UINavigationController alloc] initWithRootViewController:[WDGLoginViewController new]];
+    return [[WDGNavigationController alloc] initWithRootViewController:[WDGLoginViewController new]];
 }
 
 +(void)saveUserInfo:(WDGUser *)user complete:(void (^)())complete;
@@ -91,6 +93,8 @@
                 account.nickName = [data displayName];
                 account.iconUrl =(NSString *)[data photoURL];
             }
+        }else{
+            account.nickName = [NSString stringWithFormat:@"iOS%06ld",arc4random_uniform(999999)];
         }
         [WDGAccountManager setCurrentAccount:account];
         [[NSNotificationCenter defaultCenter] postNotificationName:WDGAppDidSignInCompleteNotification object:nil];

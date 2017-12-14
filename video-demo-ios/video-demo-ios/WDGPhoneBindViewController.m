@@ -14,7 +14,6 @@
 #import "WilddogSDKManager.h"
 #import <WilddogAuth/WilddogAuth.h>
 @interface WDGTextField : UITextField
-@property (nonatomic,strong) NSTimer *timer;
 @end
 
 @implementation WDGTextField
@@ -32,7 +31,7 @@ static float leftGap =20;
 {
     WDGTextField *_phoneField;
     WDGTextField *_verificationField;
-    NSTimer *_timer;
+    WDGTimer *_timer;
     UIButton *_sendCodeBtn;
 }
 

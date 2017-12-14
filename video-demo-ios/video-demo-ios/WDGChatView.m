@@ -8,11 +8,10 @@
 
 #import "WDGChatView.h"
 #import "WDGChatViewModel.h"
-#import "WDGTextView.h"
 @interface WDGChatView()
 @property (nonatomic,strong) WDGChatViewModel *viewModel;
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) WDGTextView *textView;
+
 @property (nonatomic,copy) NSString *nickname;
 @property (nonatomic,copy) NSString *roomId;
 
@@ -33,12 +32,17 @@
 {
     self.viewModel = [WDGChatViewModel viewModelWithNickname:_nickname roomId:_roomId];
     [self addTableView];
-    [self addMessageView];
+}
+
+-(void)sendMessage:(NSString *)message;
+{
+    [self.viewModel sendMessage:message];
+    self.insetBottom=0;
 }
 
 -(void)addTableView
 {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-49) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
     tableView.backgroundColor = [UIColor colorWithRed:32/255. green:35/255. blue:42/255. alpha:1.];
     tableView.dataSource = self.viewModel;
     tableView.delegate = self.viewModel;
@@ -48,16 +52,10 @@
     [self addSubview:_tableView];
 }
 
--(void)addMessageView
+-(void)setInsetBottom:(CGFloat)insetBottom
 {
-    _textView = [[WDGTextView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-49, self.frame.size.width, 49)];
-    [_textView setPlaceholderText:@"请输入..."];
-    __weak typeof(self) WS =self;
-    _textView.textViewBlock = ^(NSString *message){
-        [WS.viewModel sendMessage:message];
-    };
-    [self addSubview:_textView];
-    
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, insetBottom, 0);
+    [_tableView setContentOffset:CGPointMake(0, _tableView.contentSize.height-_tableView.frame.size.height+insetBottom) animated:YES];
 }
 
 @end

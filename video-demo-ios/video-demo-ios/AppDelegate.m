@@ -21,6 +21,7 @@
 #endif
 #import <GTSDK/GeTuiSdk.h> 
 #import "WDGSignalPush.h"
+#import "WDGAppUpdateChecker.h"
 @interface AppDelegate ()<WXApiDelegate,GeTuiSdkDelegate, UNUserNotificationCenterDelegate>
 @property (nonatomic,copy) NSString *clientId;
 @end
@@ -43,6 +44,7 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [WDGLoginManager switchRootViewController];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appLoginComplete) name:WDGAppDidSignInCompleteNotification object:nil];
+    [WDGAppUpdateChecker check];
     return YES;
 }
 

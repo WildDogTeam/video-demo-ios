@@ -17,7 +17,6 @@
 @interface WDGLoginViewController ()
 @property (nonatomic,assign) BOOL loginByWechat;
 @property (nonatomic,assign) BOOL loginByWechatCancelled;
-@property (nonatomic,strong) NSTimer *timeOutTimer;
 @end
 
 @implementation WDGLoginViewController
@@ -136,5 +135,17 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"loginViewController dealloc");
+}
+
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 @end

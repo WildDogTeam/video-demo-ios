@@ -19,7 +19,7 @@
 @end
 
 @implementation WDGCamera360Option
-
+//
 - (instancetype)init
 {
     self = [super init];

@@ -50,7 +50,20 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.videoView.frame = self.contentView.bounds;
+    if(!CGRectEqualToRect(self.videoView.frame, self.contentView.bounds)){
+        self.videoView.frame = self.contentView.bounds;
+        if(self.layout.cornerRadius)
+            [self setVideoViewCorner];
+    }
+}
+
+-(void)setVideoViewCorner
+{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.videoView.bounds cornerRadius:self.layout.cornerRadius];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+    maskLayer.frame = self.videoView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.videoView.layer.mask = maskLayer;
 }
 
 -(void)setLayout:(WDGRoomCollectionViewCellLayout *)layout

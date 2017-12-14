@@ -12,6 +12,7 @@
 #import "WDGUserDefine.h"
 #import "NSString+Sha256.h"
 #import "WDGVideoUserItem.h"
+#import "WDGAccount.h"
 @implementation WDGSignalPush
 static NSString *_auth_token;
 
@@ -35,7 +36,7 @@ static NSString *_auth_token;
 
 +(void)pushVideoCallWithUserItem:(WDGVideoUserItem *)item
 {
-    NSString *body = item.nickname.length?item.nickname:item.uid;
+    NSString *body = [WDGAccountManager currentAccount].nickName?:[WDGAccountManager currentAccount].userID;
     [[[[WilddogSDKManager sharedManager].wilddogSyncRootReference child:WDGWholeUsers] child:item.uid] observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
         if(snapshot.value){
             [self pushVideoCallWithClientId:snapshot.value body:body];

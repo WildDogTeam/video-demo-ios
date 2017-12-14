@@ -11,5 +11,6 @@
 @interface WDGTextView : UIView
 @property (nonatomic,copy) void (^textViewBlock)(NSString *text);
 - (void)setPlaceholderText:(NSString *)text;
-
+- (void)updateFrame:(CGRect)frame;
+@property (nonatomic,copy) void(^superfluousHeightWhenKeyboardHide)(CGFloat superfluousHeight);
 @end

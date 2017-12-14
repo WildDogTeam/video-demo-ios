@@ -73,6 +73,7 @@
 @property BOOL fromeInternal;
 @property BOOL subBarShowed;
 @property BOOL selectMode;
+@property BOOL closeMode;
 @property BOOL prepareOpenSelectMode;
 @property double imageScale;
 
@@ -284,10 +285,13 @@
 
 //进入选择模式
 - (void)inchooseModeAndCloseSubBar:(BOOL)closeSubBar{
+    self.selectMode = YES;
     if(closeSubBar){
         [self closeSubBar];
+        self.closeMode =YES;
+        return;
     }
-    self.selectMode = YES;
+
     [self.board setToolWithType:WDGBoardToolTypeDefault options:nil];
     [((BoardToolBar_RootBarItem *)self.toolItemArray[self.choosingToolIndex]) unchoose];
     for (BoardToolBar_RootBarItem *item in self.sizeItemArray) {
@@ -296,6 +300,7 @@
     for (BoardToolBar_colorItem *item in self.colorItemArray) {
         [item unchoose];
     }
+    self.closeMode =NO;
 }
 
 //退出选择模式
@@ -323,7 +328,10 @@
     int choosingIndex = 0;
     for (int i = 0 ; i < self.toolItemArray.count ; i++) {
         BoardToolBar_RootBarItem *item = self.toolItemArray[i];
-        if(item.btn == btn) choosingIndex = i;
+        if(item.btn == btn){
+            choosingIndex = i;
+            break;
+        }
     }
     
     //选中的如果不是最后两个工具
@@ -332,6 +340,10 @@
            !self.fromeInternal &&
            self.choosingToolIndex == choosingIndex){
             [self inchooseModeAndCloseSubBar:YES];
+        }else if(self.selectMode &&self.closeMode &&
+                 !self.fromeInternal &&
+                 self.choosingToolIndex == choosingIndex){
+            [self inchooseModeAndCloseSubBar:NO];
         }else{
             //文字的时候换图标
             if(choosingIndex == 5){
@@ -618,6 +630,9 @@
             [self closeSubBar];
         }
     }];
+    [self.board ObserveObjectAddedWithBlock:^(WDGBoardObject *object, NSDictionary *allProperty) {
+        [self inchooseModeAndCloseSubBar:YES];
+    }];
 }
 
 //上传图片并生成图片元素显示到界面上
@@ -630,7 +645,7 @@
 //                                                         AccessKey:QiniuAK];
     
     //NSLog(@"%@",token);
-    [[AFHTTPSessionManager manager] GET:@"http://wildboard.wilddogapp.com/uptoken" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] GET:@"http://courseware.wilddogapp.com/uptoken" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if([responseObject isKindOfClass:[NSDictionary class]]){
             NSString *token = responseObject[@"uptoken"];
             __weak typeof(self) WS =self;

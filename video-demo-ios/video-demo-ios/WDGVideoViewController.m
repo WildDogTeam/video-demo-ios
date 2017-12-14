@@ -20,6 +20,7 @@
 #import "WDGUserInfoView.h"
 #import "WDGVideoControllerManager.h"
 #import "WDGFunctionView.h"
+#import "WDGiPhoneXAdapter.h"
 typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
     WDGCaptureDevicePositionFront,
     WDGCaptureDevicePositionBack
@@ -69,12 +70,25 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [[WDGVideoControllerManager sharedManager].functionView.infoView updateInfoWithSize:@"0*0px" fps:@"0fps" rate:@"0kbps" memory:@"0MB" style:isLocalViewPresent];
     };
     [self.view addSubview:videoView];
+    UIView *gradientView = [[UIView alloc] initWithFrame:self.view.bounds];
+    gradientView.userInteractionEnabled =NO;
+    [self.view addSubview:gradientView];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = CGRectMake(0, 0, videoView.frame.size.width, 250);
+    gradient.startPoint = CGPointMake(0, 0);
+    gradient.endPoint = CGPointMake(0, 1);
+    UIColor *colorOne = [[UIColor blackColor] colorWithAlphaComponent:1];
+    UIColor *colorTwo = [[UIColor clearColor] colorWithAlphaComponent:0];
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, (id)colorTwo.CGColor, nil];
+    gradient.colors = colors;
+    gradient.locations = @[@(-.5),@(0.99)];
+    [gradientView.layer addSublayer:gradient];
     
     [[WDGVideoControllerManager sharedManager].controlView showInView:self.view animate:YES];
     [WDGVideoControllerManager sharedManager].controlView.controlDelegate =self;
     
     WDGFunctionView *functionView =[WDGVideoControllerManager sharedManager].functionView;
-    functionView.frame = CGRectMake(self.view.frame.size.width-functionView.frame.size.width, 30, functionView.frame.size.width, functionView.frame.size.height);
+    functionView.frame = CGRectMake(self.view.frame.size.width-functionView.frame.size.width, 30+WDG_ViewSafeAreInsetsTop, functionView.frame.size.width, functionView.frame.size.height);
     [self.view addSubview:functionView];
     functionView.delegate =self;
     _functionView =functionView;
@@ -89,6 +103,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self.view addSubview:self.userInfoView];
         self.userInfoView.center = CGPointMake(self.view.frame.size.width*.5, self.userInfoView.frame.size.height*.5+50);
     }
+    
 }
 
 -(void)rendarViewWithLocalStream:(WDGLocalStream *)localStream remoteStream:(WDGRemoteStream *)remoteStream
@@ -243,7 +258,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
         [self.view showHUDWithMessage:@"你所拨打的用户暂时无法接通，请稍后再拨" hideAfter:1 animate:YES];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self closeConversation];
+        [self closeRoom];
     });
 }
 
@@ -267,11 +282,13 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
  */
 - (void)conversation:(WDGConversation *)conversation didFailedWithError:(NSError *)error{
     NSLog(@"%@-----error:%@",NSStringFromSelector(_cmd),error);
-    [self closeConversation];
+    [self closeRoom];
 }
 
 - (void)conversationDidClosed:(WDGConversation *)conversation{
-    [self closeConversation];
+    NSLog(@"hantest---closeroom");
+    [self closeRoom];
+    
 }
 
 
@@ -330,6 +347,10 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 -(WDGVideoUserItem *)oppositeItem
 {
     return [WDGVideoControllerManager sharedManager].oppositeItem;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void)dealloc
