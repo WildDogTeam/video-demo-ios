@@ -68,6 +68,9 @@
 
 -(void)setLayout:(WDGRoomCollectionViewCellLayout *)layout
 {
+    if(_layout){
+        [_layout.stream detach:self.videoView];
+    }
     _layout =layout;
     NSLog(@"%d",layout.needMirror);
     self.videoView.mirror = layout.needMirror;

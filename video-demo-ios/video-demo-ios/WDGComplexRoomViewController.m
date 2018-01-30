@@ -78,8 +78,9 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     [self createMessageInputView];
     [self setupLocalStream];
     [self audioSpeaker];
-    _room = [[WDGRoom alloc] initWithRoomId:_roomId url:@"wss://bt-sh.wilddog.com:2600/ws" delegate:self];
+    _room = [[WDGRoom alloc] initWithRoomId:_roomId delegate:self];
     [_room connect];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 -(void)confirmStartTime
@@ -98,7 +99,6 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     __weak typeof(self) WS =self;
     self.timer = [WDGTimer timerWithstart:enterTime interval:1 block:^(NSTimeInterval timeInterval) {
         __strong typeof(WS) self =WS;
-        NSLog(@"time ------%lu",(NSInteger)timeInterval);
         NSInteger time =(NSInteger)timeInterval;
         UIButton *btn = self.navigationItem.titleView;
         btn.titleLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d",time/60/60,time/60%60,time%60];
@@ -524,5 +524,11 @@ typedef NS_ENUM(NSUInteger,RoomMemberStyle){
     NSLog(@"room controller dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(void)applicationDidBecomeActive
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"masklandscaperight" object:nil];
+}
+
 
 @end

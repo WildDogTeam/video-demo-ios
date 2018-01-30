@@ -8,7 +8,7 @@
 //
 
 #import "WDGVideoConfig.h"
-
+#import "WDGUserDefine.h"
 #define WDGVideoDimension @[WDGVideoDimensions120p,WDGVideoDimensions240p,WDGVideoDimensions360p,WDGVideoDimensions480p,WDGVideoDimensions720p,WDGVideoDimensions1080p]
 #define WDGVideoConstraintsKey @"com.wilddog.video.constraints"
 #define WDGVideoBeautyPlanKey @"com.wilddog.video.beautyPlan"
@@ -52,7 +52,7 @@ static NSString *_videoConstraints;
     if(!_beautyPlan){
         _beautyPlan = [[NSUserDefaults standardUserDefaults] objectForKey:WDGVideoBeautyPlanKey];
         if(!_beautyPlan){
-            _beautyPlan = @"Camera360";
+            _beautyPlan = WDGAppUseCamera360?@"Camera360":WDGAppUseTUSDK?@"TuSDK":WDGAppUseGPUImage?@"GPUImage":@"Beauty";
         }
     }
     return _beautyPlan?:@"";

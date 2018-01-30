@@ -11,6 +11,8 @@
 FOUNDATION_EXTERN BOOL const WDGAppUseTUSDK;
 //是否开启camera360美颜
 FOUNDATION_EXTERN BOOL const WDGAppUseCamera360;
+//是否开启GPUImage滤镜美颜
+FOUNDATION_EXTERN BOOL const WDGAppUseGPUImage;
 //是否开启微信登录
 FOUNDATION_EXTERN BOOL const WDGAppUseWechatLogin;
 //是否开启个推APNS推送

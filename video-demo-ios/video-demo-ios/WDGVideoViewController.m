@@ -21,16 +21,17 @@
 #import "WDGVideoControllerManager.h"
 #import "WDGFunctionView.h"
 #import "WDGiPhoneXAdapter.h"
-typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
-    WDGCaptureDevicePositionFront,
-    WDGCaptureDevicePositionBack
+
+typedef NS_ENUM(NSUInteger,WDGVideoCaptureDevicePosition){
+    WDGVideoCaptureDevicePositionFront,
+    WDGVideoCaptureDevicePositionBack
 };
 
 @interface WDGVideoViewController ()<UIAlertViewDelegate,WDGLocalStreamDelegate,WDGConversationDelegate,WDGConversationStatsDelegate,WDGVideoControl,WDGFunctionViewDelegate>
 @property (nonatomic, assign) VideoType myType;
 @property (nonatomic, strong) WDGFunctionView *functionView;
 @property (nonatomic, strong) WDGUserInfoView *userInfoView;
-@property (nonatomic, assign) WDGCaptureDevicePosition capturePosition;
+@property (nonatomic, assign) WDGVideoCaptureDevicePosition capturePosition;
 @end
 
 @implementation WDGVideoViewController
@@ -51,7 +52,7 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 - (void)viewDidLoad {
     [super viewDidLoad];
     _audioSessionShouldSpeaker =YES;
-    self.capturePosition = WDGCaptureDevicePositionFront;
+    self.capturePosition = WDGVideoCaptureDevicePositionFront;
     _recordCurrentTime = 0;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     self.view.backgroundColor = [UIColor lightGrayColor];
@@ -232,8 +233,8 @@ typedef NS_ENUM(NSUInteger,WDGCaptureDevicePosition){
 
 -(void)videoControlView:(WDGVideoControlView *)controlView cameraDidTurned:(BOOL)isFront
 {
-    self.capturePosition = (self.capturePosition==WDGCaptureDevicePositionFront)?WDGCaptureDevicePositionBack:WDGCaptureDevicePositionFront;
-    [[WDGVideoControllerManager sharedManager].videoView showMirrorLocalView:(self.capturePosition ==WDGCaptureDevicePositionFront)];
+    self.capturePosition = (self.capturePosition==WDGVideoCaptureDevicePositionFront)?WDGVideoCaptureDevicePositionBack:WDGVideoCaptureDevicePositionFront;
+    [[WDGVideoControllerManager sharedManager].videoView showMirrorLocalView:(self.capturePosition ==WDGVideoCaptureDevicePositionFront)];
     [self.localStream switchCamera];
 }
 

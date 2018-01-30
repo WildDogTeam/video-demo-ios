@@ -10,6 +10,8 @@
 		17182DFD1FD8E98D00EC51A5 /* WDGRoomObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 17182DFC1FD8E98D00EC51A5 /* WDGRoomObserver.m */; };
 		174FB7EA1FE21E87009B1E1E /* WDGAppUpdateChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 174FB7E91FE21E87009B1E1E /* WDGAppUpdateChecker.m */; };
 		177978431FD7DF69009D8659 /* WDGRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 177978421FD7DF68009D8659 /* WDGRoomManager.m */; };
+		17F01EE620208BD400527326 /* GPUImageBeautifyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F01EE220208BD400527326 /* GPUImageBeautifyFilter.m */; };
+		17F01EE720208BD400527326 /* WDGGPUImageOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F01EE420208BD400527326 /* WDGGPUImageOption.m */; };
 		8EDB6F5C9432B8585A1324CB /* libPods-video-demo-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C026F1ADDF4BF937E58C9366 /* libPods-video-demo-ios.a */; };
 		C80CFC271FCE965E008C9C44 /* NSLayoutConstraint+IB.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CFC251FCE965E008C9C44 /* NSLayoutConstraint+IB.m */; };
 		C83B280D1F41505600DE970C /* WDGConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C83B280B1F41505600DE970C /* WDGConversationCell.m */; };
@@ -152,6 +154,10 @@
 		174FB7E91FE21E87009B1E1E /* WDGAppUpdateChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDGAppUpdateChecker.m; sourceTree = "<group>"; };
 		177978411FD7DF68009D8659 /* WDGRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGRoomManager.h; sourceTree = "<group>"; };
 		177978421FD7DF68009D8659 /* WDGRoomManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDGRoomManager.m; sourceTree = "<group>"; };
+		17F01EE220208BD400527326 /* GPUImageBeautifyFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageBeautifyFilter.m; sourceTree = "<group>"; };
+		17F01EE320208BD400527326 /* WDGGPUImageOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGGPUImageOption.h; sourceTree = "<group>"; };
+		17F01EE420208BD400527326 /* WDGGPUImageOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGGPUImageOption.m; sourceTree = "<group>"; };
+		17F01EE520208BD400527326 /* GPUImageBeautifyFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageBeautifyFilter.h; sourceTree = "<group>"; };
 		17F4AE831FCFF74F00C3A52F /* WDGiPhoneXAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDGiPhoneXAdapter.h; sourceTree = "<group>"; };
 		2FD3715D145EABEFFC889F7B /* Pods-video-demo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		6840C196C91DD72ECCD6601D /* Pods-video-demo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-video-demo-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-video-demo-ios/Pods-video-demo-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -508,6 +514,10 @@
 		C87EAF4A1F18AD3300548531 /* Beauty */ = {
 			isa = PBXGroup;
 			children = (
+				17F01EE520208BD400527326 /* GPUImageBeautifyFilter.h */,
+				17F01EE220208BD400527326 /* GPUImageBeautifyFilter.m */,
+				17F01EE320208BD400527326 /* WDGGPUImageOption.h */,
+				17F01EE420208BD400527326 /* WDGGPUImageOption.m */,
 				C89AC1021F591BFD001731F3 /* WDGCamera360Option.h */,
 				C89AC1031F591BFD001731F3 /* WDGCamera360Option.m */,
 				C87EAEF71F18AB5700548531 /* WDGBeautyManager.h */,
@@ -1061,6 +1071,7 @@
 				177978431FD7DF69009D8659 /* WDGRoomManager.m in Sources */,
 				C8F052EF1FC7B42B00745862 /* BoardToolBar_rootBar.m in Sources */,
 				C87EAF431F18AB5800548531 /* WDGVideoReceiveViewController.m in Sources */,
+				17F01EE720208BD400527326 /* WDGGPUImageOption.m in Sources */,
 				C8F052DF1FC7B42B00745862 /* UIButton+EnlargeTouchArea.m in Sources */,
 				C8F052F21FC7B42B00745862 /* BoardToolBar_colorItem.m in Sources */,
 				C87EAF3F1F18AB5800548531 /* WDGTuSDKOption.m in Sources */,
@@ -1109,6 +1120,7 @@
 				C8F052DE1FC7B42B00745862 /* ZLNoAuthorityViewController.m in Sources */,
 				C8F052D11FC7B42B00745862 /* ZLShowGifViewController.m in Sources */,
 				C8C0539A1F89117B005F57F3 /* WDGBlackManager.m in Sources */,
+				17F01EE620208BD400527326 /* GPUImageBeautifyFilter.m in Sources */,
 				C89441CC1F3C2B6D00FA4E4A /* WDGTableViewController.m in Sources */,
 				C87EAF341F18AB5800548531 /* WDGLoginViewController.m in Sources */,
 				C87EAF321F18AB5800548531 /* WDGInfoView.m in Sources */,

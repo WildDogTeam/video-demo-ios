@@ -33,7 +33,7 @@ NSString *const WDGVideoUserItemDeviceIdKey =@"deviceid";
 
 -(NSString *)description
 {
-    return self.nickname?:self.uid;
+    return self.nickname.length?self.nickname:self.uid;
 }
 
 +(void)requestForUid:(NSString *)uid complete:(void (^)(WDGVideoUserItem *))complete
